@@ -19,7 +19,34 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    options: [
+      {
+        id: 1,
+        name: 'Size',
+        choices: ['small', 'medium', 'large']
+      },
+      {
+        id: 2,
+        name: 'Crust',
+        choices: ['thin', 'regular', 'gluten-free']
+      },
+      {
+        id: 3,
+        name: 'Sauce',
+        choices: ['tomato', 'alfredo', 'pesto', 'bbq']
+      },
+      {
+        id: 4,
+        name: 'Regular Toppings',
+        choices: ['pepperoni', 'sausage', 'bacon', 'banana peppers', 'olives', 'mushrooms', 'green peppers']
+      },
+      {
+        id: 5,
+        name: 'Premium Toppings',
+        choices: ['pineapple', 'fresh mozzarella', 'artichokes', 'steak']
+      },
+    ]
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
