@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="option-columns">
     <div v-for="option in options" v-bind:key="option.id">
       <h2>{{ option.name }}</h2>
       <ul v-for="subOption in option.choices" v-bind:key="subOption">
@@ -16,4 +16,10 @@ export default {
 </script>
 
 <style>
+
+    .option-columns {
+        display: flex;
+        justify-content: space-around;
+    }
+
 </style>

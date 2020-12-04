@@ -64,6 +64,10 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    ADD_OPTION(state, newOption) {
+      const option = state.options.find(o => o.name === newOption.categoryName);
+      option.choices.push(newOption.optionName);
     }
   }
 })
