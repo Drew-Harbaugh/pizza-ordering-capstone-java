@@ -1,33 +1,18 @@
-DROP TABLE IF EXISTS categories CASCADE;
-DROP TABLE IF EXISTS choices CASCADE;
+BEGIN TRANSACTION;
 
-DROP SEQUENCE IF EXISTS categories_category_id_seq;
-DROP SEQUENCE IF EXISTS choices_choice_id_seq;
+INSERT INTO categories (name) VALUES ('Size');
+INSERT INTO categories (name) VALUES ('Crust');
+INSERT INTO categories (name) VALUES ('Sauce');
+INSERT INTO categories (name) VALUES ('Regular Toppings');
+INSERT INTO categories (name) VALUES ('Premium Toppings');
 
-CREATE SEQUENCE categories_category_id_seq
-INCREMENT BY 1
-NO MAXVALUE
-NO MINVALUE
-CACHE 1;
+INSERT INTO choices (category_id, name, is_available) VALUES (1, 'Small', true);
+INSERT INTO choices (category_id, name, is_available) VALUES (1, 'Medium', true);
+INSERT INTO choices (category_id, name, is_available) VALUES (1, 'Large', true);
+INSERT INTO choices (category_id, name, is_available) VALUES (2, 'Regular', true);
+INSERT INTO choices (category_id, name, is_available) VALUES (2, 'Thin', true);
+INSERT INTO choices (category_id, name, is_available) VALUES (3, 'Marinara', true);
+INSERT INTO choices (category_id, name, is_available) VALUES (4, 'Mushrooms', true);
+INSERT INTO choices (category_id, name, is_available) VALUES (5, 'Artichokes', true);
 
-CREATE TABLE categories (
-category_id serial NOT NULL,
-name varchar NOT NULL,
-CONSTRAINT pk_categories_category_id PRIMARY KEY (category_id)
-);
-
-
-CREATE SEQUENCE choices_choice_id_seq
-INCREMENT BY 1
-NO MAXVALUE
-NO MINVALUE
-CACHE 1;
-
-CREATE TABLE choices (
-choice_id serial NOT NULL,
-category_id int NOT NULL,
-name varchar NOT NULL,
-isAvaibale boolean,
-CONSTRAINT pk_choices_choice_id PRIMARY KEY (choice_id),
-CONSTRAINT fk_choices_category_id FOREIGN KEY (category_id) REFERENCES categories (category_id)
-);
+COMMIT;
