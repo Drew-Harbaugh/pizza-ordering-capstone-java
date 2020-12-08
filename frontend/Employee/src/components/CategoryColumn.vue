@@ -19,6 +19,9 @@ export default {
   },
   computed: {
     title() {
+      if (this.sortedChoices.length === 0) {
+        return '';
+      }
       const oneChoice = this.sortedChoices[0];
       if (oneChoice.categoryId === 1) {
         return 'Size';

@@ -5,8 +5,10 @@ import java.util.List;
 
 public interface ChoiceDAO {
 
-    List<Choice> getChoiceByCategoryId(int id);
+//    List<Choice> getChoiceByCategoryId(int id);
 
     List<Choice> getAllChoices();
+
+    void addChoice(Choice choice);
 
 }

@@ -12,8 +12,12 @@ export default {
         return http.get(`/choices`);
     },
 
-    getChoicesByCategory(categoryID) {
-        return http.get(`/choices/${categoryID}`);
+    // getChoicesByCategory(categoryID) {
+    //     return http.get(`/choices/${categoryID}`);
+    // },
+
+    addNewChoice(choice) {
+        return http.post(`/choices`, choice);
     }
 
 }
