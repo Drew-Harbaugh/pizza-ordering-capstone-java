@@ -2,20 +2,19 @@
 <template>
   <div id="login" class="text-center">
     <div>
-      <b-navbar toggleable="lg" type="dark" variant="danger">
-        <div class="navBarLogo">
+      <b-navbar toggleable="lg" type="dark" variant="danger" id="navbar">
+        <div class="navBarLogo" id="navbarLogo">
           <b-img
-            src="https://cdn.pixabay.com/photo/2016/06/01/12/59/pizza-1428931_1280.png"
+            src="./anotherOneBitesTheCrustLogo.png"
             fluid
-            alt="Fluid image"
+            alt="Pizza image"
           ></b-img>
         </div>
-
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-        <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
-        <b-collapse id="nav-collapse" is-nav>
+          <div id="title">
+          <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+          </div>
           <!-- Right aligned nav items -->
+          <div id="signOut">
           <b-navbar-nav class="ml-auto">
             <b-nav-item-dropdown right>
               <!-- Using 'button-content' slot -->
@@ -26,7 +25,8 @@
               <b-dropdown-item href="#">Sign Out</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
-        </b-collapse>
+          </div>
+        
       </b-navbar>
 
       <form class="form-signin" @submit.prevent="login">
@@ -104,29 +104,64 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+#navbar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "navbarLogo title signOut"
+  ;
+}
+
+#navbarLogo {
+  grid-area: navbarLogo;
+}
+
+#title {
+  grid-area: title;
+}
+
+#signOut {
+  grid-area: signOut;
+}
+
+h1{
+  width: 15vw;
+}
+
 .navBarLogo {
-  width: 10%;
+  width: 60%;
+  height: auto;
 }
 
 .h3 {
   margin: 0 auto;
-  margin-left: 350px;
+  margin-left: 35%;
   color: white;
-  font-size: 45px;
+  font-size: 30px;
+  text-align: center;
+  padding-right: 20%;
 }
 
-.text-center {
-  background-color: lightgray;
-}
 
 .form-signin {
   margin: 0 auto;
-  max-width: 400px;
+  max-width: 50%;
 }
 
 .ml-auto {
   font-size: 20px;
-  
 }
+
+#login{
+  height: 100vh;
+}
+
+#signOut{
+  display: flex;
+  align-content: flex-end;
+}
+
+
 </style>

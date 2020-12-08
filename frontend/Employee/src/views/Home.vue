@@ -10,3 +10,20 @@ export default {
   
 };
 </script>
+
+<style scoped>
+
+
+
+.home{
+  height: 100vh;
+  
+}
+
+h1{
+  color: white;
+  background-color: #dc3545;
+  text-align: center;
+  width: 100%;
+}
+</style>
