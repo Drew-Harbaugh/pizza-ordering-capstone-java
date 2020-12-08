@@ -7,7 +7,8 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
-import Choices from '@/views/Choices.vue';
+import Choices from '@/views/Choices.vue'
+import Specials from '@/views/Specials.vue'
 
 Vue.use(Router)
 
@@ -63,7 +64,15 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    },
+    {
+      path: '/specials',
+      name: 'specials',
+      component: Specials,
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 })
 
