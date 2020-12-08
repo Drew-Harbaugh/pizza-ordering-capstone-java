@@ -7,7 +7,6 @@ public class Choice {
     private String name;
     private boolean isAvailable;
 
-    public Choice() {}
 
     public int getChoiceId() {
         return choiceId;
