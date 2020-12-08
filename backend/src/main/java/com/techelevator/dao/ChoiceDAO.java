@@ -7,4 +7,6 @@ public interface ChoiceDAO {
 
     List<Choice> getChoiceByCategoryId(int id);
 
+    List<Choice> getAllChoices();
+
 }

@@ -19,6 +19,11 @@ public class ChoicesController {
         this.choiceDAO = choiceDAO;
     }
 
+    @GetMapping("/choices")
+    public List<Choice> getAll() {
+        return choiceDAO.getAllChoices();
+    }
+
     @GetMapping("/choices/{id}")
     public List<Choice> getByCategoryId(@PathVariable int id) {
         return choiceDAO.getChoiceByCategoryId(id);
