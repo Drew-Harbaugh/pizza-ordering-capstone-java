@@ -61,7 +61,7 @@ const router = new Router({
       name: 'choices',
       component: Choices,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     }
   ]
