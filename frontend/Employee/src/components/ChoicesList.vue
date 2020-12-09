@@ -43,11 +43,10 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
-    "size ."
-    "crust ."
-    "sauce ."
-    "reg ."
-    "prem .";
+    "size reg"
+    "crust reg"
+    "sauce prem";
+    text-align: center;
 }
 
 #size{
