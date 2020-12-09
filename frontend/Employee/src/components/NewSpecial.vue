@@ -14,16 +14,13 @@
         ></textarea>
       </div>
       <div>
-        <!-- change this to proper money format -->
         <label for="price">Price:</label>
-        <input
-          type="number"
-          min="0.01"
-          step="0.01"
-          max="50"
+        <money
+          v-bind="money"
           value="price"
           v-model="newSpecial.price"
-        />
+          style="text-align: right"
+        ></money>
       </div>
       <div>
         <h3>Crust</h3>
@@ -79,13 +76,25 @@
 
 <script>
 import specialsService from "@/services/SpecialsService.js";
+import { Money } from "v-money";
 
 export default {
+  components: {
+    Money,
+  },
   data() {
     return {
       newSpecial: {
         regularToppings: [],
         premiumToppings: [],
+      },
+      money: {
+        decimal: ".",
+        thousands: ",",
+        prefix: "$ ",
+        suffix: "",
+        precision: 2,
+        masked: false,
       },
     };
   },
