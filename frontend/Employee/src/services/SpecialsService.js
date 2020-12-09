@@ -7,8 +7,13 @@ const http = axios.create({
   });
 
 export default {
+
 	getAllSpecials() {
 		return http.get(`/specials`);
+	},
+
+	addNewSpecial(newSpecial) {
+		return http.post(`/specials`, newSpecial);
 	}
 
 }

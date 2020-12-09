@@ -43,6 +43,7 @@ export default {
             if (response.status === 201) {
                 alert('New choice successfully added!');
                 this.updateChoices();
+                this.resetForm();
             }
         }).catch(error => {
             console.log(error.response);

@@ -9,15 +9,19 @@
 import specialsService from "@/services/SpecialsService.js";
 import specialsList from "@/components/SpecialsList.vue";
 import newSpecial from "@/components/NewSpecial.vue";
+import choiceService from "@/services/ChoiceService.js";
 
 export default {
   components: {
     specialsList,
-    newSpecial
+    newSpecial,
   },
   created() {
     specialsService.getAllSpecials().then((response) => {
       this.$store.commit("SET_SPECIALS", response.data);
+    });
+    choiceService.getAllChoices().then((response) => {
+      this.$store.commit("SET_CHOICES", response.data);
     });
   },
 };

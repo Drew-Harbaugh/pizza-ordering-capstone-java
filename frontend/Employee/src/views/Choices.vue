@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <div>
       <b-navbar toggleable="lg" type="dark" variant="danger" id="navBar">
@@ -29,14 +28,12 @@ import newChoice from "@/components/NewChoice.vue";
 export default {
   components: {
     choicesList,
-    newChoice
+    newChoice,
   },
   created() {
-    choiceService
-      .getAllChoices()
-      .then((response) => {
-        this.$store.commit('SET_CHOICES', response.data);
-      });
+    choiceService.getAllChoices().then((response) => {
+      this.$store.commit("SET_CHOICES", response.data);
+    });
   },
 };
 </script>
@@ -60,7 +57,7 @@ export default {
   padding-left: 23%;
 }
 
-.navBarLogo{
+.navBarLogo {
   width: 20vw;
 }
 </style>

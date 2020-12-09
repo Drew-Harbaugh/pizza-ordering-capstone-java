@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.SpecialtyPizzaDAO;
 import com.techelevator.model.SpecialtyPizza;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,9 +23,9 @@ public class SpecialtyPizzaController {
     }
 
     @PostMapping("/specials")
+    @ResponseStatus(value = HttpStatus.CREATED)
     public void add(@RequestBody SpecialtyPizza specialtyPizza) {
         specialtyPizzaDAO.addSpecial(specialtyPizza);
     }
-
-
+    
 }
