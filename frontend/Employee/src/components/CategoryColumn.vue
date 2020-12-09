@@ -1,9 +1,9 @@
 <template>
-  <div>
-      <h2>{{ title }}</h2>
+  <div class="list">
+      <h2 id="title">{{ title }}</h2>
       <div v-for="choice in sortedChoices" v-bind:key="choice.choiceId">
         <ul>
-          <li>{{ choice.name }}</li>
+          <li id="name">{{ choice.name }}</li>
         </ul>
       </div>
   </div>
@@ -43,5 +43,20 @@ export default {
 </script>
 
 <style>
+
+/* .list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    " "
+} */
+
+#title{
+    grid-area: title;
+}
+
+#name{
+    grid-area: name;
+}
 
 </style>
