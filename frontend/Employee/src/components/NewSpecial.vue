@@ -133,6 +133,9 @@ export default {
         })
         .catch((error) => {
           console.log(error.response);
+          alert(error.message);
+          this.updateSpecials();
+          this.resetForm();
         });
     },
     resetForm() {

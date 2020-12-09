@@ -32,7 +32,6 @@ public class JdbcSpecialtyPizzaDAO implements SpecialtyPizzaDAO {
             specialtyPizza.setPrice(rowSet.getDouble("price"));
             specialtyPizza.setDescription(rowSet.getString("description"));
             result.add(specialtyPizza);
-
         }
         return result;
     }

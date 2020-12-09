@@ -35,7 +35,7 @@ CACHE 1;
 CREATE TABLE choices (
 choice_id serial NOT NULL,
 category_id int NOT NULL,
-name varchar NOT NULL,
+name varchar NOT NULL UNIQUE,
 is_available boolean,
 CONSTRAINT pk_choices_choice_id PRIMARY KEY (choice_id),
 CONSTRAINT fk_choices_category_id FOREIGN KEY (category_id) REFERENCES categories (category_id)
@@ -49,7 +49,7 @@ CACHE 1;
 
 CREATE TABLE specialty_pizza (
 specialty_id serial NOT NULL,
-name varchar NOT NULL,
+name varchar NOT NULL UNIQUE,
 description varchar NOT NULL,
 price numeric NOT NULL,
 is_available boolean,

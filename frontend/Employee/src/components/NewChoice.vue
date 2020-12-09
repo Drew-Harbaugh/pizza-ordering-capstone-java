@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import choiceService from '@/services/ChoiceService.js';
+import choiceService from "@/services/ChoiceService.js";
 
 export default {
   data() {
@@ -38,25 +38,31 @@ export default {
   },
   methods: {
     addNewChoice() {
-        this.newChoice.available = true;
-        choiceService.addNewChoice(this.newChoice).then(response => {
-            if (response.status === 201) {
-                alert('New choice successfully added!');
-                this.updateChoices();
-                this.resetForm();
-            }
-        }).catch(error => {
-            console.log(error.response);
+      this.newChoice.available = true;
+      choiceService
+        .addNewChoice(this.newChoice)
+        .then((response) => {
+          if (response.status === 201) {
+            alert("New choice successfully added!");
+            this.updateChoices();
+            this.resetForm();
+          }
+        })
+        .catch((error) => {
+          console.log(error.response);
+          alert(error.message);
+          this.updateChoices();
+          this.resetForm();
         });
     },
     updateChoices() {
-        choiceService.getAllChoices().then(response => {
-            this.$store.commit('SET_CHOICES', response.data);
-        });
+      choiceService.getAllChoices().then((response) => {
+        this.$store.commit("SET_CHOICES", response.data);
+      });
     },
     resetForm() {
-          this.newChoice = {};
-      }
+      this.newChoice = {};
+    },
   },
 };
 </script>
