@@ -38,7 +38,8 @@ export default {
 };
 </script>
 
-<style>
+<style scope>
+
 #navbar {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

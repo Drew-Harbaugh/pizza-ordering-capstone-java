@@ -1,10 +1,10 @@
 <template>
   <div class="category-columns">
-      <category-column v-bind:sortedChoices="size"></category-column>
-      <category-column v-bind:sortedChoices="crust"></category-column>
-      <category-column v-bind:sortedChoices="sauce"></category-column>
-      <category-column v-bind:sortedChoices="regularToppings"></category-column>
-      <category-column v-bind:sortedChoices="premiumToppings"></category-column>
+      <category-column v-bind:sortedChoices="size" id="size"></category-column>
+      <category-column v-bind:sortedChoices="crust" id="crust"></category-column>
+      <category-column v-bind:sortedChoices="sauce" id="sauce"></category-column>
+      <category-column v-bind:sortedChoices="regularToppings" id="regularToppings"></category-column>
+      <category-column v-bind:sortedChoices="premiumToppings" id="premiumToppings"></category-column>
   </div>
 </template>
 
@@ -37,8 +37,36 @@ export default {
 </script>
 
 <style>
+
+
 .category-columns {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "size ."
+    "crust ."
+    "sauce ."
+    "reg ."
+    "prem .";
+}
+
+#size{
+    grid-area: size;
+}
+
+#crust{
+    grid-area: crust;
+}
+
+#sauce{
+    grid-area: sauce;
+}
+
+#regularToppings{
+    grid-area: reg;
+}
+
+#premiumToppings{
+    grid-area: prem;
 }
 </style>
