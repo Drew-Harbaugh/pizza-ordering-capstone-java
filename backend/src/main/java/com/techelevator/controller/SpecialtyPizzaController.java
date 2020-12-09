@@ -27,5 +27,5 @@ public class SpecialtyPizzaController {
     public void add(@RequestBody SpecialtyPizza specialtyPizza) {
         specialtyPizzaDAO.addSpecial(specialtyPizza);
     }
-    
+
 }

@@ -10,7 +10,6 @@ public class SpecialtyPizza {
     private boolean isAvailable;
     private double price;
     private Choice crust;
-    private Choice size;
     private Choice sauce;
     private List<Choice> regularToppings;
     private List<Choice> premiumToppings;
@@ -21,14 +20,6 @@ public class SpecialtyPizza {
 
     public void setCrust(Choice crust) {
         this.crust = crust;
-    }
-
-    public Choice getSize() {
-        return size;
-    }
-
-    public void setSize(Choice size) {
-        this.size = size;
     }
 
     public Choice getSauce() {

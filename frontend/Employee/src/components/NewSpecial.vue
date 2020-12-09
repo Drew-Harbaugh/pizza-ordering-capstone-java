@@ -26,13 +26,6 @@
         />
       </div>
       <div>
-        <h3>Size</h3>
-        <div v-for="choice in size" v-bind:key="choice.choiceId">
-          <label v-bind:for="choice.choiceId">{{ choice.name }}</label>
-          <input type="radio" v-bind:value="choice" v-model="newSpecial.size" />
-        </div>
-      </div>
-      <div>
         <h3>Crust</h3>
         <div v-for="choice in crust" v-bind:key="choice.choiceId">
           <label v-bind:for="choice.choiceId">{{ choice.name }}</label>
@@ -97,11 +90,6 @@ export default {
     };
   },
   computed: {
-    size() {
-      return this.$store.state.choices.filter(
-        (choice) => choice.categoryId === 1
-      );
-    },
     crust() {
       return this.$store.state.choices.filter(
         (choice) => choice.categoryId === 2
@@ -139,7 +127,10 @@ export default {
         });
     },
     resetForm() {
-      this.newSpecial = {};
+      this.newSpecial = {
+        regularToppings: [],
+        premiumToppings: [],
+      };
       this.choiceIds = [];
     },
     updateSpecials() {
