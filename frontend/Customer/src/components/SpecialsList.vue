@@ -5,6 +5,8 @@
       v-for="special in specials"
       v-bind:key="special.specialtyId"
     >
+
+
       <div class="newSpecial">
         <h2 class="name">{{ special.name }}</h2>
         <h3 class="price">{{ special.price }}</h3>
@@ -26,10 +28,10 @@
           </div>
         </div>
         <div class="chooseSize" v-for="size in sizes" v-bind:key="size.choiceId">
-          <input type="radio" id="size" name="size" v-bind:value="size" />
+          <input type="radio" v-bind:name="'size' + special.specialtyId" v-bind:value="size" v-model="selectedSizes[special.specialtyId]">
           <label for="size">{{size.name}}</label>
         </div>
-        <button>Add to Cart</button>
+        <button v-on:submit.prevent="">Add to Cart</button>
 
 
 
@@ -42,13 +44,23 @@
 
 <script>
 export default {
+  data() {
+    return {
+    selectedSizes: {}
+    }
+  },
   props: ['specials', 'choices'], 
   computed: {
       sizes() {
       return this.choices.filter((choice) => choice.categoryId === 1);
     },
-  }
-};
+  },
+  methods: {
+      addPizzaCart() {
+        
+      }
+    }
+  };
 </script>
 
 <style scope>

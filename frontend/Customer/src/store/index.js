@@ -13,7 +13,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     choices: [],
-    specials: []
+    specials: [],
+    cart: []
   },
   mutations: {
     SET_SPECIALS(state, specials) {
@@ -22,5 +23,8 @@ export default new Vuex.Store({
     SET_CHOICES(state, choices) {
       state.choices = choices;
     },
+    ADD_TO_CART(state, pizza) {
+      state.cart.push(pizza);
+    }
   }
 })
