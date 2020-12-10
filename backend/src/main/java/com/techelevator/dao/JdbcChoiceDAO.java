@@ -55,12 +55,19 @@ public class JdbcChoiceDAO implements ChoiceDAO {
         jdbcTemplate.update(sql, choice.getCategoryId(), choice.getName(), choice.isAvailable());
     }
 
-    public int getChoiceIdByName(Choice choice) {
-        int result = 0;
-        String sql = "SELECT choice_id FROM choices WHERE name = ?;";
-        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, choice.getName());
-        result = rowSet.getInt("choice_id");
-        return result;
+    public Choice getChoiceById(int id) {
+        Choice choice = new Choice();
+        String sql = "SELECT choice_id FROM choices WHERE id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, id);
+        while (rowSet.next()) {
+
+            choice.setChoiceId(rowSet.getInt("choice_id"));
+            choice.setCategoryId(rowSet.getInt("category_id"));
+            choice.setName(rowSet.getString("name"));
+            choice.setAvailable(rowSet.getBoolean("is_available"));
+        }
+
+        return choice;
 
     }
 
