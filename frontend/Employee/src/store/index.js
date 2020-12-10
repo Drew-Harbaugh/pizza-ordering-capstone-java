@@ -21,7 +21,8 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     choices: [],
-    specials: []
+    specials: [],
+    changeChoices: [],
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -45,6 +46,14 @@ export default new Vuex.Store({
     },
     SET_SPECIALS(state, specials) {
       state.specials = specials;
+    },
+    TOGGLE_CHOICES(state, choice){
+      if(state.changeChoices.includes(choice)){
+        const index = state.changeChoices.indexOf(choice);
+       state.changeChoices.splice(index);
+      } else {
+        state.changeChoices.push(choice);
+      }
     }
   }
 })

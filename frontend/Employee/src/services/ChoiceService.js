@@ -18,6 +18,12 @@ export default {
 
     addNewChoice(choice) {
         return http.post(`/choices`, choice);
+    },
+
+    deleteChoice(choice){
+        return http.delete(`/choices`, choice);
     }
+
+    
 
 }
