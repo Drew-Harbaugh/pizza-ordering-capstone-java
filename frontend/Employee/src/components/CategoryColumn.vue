@@ -8,7 +8,11 @@
     >
       <ul>
         <li>
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            v-bind:value="choice"
+            v-on:change="toggleChoice(choice)"
+          />
 
           {{ choice.name }}
         </li>
@@ -22,6 +26,7 @@ export default {
   props: ["sortedChoices"],
   data() {
     return {};
+    
   },
   computed: {
     title() {
@@ -41,8 +46,13 @@ export default {
         return "Premium Toppings";
       }
     },
+    
   },
-  created() {},
+  methods: {
+    toggleChoice(choice){
+      this.$store.commit('TOGGLE_CHOICES', choice);
+    }
+  }
 };
 </script>
 

@@ -17,21 +17,11 @@ public class JdbcChoiceDAO implements ChoiceDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-//    @Override
-//    public List<Choice> getChoiceByCategoryId(int id) {
-//        List<Choice> result = new ArrayList<>();
-//        String sql = "SELECT choice_id, category_id, name, is_available FROM choices WHERE category_id = ?";
-//        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, id);
-//        while (rowSet.next()) {
-//            Choice choice = new Choice();
-//            choice.setChoiceId(rowSet.getInt("choice_id"));
-//            choice.setCategoryId(rowSet.getInt("category_id"));
-//            choice.setName(rowSet.getString("name"));
-//            choice.setAvailable(rowSet.getBoolean("is_available"));
-//            result.add(choice);
-//        }
-//        return result;
-//    }
+    @Override
+    public void deleteChoice(Choice choice){
+        String sql = "DELETE FROM choices WHERE choice_id = ?;";
+        jdbcTemplate.update(sql, choice.getChoiceId());
+    }
 
     @Override
     public List<Choice> getAllChoices() {
