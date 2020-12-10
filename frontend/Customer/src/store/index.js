@@ -18,6 +18,9 @@ export default new Vuex.Store({
   mutations: {
     SET_SPECIALS(state, specials) {
       state.specials = specials;
-    }
+    },
+    SET_CHOICES(state, choices) {
+      state.choices = choices;
+    },
   }
 })

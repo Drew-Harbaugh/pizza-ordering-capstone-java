@@ -25,17 +25,17 @@ public class JdbcSpecialtyPizzaDAO implements SpecialtyPizzaDAO {
     //GROUP BY s.name
 
 
-
     @Override
     public List<SpecialtyPizza> getAll() {
         List<SpecialtyPizza> result = new ArrayList<>();
-        List<Choice> premiumToppings = new ArrayList<>();
-        List<Choice> regularToppings = new ArrayList<>();
+
 
 
         String sql = "SELECT specialty_id, name, description, price, is_available FROM specialty_pizza;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while (rowSet.next()) {
+            List<Choice> premiumToppings = new ArrayList<>();
+            List<Choice> regularToppings = new ArrayList<>();
             SpecialtyPizza specialtyPizza = new SpecialtyPizza();
             specialtyPizza.setSpecialtyId(rowSet.getInt("specialty_id"));
             specialtyPizza.setAvailable(rowSet.getBoolean("is_available"));
@@ -44,29 +44,29 @@ public class JdbcSpecialtyPizzaDAO implements SpecialtyPizzaDAO {
             specialtyPizza.setDescription(rowSet.getString("description"));
 
 
-        String sql1 = "SELECT c.choice_id, c.category_id, c.name, c.is_available, s.specialty_id, s.choice_id  " +
-                "FROM choices AS c " +
-                "JOIN choices_specialty_pizza s ON c.choice_id = s.choice_id " +
-                "WHERE s.specialty_id = ?;";
-        SqlRowSet choiceRowSet = jdbcTemplate.queryForRowSet(sql1, specialtyPizza.getSpecialtyId());
-        while (choiceRowSet.next()) {
-            if (choiceRowSet.getInt("category_id") == 2) {
+            String sql1 = "SELECT c.choice_id, c.category_id, c.name, c.is_available, s.specialty_id, s.choice_id  " +
+                    "FROM choices AS c " +
+                    "JOIN choices_specialty_pizza s ON c.choice_id = s.choice_id " +
+                    "WHERE s.specialty_id = ?;";
+            SqlRowSet choiceRowSet = jdbcTemplate.queryForRowSet(sql1, specialtyPizza.getSpecialtyId());
+            while (choiceRowSet.next()) {
+                if (choiceRowSet.getInt("category_id") == 2) {
 
-                specialtyPizza.setCrust(mapRowToChoice(choiceRowSet));
+                    specialtyPizza.setCrust(mapRowToChoice(choiceRowSet));
+                }
+                if (choiceRowSet.getInt("category_id") == 3) {
+                    specialtyPizza.setSauce(mapRowToChoice(choiceRowSet));
+                }
+                if (choiceRowSet.getInt("category_id") == 4) {
+                    regularToppings.add(mapRowToChoice(choiceRowSet));
+                }
+                if (choiceRowSet.getInt("category_id") == 5) {
+                    premiumToppings.add(mapRowToChoice(choiceRowSet));
+                }
             }
-            if (choiceRowSet.getInt("category_id") == 3) {
-                specialtyPizza.setSauce(mapRowToChoice(choiceRowSet));
-            }
-            if (choiceRowSet.getInt("category_id") == 4) {
-                regularToppings.add(mapRowToChoice(choiceRowSet));
-            }
-            if (choiceRowSet.getInt("category_id") == 5) {
-                premiumToppings.add(mapRowToChoice(choiceRowSet));
-            }
-        }
-        specialtyPizza.setRegularToppings(regularToppings);
-        specialtyPizza.setPremiumToppings(premiumToppings);
-        result.add(specialtyPizza);
+            specialtyPizza.setRegularToppings(regularToppings);
+            specialtyPizza.setPremiumToppings(premiumToppings);
+            result.add(specialtyPizza);
         }
         return result;
     }
@@ -84,7 +84,7 @@ public class JdbcSpecialtyPizzaDAO implements SpecialtyPizzaDAO {
     @Override
     public void addSpecial(SpecialtyPizza specialtyPizza) {
         String sql = "INSERT INTO specialty_pizza (name, description, price, is_available) " +
-                     "VALUES (?, ?, ?, ?) RETURNING specialty_id;";
+                "VALUES (?, ?, ?, ?) RETURNING specialty_id;";
         int specialtyId = jdbcTemplate.queryForObject(sql, Integer.class, specialtyPizza.getName(), specialtyPizza.getDescription(), specialtyPizza.getPrice(), specialtyPizza.isAvailable());
         addChoiceSpecial(specialtyPizza.getCrust(), specialtyId);
         addChoiceSpecial(specialtyPizza.getSauce(), specialtyId);

@@ -16,7 +16,7 @@
       </b-navbar>
     </div>
     <div id="body">
-    <specials-list id="list" v-bind:specials="$store.state.specials"></specials-list>
+    <specials-list id="list" v-bind:specials="$store.state.specials" v-bind:choices="$store.state.choices"></specials-list>
     </div>
   </div>
 </template>
@@ -24,6 +24,7 @@
 <script>
 import SpecialsService from "@/services/SpecialsService.js";
 import SpecialsList from "@/components/SpecialsList.vue";
+import ChoiceService from "@/services/ChoiceService.js";
 
 export default {
   components: {
@@ -32,6 +33,9 @@ export default {
   created() {
     SpecialsService.getAllSpecials().then((response) => {
       this.$store.commit("SET_SPECIALS", response.data);
+    });
+    ChoiceService.getAllChoices().then((response) => {
+      this.$store.commit("SET_CHOICES", response.data)
     });
   },
 };
