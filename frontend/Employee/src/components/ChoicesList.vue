@@ -19,7 +19,7 @@
         id="premiumToppings"
       ></category-column>
     </div>
-    <button v-on:submit.prevent="deleteChoice()">Delete</button>
+    <button v-on:click="deleteChoices()">Delete</button>
     <button>Make Available</button>
     <button>Make Unavailable</button>
   </div>
@@ -52,16 +52,15 @@ export default {
     },
   },
   methods: {
-    delete() {
-      const changeChoices = this.$store.state.changeChoices;
-      changeChoices.forEach((choice) => {
+    deleteChoices() {
+      const choicesToChange = this.$store.state.changeChoices;
+      choicesToChange.forEach((choice) => {
         choiceService
           .deleteChoice(choice)
           .then((response) => {
             if (response.status === 202) {
               alert("Choice(s) successfully deleted");
-              toggleChoice(choice);
-              updateChoices();
+              this.updateChoices();
             }
           })
           .catch((error) => {
@@ -77,6 +76,7 @@ export default {
         this.$store.commit("SET_CHOICES", response.data);
       });
     },
+    
   },
 };
 </script>
