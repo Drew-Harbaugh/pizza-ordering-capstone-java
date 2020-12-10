@@ -7,11 +7,7 @@
       </div>
       <div>
         <label for="specialDescription">Description:</label>
-        <textarea
-          cols="30"
-          rows="10"
-          v-model="newSpecial.description"
-        ></textarea>
+        <input type="text" v-model="newSpecial.description" />
       </div>
       <div>
         <label for="price">Price:</label>
