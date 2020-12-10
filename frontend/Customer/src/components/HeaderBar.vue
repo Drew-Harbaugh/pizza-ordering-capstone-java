@@ -13,8 +13,8 @@
       </div>
       <div>
   <b-nav id="navLink">
-    <b-nav-item>Link</b-nav-item>
-    <b-nav-item>Link</b-nav-item>
+    <b-nav-item href="http://localhost:8080/specials">Specials</b-nav-item>
+    <b-nav-item>Custom Pizza</b-nav-item>
     <b-nav-item>Link</b-nav-item>
     <b-nav-item disabled>Disabled</b-nav-item>
   </b-nav>
@@ -53,7 +53,7 @@ export default {};
   display: flex;
   flex-direction: row;
   align-content: flex-end;
-  padding-left: 500px;
+  padding-left: 400px;
 }
 
 a:link {

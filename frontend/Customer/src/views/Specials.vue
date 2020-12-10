@@ -1,19 +1,7 @@
 <template>
   <div>
     <div>
-      <b-navbar toggleable="lg" type="dark" variant="danger" id="navBar">
-        <div class="navBarLogo" id="navbarLogo">
-          <b-img
-            src="src\components\src\views\anotherOneBitesTheCrustLogo.png"
-            fluid
-            alt="Pizza image"
-          ></b-img>
-        </div>
-
-        <div id="title">
-          <h1 class="h3 mb-3 font-weight-normal">Specials</h1>
-        </div>
-      </b-navbar>
+      <header-bar id="navBar"></header-bar>
     </div>
     <div id="body">
     <specials-list id="list" v-bind:specials="$store.state.specials" v-bind:choices="$store.state.choices"></specials-list>
@@ -25,9 +13,11 @@
 import SpecialsService from "@/services/SpecialsService.js";
 import SpecialsList from "@/components/SpecialsList.vue";
 import ChoiceService from "@/services/ChoiceService.js";
+import HeaderBar from "@/components/HeaderBar.vue"
 
 export default {
   components: {
+    HeaderBar,
     SpecialsList,
   },
   created() {
