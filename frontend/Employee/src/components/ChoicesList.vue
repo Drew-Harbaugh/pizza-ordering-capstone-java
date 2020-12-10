@@ -21,7 +21,7 @@
     </div>
     <button v-on:click="deleteChoices()">Delete</button>
     <button>Make Available</button>
-    <button>Make Unavailable</button>
+    <button v-on:click="makeUnavailable()">Make Unavailable</button>
   </div>
 </template>
 
@@ -56,10 +56,12 @@ export default {
       const choicesToChange = this.$store.state.changeChoices;
       choicesToChange.forEach((choice) => {
         choiceService
-          .deleteChoice(choice)
+          .deleteChoice(choice.choiceId)
           .then((response) => {
-            if (response.status === 202) {
-              alert("Choice(s) successfully deleted");
+            if (response.status === 200) {
+              this.updateChoices();
+            } else if (response.status === 500) {
+              alert('Could not delete one or more choices');
               this.updateChoices();
             }
           })
@@ -67,16 +69,26 @@ export default {
             console.log(error.message);
           });
       });
+      this.emptyChangeChoiceArray();
     },
-    toggleChoice(choice) {
-      this.$store.commit("TOGGLE_CHOICES", choice);
+    emptyChangeChoiceArray() {
+      this.$store.commit("EMPTY_CHOICES");
     },
     updateChoices() {
       choiceService.getAllChoices().then((response) => {
         this.$store.commit("SET_CHOICES", response.data);
       });
     },
-    
+    makeUnavailable() {
+      
+      const choicesToChange = this.$store.state.changeChoices;
+      choicesToChange.forEach(choice => {
+        if (choice.available === true) {
+          choice.available = false;
+        }
+      });
+      // do an api call to change boolean in database
+    }
   },
 };
 </script>
@@ -111,4 +123,6 @@ export default {
 #premiumToppings {
   grid-area: prem;
 }
+
+
 </style>

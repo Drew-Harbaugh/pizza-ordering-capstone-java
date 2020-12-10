@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface ChoiceDAO {
 
-    void deleteChoice(Choice choice);
+    void deleteChoice(int choiceId);
 
     List<Choice> getAllChoices();
 

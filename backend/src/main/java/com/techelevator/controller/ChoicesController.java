@@ -24,19 +24,15 @@ public class ChoicesController {
         return choiceDAO.getAllChoices();
     }
 
-
     @PostMapping("/choices")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void addChoice(@RequestBody Choice choice) {
         choiceDAO.addChoice(choice);
     }
 
-
-
-    @DeleteMapping("/choices")
-    @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public void deleteChoice(@RequestBody Choice choice){
-        choiceDAO.deleteChoice(choice);
+    @DeleteMapping("/choices/{choiceId}")
+    public void deleteChoice(@PathVariable int choiceId){
+        choiceDAO.deleteChoice(choiceId);
     }
 
 }

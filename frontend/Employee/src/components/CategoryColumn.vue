@@ -7,9 +7,10 @@
       v-bind:key="choice.choiceId"
     >
       <ul>
-        <li>
+        <li v-bind:class="{unavailable: !choice.available}">
           <input
             type="checkbox"
+            
             v-bind:value="choice"
             v-on:change="toggleChoice(choice)"
           />
@@ -25,7 +26,9 @@
 export default {
   props: ["sortedChoices"],
   data() {
-    return {};
+    return {
+      
+    };
     
   },
   computed: {
@@ -51,7 +54,7 @@ export default {
   methods: {
     toggleChoice(choice){
       this.$store.commit('TOGGLE_CHOICES', choice);
-    }
+    },
   }
 };
 </script>
@@ -148,5 +151,9 @@ h2 {
 
 .name {
   grid-area: name;
+}
+
+.unavailable {
+  text-decoration: line-through;
 }
 </style>

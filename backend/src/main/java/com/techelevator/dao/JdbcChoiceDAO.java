@@ -18,9 +18,9 @@ public class JdbcChoiceDAO implements ChoiceDAO {
     }
 
     @Override
-    public void deleteChoice(Choice choice){
+    public void deleteChoice(int choiceId){
         String sql = "DELETE FROM choices WHERE choice_id = ?;";
-        jdbcTemplate.update(sql, choice.getChoiceId());
+        jdbcTemplate.update(sql, choiceId);
     }
 
     @Override

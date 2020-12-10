@@ -20,8 +20,8 @@ export default {
         return http.post(`/choices`, choice);
     },
 
-    deleteChoice(choice){
-        return http.delete(`/choices`, choice);
+    deleteChoice(id){
+        return http.delete(`/choices/${id}`);
     }
 
     

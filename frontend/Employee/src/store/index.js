@@ -54,6 +54,9 @@ export default new Vuex.Store({
       } else {
         state.changeChoices.push(choice);
       }
+    },
+    EMPTY_CHOICES(state) {
+      state.changeChoices = [];
     }
   }
 })
