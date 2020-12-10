@@ -47,7 +47,7 @@ public class JdbcSpecialtyPizzaDAO implements SpecialtyPizzaDAO {
             String sql1 = "SELECT c.choice_id, c.category_id, c.name, c.is_available, s.specialty_id, s.choice_id  " +
                     "FROM choices AS c " +
                     "JOIN choices_specialty_pizza s ON c.choice_id = s.choice_id " +
-                    "WHERE s.specialty_id = ?;";
+                    "WHERE s.specialty_id = ? AND c.is_available = true;";
             SqlRowSet choiceRowSet = jdbcTemplate.queryForRowSet(sql1, specialtyPizza.getSpecialtyId());
             while (choiceRowSet.next()) {
                 if (choiceRowSet.getInt("category_id") == 2) {

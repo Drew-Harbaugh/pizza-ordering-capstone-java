@@ -5,37 +5,31 @@
       v-for="special in specials"
       v-bind:key="special.specialtyId"
     >
-
-
       <div class="newSpecial">
         <h2 class="name">{{ special.name }}</h2>
         <h3 class="price">{{ special.price }}</h3>
         <p class="description">{{ special.description }}</p>
         <div class="toppingsLists">
+          <h4>Regular Toppings</h4>
           <div
             v-for="regularTopping in special.regularToppings"
             v-bind:key="regularTopping.name"
           >
-            <h4>Regular Toppings</h4>
             <p>{{ regularTopping.name }}</p>
           </div>
+          <h4>Premium Toppings</h4>
           <div
             v-for="premiumTopping in special.premiumToppings"
             v-bind:key="premiumTopping.name"
           >
-            <h5>Premium Toppings</h5>
             <p>{{ premiumTopping.name }}</p>
           </div>
         </div>
         <div class="chooseSize" v-for="size in sizes" v-bind:key="size.choiceId">
           <input type="radio" v-bind:name="'size' + special.specialtyId" v-bind:value="size" v-model="selectedSizes[special.specialtyId]">
           <label for="size">{{size.name}}</label>
+          <button v-on:click="addPizzaToCart(special, size)">Add to Cart</button>
         </div>
-        <button v-on:submit.prevent="">Add to Cart</button>
-
-
-
-
       </div>
       <div class="divider"></div>
     </div>
@@ -46,7 +40,8 @@
 export default {
   data() {
     return {
-    selectedSizes: {}
+    selectedSizes: {},
+    cart: []
     }
   },
   props: ['specials', 'choices'], 
@@ -56,8 +51,9 @@ export default {
     },
   },
   methods: {
-      addPizzaCart() {
-        
+      addPizzaToCart(special, size) {
+        special.size = size;
+        this.cart.push(special);
       }
     }
   };
