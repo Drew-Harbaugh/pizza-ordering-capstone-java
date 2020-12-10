@@ -4,7 +4,7 @@
       <b-navbar toggleable="lg" type="dark" variant="danger" id="navBar">
         <div class="navBarLogo" id="navbarLogo">
           <b-img
-            src="@/components/anotherOneBitesTheCrustLogo.png"
+            src="src\components\src\views\anotherOneBitesTheCrustLogo.png"
             fluid
             alt="Pizza image"
           ></b-img>

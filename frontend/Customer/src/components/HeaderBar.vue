@@ -3,7 +3,7 @@
     <b-navbar toggleable="lg" type="dark" variant="danger" id="navBar">
       <div class="navBarLogo" id="navbarLogo">
         <b-img
-          src="src\components\src\views\anotherOneBitesTheCrustLogo.png"
+          src="@/components/src/views/anotherOneBitesTheCrustLogo.png"
           fluid
           alt="Pizza image"
         ></b-img>
@@ -39,7 +39,7 @@ export default {};
 
 #navbarLogo {
   grid-area: "logo";
-  width: 60%;
+  width: 30%;
   height: auto;
 }
 
@@ -50,11 +50,15 @@ export default {};
 
 #navLink {
   grid-area: "nav";
-  
+  display: flex;
+  flex-direction: row;
+  align-content: flex-end;
+  padding-left: 500px;
 }
 
 a:link {
   color: white;
+  
 }
 
 a:visited {
@@ -62,16 +66,8 @@ a:visited {
 }
 
 h1{
-  width: 15vw;
+  width: 27vw;
   font-family: Pizzeria;
-}
-
-.navBarLogo {
-  width: 60%;
-  height: auto;
-}
-
-.h3 {
   margin: 0 auto;
   margin-left: 35%;
   color: white;
@@ -79,4 +75,6 @@ h1{
   text-align: center;
   padding-right: 20%;
 }
+
+
 </style>
