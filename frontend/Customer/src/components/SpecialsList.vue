@@ -42,7 +42,7 @@ export default {
   data() {
     return {
     selectedSizes: {},
-    cart: []
+    cart: [],
     }
   },
   props: ['specials', 'choices'], 

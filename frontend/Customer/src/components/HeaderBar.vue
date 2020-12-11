@@ -12,10 +12,11 @@
         <h1 class="h3 mb-3 font-weight-normal">Main Page</h1>
       </div>
       <div>
-  <b-nav id="navLink">
+    <b-nav id="navLink">
     <b-nav-item href="http://localhost:8080/specials">Specials</b-nav-item>
     <b-nav-item>Custom Pizza</b-nav-item>
-    <b-nav-item href="http://localhost:8080/cart">Cart</b-nav-item>
+   
+    <router-link v-bind:to="{name: 'cart'}" tag="b-nav-item">Cart</router-link>
     <b-nav-item disabled>Disabled</b-nav-item>
   </b-nav>
 </div>
