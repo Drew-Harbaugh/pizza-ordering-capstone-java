@@ -86,8 +86,10 @@ export default {
         if (choice.available === true) {
           choice.available = false;
         }
+        
       });
       // do an api call to change boolean in database
+      this.emptyChangeChoiceArray();
     }
   },
 };

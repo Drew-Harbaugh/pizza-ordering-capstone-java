@@ -12,6 +12,7 @@
             type="checkbox"
             
             v-bind:value="choice"
+            v-bind:checked="$store.state.changeChoices.includes(choice)"
             v-on:change="toggleChoice(choice)"
           />
 
