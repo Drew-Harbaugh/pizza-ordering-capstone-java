@@ -28,8 +28,9 @@
         <div class="chooseSize" v-for="size in sizes" v-bind:key="size.choiceId">
           <input type="radio" v-bind:name="'size' + special.specialtyId" v-bind:value="size" v-model="selectedSizes[special.specialtyId]">
           <label for="size">{{size.name}}</label>
-          <button v-on:click="addPizzaToCart(special, size)">Add to Cart</button>
+          
         </div>
+        <button v-on:click="addPizzaToCart(special, selectedSizes[special.specialtyId])">Add to Cart</button>
       </div>
       <div class="divider"></div>
     </div>
@@ -52,8 +53,11 @@ export default {
   },
   methods: {
       addPizzaToCart(special, size) {
-        special.size = size;
-        this.cart.push(special);
+        let orderItem = {
+          pizza: special,
+          size: size
+        }
+        this.cart.push(orderItem);
       }
     }
   };
