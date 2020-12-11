@@ -24,7 +24,7 @@ export default new Vuex.Store({
       state.choices = choices;
     },
     ADD_TO_CART(state, pizza) {
-      state.cart.push(pizza);
+      state.cart.unshift(pizza);
     }
   }
 })

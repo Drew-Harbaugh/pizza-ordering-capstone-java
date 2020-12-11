@@ -58,6 +58,7 @@ export default {
           size: size
         }
         this.cart.push(orderItem);
+        this.$store.commit('ADD_TO_CART', orderItem);
       }
     }
   };
