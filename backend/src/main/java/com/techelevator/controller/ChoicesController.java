@@ -6,6 +6,8 @@ import org.springframework.context.support.BeanDefinitionDsl;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -32,7 +34,9 @@ public class ChoicesController {
 
     @DeleteMapping("/choices/{choiceId}")
     public void deleteChoice(@PathVariable int choiceId){
-        choiceDAO.deleteChoice(choiceId);
+        if (!choiceDAO.deleteChoice(choiceId)) {
+            throw new ResponseStatusException(HttpStatus.LOCKED);
+        }
     }
 
     @PutMapping("/choices/{choiceId}")

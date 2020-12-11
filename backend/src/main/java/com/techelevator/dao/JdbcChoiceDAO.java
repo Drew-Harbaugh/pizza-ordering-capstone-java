@@ -1,9 +1,12 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Choice;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +20,14 @@ public class JdbcChoiceDAO implements ChoiceDAO {
     }
 
     @Override
-    public void deleteChoice(int choiceId){
-        String sql = "DELETE FROM choices WHERE choice_id = ?;";
-        jdbcTemplate.update(sql, choiceId);
+    public boolean deleteChoice(int choiceId){
+        try {
+            String sql = "DELETE FROM choices WHERE choice_id = ?;";
+            jdbcTemplate.update(sql, choiceId);
+            return true;
+        } catch (DataAccessException e) {
+            return false;
+        }
     }
 
     @Override

@@ -9,14 +9,20 @@
         ></b-img>
       </div>
       <div id="title">
-        <h1 class="h3 mb-3 font-weight-normal">Title</h1>
+        <h1 class="h3 mb-3 font-weight-normal">{{title}}</h1>
       </div>
     </b-navbar>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    title() {
+      return this.$route.meta.pageTitle;
+    }
+  }
+};
 </script>
 
 <style scope>
@@ -33,7 +39,7 @@ export default {};
   color: white;
   display: flex;
   justify-content: center;
-  padding-left: 23%;
+  /* padding-left: 23%; */
 }
 .navBarLogo {
   width: 20vw;

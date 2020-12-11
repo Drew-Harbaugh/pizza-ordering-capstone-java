@@ -2,7 +2,7 @@
   <div>
     <div
       id="specialBody"
-      v-for="special in specials"
+      v-for="special in available"
       v-bind:key="special.specialtyId"
     >
       <div class="newSpecial">
@@ -25,12 +25,26 @@
             <p>{{ premiumTopping.name }}</p>
           </div>
         </div>
-        <div class="chooseSize" v-for="size in sizes" v-bind:key="size.choiceId">
-          <input type="radio" v-bind:name="'size' + special.specialtyId" v-bind:value="size" v-model="selectedSizes[special.specialtyId]">
-          <label for="size">{{size.name}}</label>
-          
+        <div
+          class="chooseSize"
+          v-for="size in sizes"
+          v-bind:key="size.choiceId"
+        >
+          <input
+            type="radio"
+            v-bind:name="'size' + special.specialtyId"
+            v-bind:value="size"
+            v-model="selectedSizes[special.specialtyId]"
+          />
+          <label for="size">{{ size.name }}</label>
         </div>
-        <button v-on:click="addPizzaToCart(special, selectedSizes[special.specialtyId])">Add to Cart</button>
+        <button
+          v-on:click="
+            addPizzaToCart(special, selectedSizes[special.specialtyId])
+          "
+        >
+          Add to Cart
+        </button>
       </div>
       <div class="divider"></div>
     </div>
@@ -41,27 +55,30 @@
 export default {
   data() {
     return {
-    selectedSizes: {},
-    cart: [],
-    }
+      selectedSizes: {},
+      cart: [],
+    };
   },
-  props: ['specials', 'choices'], 
+  props: ["specials", "choices"],
   computed: {
-      sizes() {
+    sizes() {
       return this.choices.filter((choice) => choice.categoryId === 1);
     },
+    available() {
+      return this.specials.filter(special => special.available === true);
+    }
   },
   methods: {
-      addPizzaToCart(special, size) {
-        let orderItem = {
-          pizza: special,
-          size: size
-        }
-        this.cart.push(orderItem);
-        this.$store.commit('ADD_TO_CART', orderItem);
-      }
-    }
-  };
+    addPizzaToCart(special, size) {
+      let orderItem = {
+        pizza: special,
+        size: size,
+      };
+      this.cart.push(orderItem);
+      this.$store.commit("ADD_TO_CART", orderItem);
+    },
+  },
+};
 </script>
 
 <style scope>

@@ -66,7 +66,11 @@ export default {
             }
           })
           .catch((error) => {
-            console.log(error.message);
+            if (error.response.status === 423) {
+              alert("Cannot delete: topping is in use");
+              console.log(error);
+              this.updateChoices();
+            }
           });
       });
       this.emptyChangeChoiceArray();
