@@ -102,5 +102,18 @@ public class JdbcSpecialtyPizzaDAO implements SpecialtyPizzaDAO {
             addChoiceSpecial(choice, specialtyId);
         }
     }
+    @Override
+    public void deleteSpecial(int specialtyId){
+        String sql = "DELETE FROM choices_specialty_pizza WHERE specialty_id = ?; " +
+                "DELETE FROM specialty_pizza WHERE specialty_id = ?;";
+        jdbcTemplate.update(sql, specialtyId, specialtyId);
+    }
 
+    @Override
+    public void updateSpecial(SpecialtyPizza specialtyPizza){
+        String sql = "UPDATE specialty_pizza SET name = ?, description = ?, price =?, is_available = ?" +
+                " WHERE specialty_id = ? ;";
+        jdbcTemplate.update(sql, specialtyPizza.getName(), specialtyPizza.getDescription(), specialtyPizza.getPrice(),
+        specialtyPizza.isAvailable(), specialtyPizza.getSpecialtyId());
+    }
 }

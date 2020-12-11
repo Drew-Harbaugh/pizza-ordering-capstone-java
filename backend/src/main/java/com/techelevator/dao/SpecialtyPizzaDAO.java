@@ -10,5 +10,8 @@ public interface SpecialtyPizzaDAO {
 
     void addSpecial(SpecialtyPizza specialtyPizza);
 
+    void deleteSpecial(int specialtyId);
+
+    void updateSpecial(SpecialtyPizza specialtyPizza);
 
 }

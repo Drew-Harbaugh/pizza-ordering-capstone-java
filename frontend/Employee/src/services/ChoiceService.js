@@ -22,6 +22,10 @@ export default {
 
     deleteChoice(id){
         return http.delete(`/choices/${id}`);
+    },
+
+    updateChoice(choice){
+        return http.put(`/choices/${choice.choiceId}`, choice);
     }
 
     

@@ -28,4 +28,9 @@ public class SpecialtyPizzaController {
         specialtyPizzaDAO.addSpecial(specialtyPizza);
     }
 
+    @DeleteMapping("/specials/{id}")
+    public void delete(@PathVariable int id){specialtyPizzaDAO.deleteSpecial(id);}
+
+    @PutMapping("/specials/{id}")
+    public void update(@PathVariable int id, @RequestBody SpecialtyPizza specialtyPizza){specialtyPizzaDAO.updateSpecial(specialtyPizza);}
 }

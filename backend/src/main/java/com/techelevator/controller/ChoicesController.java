@@ -35,6 +35,10 @@ public class ChoicesController {
         choiceDAO.deleteChoice(choiceId);
     }
 
+    @PutMapping("/choices/{choiceId}")
+    public void update(@PathVariable int choiceId, @RequestBody Choice choice){choiceDAO.update(choice);}
+
+
 }
 
 

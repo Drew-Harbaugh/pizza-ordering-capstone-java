@@ -11,6 +11,10 @@ public interface ChoiceDAO {
 
     void addChoice(Choice choice);
 
+    Choice getChoiceById(int id);
+
+    void update(Choice choice);
+
 
 
 }

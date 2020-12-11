@@ -14,6 +14,14 @@ export default {
 
 	addNewSpecial(newSpecial) {
 		return http.post(`/specials`, newSpecial);
+	},
+
+	deleteSpecial(id){
+		return http.delete(`/specials/${id}`);
+	},
+
+	updateSpecial(special){
+		return http.put(`/specials${special.specialtyId}`, special);
 	}
 
 }

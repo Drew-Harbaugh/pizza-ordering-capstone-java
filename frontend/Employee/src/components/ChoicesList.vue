@@ -20,7 +20,7 @@
       ></category-column>
     </div>
     <button v-on:click="deleteChoices()">Delete</button>
-    <button>Make Available</button>
+    <button v-on:click="makeAvailable()">Make Available</button>
     <button v-on:click="makeUnavailable()">Make Unavailable</button>
   </div>
 </template>
@@ -61,7 +61,7 @@ export default {
             if (response.status === 200) {
               this.updateChoices();
             } else if (response.status === 500) {
-              alert('Could not delete one or more choices');
+              alert("Could not delete one or more choices");
               this.updateChoices();
             }
           })
@@ -80,17 +80,40 @@ export default {
       });
     },
     makeUnavailable() {
-      
       const choicesToChange = this.$store.state.changeChoices;
-      choicesToChange.forEach(choice => {
+      choicesToChange.forEach((choice) => {
         if (choice.available === true) {
           choice.available = false;
         }
-        
+        this.updateChoice(choice);
       });
-      // do an api call to change boolean in database
       this.emptyChangeChoiceArray();
-    }
+    },
+    makeAvailable() {
+      const choicesToChange = this.$store.state.changeChoices;
+      choicesToChange.forEach((choice) => {
+        if (choice.available === false) {
+          choice.available = true;
+        }
+        this.updateChoice(choice);
+      });
+      this.emptyChangeChoiceArray();
+    },
+    updateChoice(choice) {
+      choiceService
+        .updateChoice(choice)
+        .then((response) => {
+          if (response.status === 200) {
+            this.updateChoices();
+          } else if (response.status === 500) {
+            alert("Could not update one or more choices");
+            this.updateChoices();
+          }
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    },
   },
 };
 </script>
@@ -125,6 +148,4 @@ export default {
 #premiumToppings {
   grid-area: prem;
 }
-
-
 </style>

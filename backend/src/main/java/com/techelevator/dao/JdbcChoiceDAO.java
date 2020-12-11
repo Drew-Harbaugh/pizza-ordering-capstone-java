@@ -26,7 +26,7 @@ public class JdbcChoiceDAO implements ChoiceDAO {
     @Override
     public List<Choice> getAllChoices() {
         List<Choice> result = new ArrayList<>();
-        String sql = "SELECT choice_id, category_id, name, is_available FROM choices";
+        String sql = "SELECT choice_id, category_id, name, is_available FROM choices ORDER BY choice_id;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while (rowSet.next()) {
             Choice choice = new Choice();
@@ -45,6 +45,7 @@ public class JdbcChoiceDAO implements ChoiceDAO {
         jdbcTemplate.update(sql, choice.getCategoryId(), choice.getName(), choice.isAvailable());
     }
 
+    @Override
     public Choice getChoiceById(int id) {
         Choice choice = new Choice();
         String sql = "SELECT choice_id FROM choices WHERE id = ?;";
@@ -59,6 +60,12 @@ public class JdbcChoiceDAO implements ChoiceDAO {
 
         return choice;
 
+    }
+
+    @Override
+    public void update(Choice choice){
+        String sql = "UPDATE choices SET category_id = ?, name = ?, is_available = ? WHERE choice_id = ?;";
+        jdbcTemplate.update(sql, choice.getCategoryId(), choice.getName(), choice.isAvailable(), choice.getChoiceId());
     }
 
 }
