@@ -1,11 +1,12 @@
 <template>
   <div>
-      <h1>Hello</h1>
-    
+    <h1>Items in your cart:</h1>
     <div class="cart" v-for="orderItem in $store.state.cart" v-bind:key="orderItem.timeStamp">
-        
-        <!-- <h2 v-bind:name="$store.name"></h2> -->
+      <h3>{{orderItem.pizza.name }}</h3>      
+      <p>{{ orderItem.size.name }}</p>
+      <p>{{ orderItem.pizza.price }}</p>
     </div>
+    <h3>Order Total: </h3>
   </div>
 </template>
 
