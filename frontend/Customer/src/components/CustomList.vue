@@ -1,8 +1,69 @@
 <template>
   <div>
     <div class="category-columns">
-      <category-column v-bind:sortedChoices="size" id="size"></category-column>
-      <category-column
+      <div>
+        <h3>Size</h3>
+        <div v-for="choice in size" v-bind:key="choice.choiceId">
+          <label v-bind:for="choice.choiceId">{{ choice.name }}</label>
+          <input
+            type="radio"
+            v-bind:value="choice"
+            v-model="customSize"
+          />
+        </div>
+      </div>
+      <div>
+        <h3>Crust</h3>
+        <div v-for="choice in crust" v-bind:key="choice.choiceId">
+          <label v-bind:for="choice.choiceId">{{ choice.name }}</label>
+          <input
+            type="radio"
+            v-bind:value="choice"
+            v-model="customPizza.crust"
+          />
+        </div>
+      </div>
+      <div>
+        <h3>Sauce</h3>
+        <div v-for="choice in sauce" v-bind:key="choice.choiceId">
+          <label v-bind:for="choice.choiceId">{{ choice.name }}</label>
+          <input
+            type="radio"
+            v-bind:value="choice"
+            v-model="customPizza.sauce"
+          />
+        </div>
+      </div>
+      <div>
+        <h3>Regular Toppings</h3>
+        <div v-for="choice in regularToppings" v-bind:key="choice.choiceId">
+          <label v-bind:for="choice.choiceId">{{ choice.name }}</label>
+          <input
+            type="checkbox"
+            v-bind:value="choice"
+            v-model="customPizza.regularToppings"
+          />
+        </div>
+      </div>
+      <div>
+        <h3>Premium Toppings</h3>
+        <div v-for="choice in premiumToppings" v-bind:key="choice.choiceId">
+          <label v-bind:for="choice.choiceId">{{ choice.name }}</label>
+          <input
+            type="checkbox"
+            v-bind:value="choice"
+            v-model="customPizza.premiumToppings"
+          />
+        </div>
+      </div>
+      <button
+          class="addToCart"
+          v-on:click="
+            addPizzaToCart(customPizza, customSize)
+          "
+        >Add to Cart</button>
+      <!-- <category-column v-bind:sortedChoices="size" id="size"></category-column> -->
+      <!-- <category-column
         v-bind:sortedChoices="crust"
         id="crust"
       ></category-column>
@@ -17,25 +78,47 @@
       <category-column
         v-bind:sortedChoices="premiumToppings"
         id="premiumToppings"
-      ></category-column>
+      ></category-column> -->
     </div>
   </div>
 </template>
 
 <script>
-import CategoryColumn from "@/components/CategoryColumn.vue";
 
 export default {
   data() {
     return {
       cart: [],
+      customPizza: {
+        name: 'Custom',
+        crust: {},
+        sauce: {},
+        regularToppings: [],
+        premiumToppings: []
+      },
+      customSize: {}
     };
   },
   props: ['choices'],
-  components: {
-    CategoryColumn,
+  methods: {
+    addPizzaToCart(customPizza, size) {
+      let orderItem = {
+        pizza: customPizza,
+        size: size,
+      };
+      this.cart.push(orderItem);
+      this.$store.commit("ADD_TO_CART", orderItem);
+      this.customPizza = {
+        name: 'Custom',
+        crust: {},
+        sauce: {},
+        regularToppings: [],
+        premiumToppings: []
+      };
+      this.customSize = {};
+      alert('Pizza added to cart!');
+    },
   },
-  methods: {},
   computed: {
     size() {
       return this.choices.filter((choice) => choice.categoryId === 1);

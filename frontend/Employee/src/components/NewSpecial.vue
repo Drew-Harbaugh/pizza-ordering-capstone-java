@@ -10,15 +10,6 @@
         <input type="text" v-model="newSpecial.description" />
       </div>
       <div>
-        <label for="price">Price:</label>
-        <money
-          v-bind="money"
-          value="price"
-          v-model="newSpecial.price"
-          style="text-align: right"
-        ></money>
-      </div>
-      <div>
         <h3>Crust</h3>
         <div v-for="choice in crust" v-bind:key="choice.choiceId">
           <label v-bind:for="choice.choiceId">{{ choice.name }}</label>
@@ -72,11 +63,9 @@
 
 <script>
 import specialsService from "@/services/SpecialsService.js";
-import { Money } from "v-money";
 
 export default {
   components: {
-    Money,
   },
   data() {
     return {
@@ -84,14 +73,6 @@ export default {
         regularToppings: [],
         premiumToppings: [],
         available: true,
-      },
-      money: {
-        decimal: ".",
-        thousands: ",",
-        prefix: "$ ",
-        suffix: "",
-        precision: 2,
-        masked: false,
       },
     };
   },

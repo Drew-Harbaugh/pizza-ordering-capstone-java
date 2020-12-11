@@ -10,7 +10,22 @@
         v-bind:class="{ unavailable: !special.available }"
       >
         <h2 class="name">{{ special.name }}</h2>
-        <h3 class="price">{{ special.price }}</h3>
+        <div class="toppingsLists">
+          <h4>Regular Toppings</h4>
+          <div
+            v-for="regularTopping in special.regularToppings"
+            v-bind:key="regularTopping.name"
+          >
+            <p v-bind:class="{ unavailable: !regularTopping.available }">{{ regularTopping.name }}</p>
+          </div>
+          <h4>Premium Toppings</h4>
+          <div
+            v-for="premiumTopping in special.premiumToppings"
+            v-bind:key="premiumTopping.name"
+          >
+            <p v-bind:class="{ unavailable: !premiumTopping.available }">{{ premiumTopping.name }}</p>
+          </div>
+        </div>
         <p class="description">{{ special.description }}</p>
       </div>
       <button v-on:click="deleteSpecial(special)">Delete</button>
@@ -82,8 +97,8 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
-    "name price"
-    "desc desc";
+    "name ."
+    "desc ing";
   padding-top: 15px;
   background-color: darkgray;
   border-radius: 25px;
@@ -93,11 +108,11 @@ export default {
 .name {
   grid-area: "name";
 }
-.price {
-  grid-area: "price";
-}
 .description {
   grid-area: "desc";
+}
+.toppingsList {
+  grid-area: "ing";
 }
 #specialBody {
   padding-left: 20px;

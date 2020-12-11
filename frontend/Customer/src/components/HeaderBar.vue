@@ -13,9 +13,10 @@
       </div>
       <div>
     <b-nav id="navLink">
-    <b-nav-item href="http://localhost:8080/specials">Specials</b-nav-item>
-    <b-nav-item>Custom Pizza</b-nav-item>
-   
+    <!-- <b-nav-item href="http://localhost:8080/specials">Specials</b-nav-item> -->
+    <!-- <b-nav-item>Custom Pizza</b-nav-item> -->
+    <router-link v-bind:to="{name: 'specials'}" tag="b-nav-item">Specials</router-link>
+    <router-link v-bind:to="{name: 'custom'}" tag="b-nav-item">Custom</router-link>
     <router-link v-bind:to="{name: 'cart'}" tag="b-nav-item">Cart</router-link>
     <b-nav-item disabled>Disabled</b-nav-item>
   </b-nav>

@@ -8,7 +8,6 @@ public class SpecialtyPizza {
     private String name;
     private String description;
     private boolean isAvailable;
-    private double price;
     private Choice crust;
     private Choice sauce;
     private List<Choice> regularToppings;
@@ -78,11 +77,4 @@ public class SpecialtyPizza {
         isAvailable = available;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
 }

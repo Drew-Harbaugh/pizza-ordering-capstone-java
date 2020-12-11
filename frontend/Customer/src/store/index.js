@@ -14,7 +14,7 @@ export default new Vuex.Store({
   state: {
     choices: [],
     specials: [],
-    cart: []
+    cart: [],
   },
   mutations: {
     SET_SPECIALS(state, specials) {
@@ -27,5 +27,10 @@ export default new Vuex.Store({
       pizza.timeStamp = Date.now();
       state.cart.unshift(pizza);
     },
+    REMOVE_FROM_CART(state, pizza) {
+      pizza.timeStamp = Date.now();
+      const index = state.cart.indexOf(pizza);
+      state.cart.splice(index, 1);
+    }
   }
 })

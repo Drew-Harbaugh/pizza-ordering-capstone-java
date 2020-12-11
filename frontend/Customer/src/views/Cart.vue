@@ -1,6 +1,6 @@
 <template>
   <div>
-      <header-bar id="navBar"></header-bar>
+    <header-bar id="navBar"></header-bar>
     <cart-list></cart-list>
   </div>
 </template>
@@ -14,7 +14,6 @@ export default {
     components: {
         CartList,
         HeaderBar,
-      
     },
   props: ["pizzas"],
 };

@@ -15,7 +15,7 @@ INSERT INTO choices (category_id, name, is_available) VALUES (3, 'Marinara', tru
 INSERT INTO choices (category_id, name, is_available) VALUES (4, 'Mushrooms', true);
 INSERT INTO choices (category_id, name, is_available) VALUES (5, 'Artichokes', true);
 
-INSERT INTO specialty_pizza (name, description, price, is_available) VALUES ('Veggie Deluxe', 'Large, regular crust delight with marinara, mushrooms, and artichokes.', 19.99, true);
+INSERT INTO specialty_pizza (name, description, is_available) VALUES ('Veggie Deluxe', 'Large, regular crust delight with marinara, mushrooms, and artichokes.', true);
 
 INSERT INTO choices_specialty_pizza (specialty_id, choice_id) VALUES (1, 4);
 INSERT INTO choices_specialty_pizza (specialty_id, choice_id) VALUES (1, 6);

@@ -21,7 +21,7 @@ public class JdbcSpecialtyPizzaDAO implements SpecialtyPizzaDAO {
     @Override
     public List<SpecialtyPizza> getAll() {
         List<SpecialtyPizza> result = new ArrayList<>();
-        String sql = "SELECT specialty_id, name, description, price, is_available FROM specialty_pizza ORDER BY specialty_id;";
+        String sql = "SELECT specialty_id, name, description, is_available FROM specialty_pizza ORDER BY specialty_id;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while (rowSet.next()) {
             List<Choice> premiumToppings = new ArrayList<>();
@@ -30,13 +30,12 @@ public class JdbcSpecialtyPizzaDAO implements SpecialtyPizzaDAO {
             specialtyPizza.setSpecialtyId(rowSet.getInt("specialty_id"));
             specialtyPizza.setAvailable(rowSet.getBoolean("is_available"));
             specialtyPizza.setName(rowSet.getString("name"));
-            specialtyPizza.setPrice(rowSet.getDouble("price"));
             specialtyPizza.setDescription(rowSet.getString("description"));
 
             String sql1 = "SELECT c.choice_id, c.category_id, c.name, c.is_available, s.specialty_id, s.choice_id  " +
                     "FROM choices AS c " +
                     "JOIN choices_specialty_pizza s ON c.choice_id = s.choice_id " +
-                    "WHERE s.specialty_id = ? AND c.is_available = true " +
+                    "WHERE s.specialty_id = ? " +
                     "ORDER BY c.choice_id;";
             SqlRowSet choiceRowSet = jdbcTemplate.queryForRowSet(sql1, specialtyPizza.getSpecialtyId());
             while (choiceRowSet.next()) {
@@ -62,10 +61,10 @@ public class JdbcSpecialtyPizzaDAO implements SpecialtyPizzaDAO {
 
     @Override
     public void addSpecial(SpecialtyPizza specialtyPizza) {
-        String sql = "INSERT INTO specialty_pizza (name, description, price, is_available) " +
-                "VALUES (?, ?, ?, ?) RETURNING specialty_id;";
+        String sql = "INSERT INTO specialty_pizza (name, description, is_available) " +
+                "VALUES (?, ?, ?) RETURNING specialty_id;";
         int specialtyId = jdbcTemplate.queryForObject(sql, Integer.class, specialtyPizza.getName(),
-                specialtyPizza.getDescription(), specialtyPizza.getPrice(), specialtyPizza.isAvailable());
+                specialtyPizza.getDescription(), specialtyPizza.isAvailable());
         addChoiceSpecial(specialtyPizza.getCrust(), specialtyId);
         addChoiceSpecial(specialtyPizza.getSauce(), specialtyId);
         addToppingsToChoiceSpecial(specialtyPizza.getRegularToppings(), specialtyId);
@@ -81,9 +80,9 @@ public class JdbcSpecialtyPizzaDAO implements SpecialtyPizzaDAO {
 
     @Override
     public void updateSpecial(SpecialtyPizza specialtyPizza){
-        String sql = "UPDATE specialty_pizza SET name = ?, description = ?, price =?, is_available = ?" +
+        String sql = "UPDATE specialty_pizza SET name = ?, description = ?, is_available = ?" +
                 " WHERE specialty_id = ? ;";
-        jdbcTemplate.update(sql, specialtyPizza.getName(), specialtyPizza.getDescription(), specialtyPizza.getPrice(),
+        jdbcTemplate.update(sql, specialtyPizza.getName(), specialtyPizza.getDescription(),
         specialtyPizza.isAvailable(), specialtyPizza.getSpecialtyId());
     }
 

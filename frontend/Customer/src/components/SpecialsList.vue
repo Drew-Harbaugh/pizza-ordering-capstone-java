@@ -7,8 +7,6 @@
     >
       <div class="newSpecial">
         <h2 class="name">{{ special.name }}</h2>
-        <h3 class="price">{{ special.price }}</h3>
-        <p class="description">{{ special.description }}</p>
         <div class="toppingsLists">
           <h4>Regular Toppings</h4>
           <div
@@ -25,6 +23,7 @@
             <p>{{ premiumTopping.name }}</p>
           </div>
         </div>
+        <p class="description">{{ special.description }}</p>
         <div
           class="chooseSize"
           v-for="size in sizes"
@@ -32,6 +31,7 @@
         >
           <input
             type="radio"
+            
             v-bind:name="'size' + special.specialtyId"
             v-bind:value="size"
             v-model="selectedSizes[special.specialtyId]"
@@ -39,6 +39,7 @@
           <label for="size">{{ size.name }}</label>
         </div>
         <button
+          class="addToCart"
           v-on:click="
             addPizzaToCart(special, selectedSizes[special.specialtyId])
           "
@@ -76,6 +77,8 @@ export default {
       };
       this.cart.push(orderItem);
       this.$store.commit("ADD_TO_CART", orderItem);
+      this.selectedSizes = {};
+      alert('Pizza added to cart!');
     },
   },
 };
@@ -86,8 +89,9 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
-    "name price"
-    "desc ing";
+    "name ing"
+    "desc ing"
+    "sizes button";
   padding-top: 15px;
   background-color: darkgray;
   border-radius: 25px;
@@ -98,21 +102,21 @@ export default {
 .name {
   grid-area: "name";
 }
-.price {
-  grid-area: "price";
-}
 .description {
   grid-area: "desc";
 }
-
-#specialBody {
-  padding-left: 20px;
-}
-
 .toppingsList {
   grid-area: "ing";
 }
-
+.chooseSize {
+  grid-area: "sizes";
+}
+.addToCart {
+  grid-area: "button";
+}
+#specialBody {
+  padding-left: 20px;
+}
 .divider {
   height: 10px;
   width: auto;

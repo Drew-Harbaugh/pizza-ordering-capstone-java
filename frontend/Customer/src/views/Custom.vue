@@ -1,5 +1,6 @@
 <template>
   <div>
+    <header-bar></header-bar>
     <custom-list v-bind:choices="availableChoices"> </custom-list>
   </div>
 </template>
@@ -7,10 +8,12 @@
 <script>
 import CustomList from "../components/CustomList.vue";
 import ChoiceService from "@/services/ChoiceService.js";
+import headerBar from "@/components/HeaderBar.vue";
 
 export default {
   components: {
     CustomList,
+    headerBar
   },
   computed: {
       availableChoices() {

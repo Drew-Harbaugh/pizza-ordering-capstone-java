@@ -51,7 +51,6 @@ CREATE TABLE specialty_pizza (
 specialty_id serial NOT NULL,
 name varchar NOT NULL UNIQUE,
 description varchar NOT NULL,
-price numeric NOT NULL,
 is_available boolean,
 CONSTRAINT pk_specialty_id PRIMARY KEY (specialty_id)
 );
