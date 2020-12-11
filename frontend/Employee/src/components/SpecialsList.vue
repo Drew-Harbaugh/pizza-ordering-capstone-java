@@ -5,7 +5,10 @@
       v-for="special in specials"
       v-bind:key="special.specialtyId"
     >
-      <div class="newSpecial"  v-bind:class="{unavailable: !special.available}">
+      <div
+        class="newSpecial"
+        v-bind:class="{ unavailable: !special.available }"
+      >
         <h2 class="name">{{ special.name }}</h2>
         <h3 class="price">{{ special.price }}</h3>
         <p class="description">{{ special.description }}</p>
@@ -22,7 +25,6 @@
 import specialService from "@/services/SpecialsService.js";
 export default {
   props: ["specials"],
-
   methods: {
     deleteSpecial(special) {
       specialService
@@ -39,27 +41,23 @@ export default {
           console.log(error.message);
         });
     },
-
     updateSpecials() {
       specialService.getAllSpecials().then((response) => {
         this.$store.commit("SET_SPECIALS", response.data);
       });
     },
-
     makeUnavailable(special) {
       if (special.available === true) {
         special.available = false;
       }
       this.updateSpecial(special);
     },
-
     makeAvailable(special) {
       if (special.available === false) {
         special.available = true;
       }
       this.updateSpecial(special);
     },
-
     updateSpecial(special) {
       specialService
         .updateSpecial(special)
@@ -92,7 +90,6 @@ export default {
   width: 95%;
   text-align: center;
 }
-
 .name {
   grid-area: "name";
 }
@@ -102,16 +99,13 @@ export default {
 .description {
   grid-area: "desc";
 }
-
 #specialBody {
   padding-left: 20px;
 }
-
 .divider {
   height: 10px;
   width: auto;
 }
-
 .unavailable {
   text-decoration: line-through;
 }

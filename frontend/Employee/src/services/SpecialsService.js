@@ -3,8 +3,8 @@
 import axios from 'axios';
 
 const http = axios.create({
-    baseURL: "http://localhost:3000"
-  });
+	baseURL: "http://localhost:3000"
+});
 
 export default {
 
@@ -16,12 +16,12 @@ export default {
 		return http.post(`/specials`, newSpecial);
 	},
 
-	deleteSpecial(id){
+	deleteSpecial(id) {
 		return http.delete(`/specials/${id}`);
 	},
 
-	updateSpecial(special){
-		return http.put(`/specials${special.specialtyId}`, special);
+	updateSpecial(special) {
+		return http.put(`/specials/${special.specialtyId}`, special);
 	}
 
 }

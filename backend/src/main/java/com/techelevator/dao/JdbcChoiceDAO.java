@@ -4,7 +4,6 @@ import com.techelevator.model.Choice;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,9 +56,7 @@ public class JdbcChoiceDAO implements ChoiceDAO {
             choice.setName(rowSet.getString("name"));
             choice.setAvailable(rowSet.getBoolean("is_available"));
         }
-
         return choice;
-
     }
 
     @Override

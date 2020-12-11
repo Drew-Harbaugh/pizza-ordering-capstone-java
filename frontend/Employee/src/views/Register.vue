@@ -1,21 +1,6 @@
 <template>
   <div id="register" class="text-center">
-    <div>
-      <b-navbar toggleable="lg" type="dark" variant="danger" id="navBar">
-        <div class="navBarLogo" id="navbarLogo">
-          <b-img
-            src="./anotherOneBitesTheCrustLogo.png"
-            fluid
-            alt="Pizza image"
-          ></b-img>
-        </div>
-
-        <div id="title">
-          <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
-        </div>
-      </b-navbar>
-    </div>
-
+    <Header></Header>
     <form class="form-register" @submit.prevent="register">
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
@@ -57,9 +42,13 @@
 
 <script>
 import authService from "../services/AuthService";
+import Header from "@/components/Header.vue";
 
 export default {
   name: "register",
+  components: {
+    Header,
+  },
   data() {
     return {
       user: {
@@ -106,17 +95,14 @@ export default {
 </script>
 
 <style scoped>
-
 #navbar {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas: "navbarLogo title .";
 }
-
 #navbarLogo {
   grid-area: navbarLogo;
 }
-
 #title {
   grid-area: title;
   color: white;
@@ -124,22 +110,14 @@ export default {
   justify-content: center;
   padding-left: 23%;
 }
-
-.navBarLogo{
+.navBarLogo {
   width: 20vw;
 }
-
-
 #register {
   height: 100vh;
 }
-
 .form-register {
   margin: 0 auto;
   max-width: 50%;
 }
-
-
-
-
 </style>

@@ -7,7 +7,6 @@ public class Choice {
     private String name;
     private boolean isAvailable;
 
-
     public int getChoiceId() {
         return choiceId;
     }
@@ -39,4 +38,5 @@ public class Choice {
     public void setAvailable(boolean available) {
         isAvailable = available;
     }
+
 }

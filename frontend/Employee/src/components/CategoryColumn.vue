@@ -7,15 +7,13 @@
       v-bind:key="choice.choiceId"
     >
       <ul>
-        <li v-bind:class="{unavailable: !choice.available}">
+        <li v-bind:class="{ unavailable: !choice.available }">
           <input
             type="checkbox"
-            
             v-bind:value="choice"
             v-bind:checked="$store.state.changeChoices.includes(choice)"
             v-on:change="toggleChoice(choice)"
           />
-
           {{ choice.name }}
         </li>
       </ul>
@@ -27,10 +25,7 @@
 export default {
   props: ["sortedChoices"],
   data() {
-    return {
-      
-    };
-    
+    return {};
   },
   computed: {
     title() {
@@ -50,110 +45,30 @@ export default {
         return "Premium Toppings";
       }
     },
-    
   },
   methods: {
-    toggleChoice(choice){
-      this.$store.commit('TOGGLE_CHOICES', choice);
+    toggleChoice(choice) {
+      this.$store.commit("TOGGLE_CHOICES", choice);
     },
-  }
+  },
 };
 </script>
 
 <style>
-/* @font-face {
-  font-family: 'Pizzeria';
-  src: url('@/components/PIZZARIA.ttf');
-} */
-
-/* .list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas:
-    "title name"
-} */
-
-/* The switch - the box around the slider */
-/* .switch {
-  position: relative;
-  display: inline-block;
-  width: 3.2rem;
-  height: 1.15rem;
-}
-
-/* Hide default HTML checkbox */
-/* .switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-/* .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 0.85rem;
-  width: 1rem;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-input:checked + .slider {
-  background-color: #dc3545;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 2px #dc3545;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-/* .slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-} */
-
 li {
   list-style: none;
   font-family: Pizzeria;
   font-size: 1.2rem;
 }
-
 h2 {
   font-family: Pizzeria;
 }
-
 .title {
   grid-area: title;
 }
-
 .name {
   grid-area: name;
 }
-
 .unavailable {
   text-decoration: line-through;
 }

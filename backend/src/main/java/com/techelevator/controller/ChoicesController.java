@@ -38,7 +38,6 @@ public class ChoicesController {
     @PutMapping("/choices/{choiceId}")
     public void update(@PathVariable int choiceId, @RequestBody Choice choice){choiceDAO.update(choice);}
 
-
 }
 
 

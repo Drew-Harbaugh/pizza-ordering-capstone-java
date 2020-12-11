@@ -11,11 +11,9 @@
         >
       </div>
     </div>
-
     <router-view />
   </div>
 </template>
-
 
 <style scoped>
 #nav {
@@ -23,38 +21,18 @@
   text-decoration: none;
   color: white;
 }
-
 #name {
   background: #dc3545;
   color: white;
   text-align: left;
 }
-
 a:link {
   color: white;
 }
-
 a:visited {
   color: white;
 }
-
 #app {
   background-color: lightgray;
 }
-
-/* #nav {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: 
-      "links title"
-  ;
-}
-
-#links {
-  grid-area: links;
-}
-
-#title {
-  grid-area: title;
-} */
 </style>

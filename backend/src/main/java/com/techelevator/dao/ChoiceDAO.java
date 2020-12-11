@@ -15,6 +15,4 @@ public interface ChoiceDAO {
 
     void update(Choice choice);
 
-
-
 }

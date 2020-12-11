@@ -83,6 +83,7 @@ export default {
       newSpecial: {
         regularToppings: [],
         premiumToppings: [],
+        available: true,
       },
       money: {
         decimal: ".",
@@ -138,6 +139,7 @@ export default {
       this.newSpecial = {
         regularToppings: [],
         premiumToppings: [],
+        available: true,
       };
       this.choiceIds = [];
     },

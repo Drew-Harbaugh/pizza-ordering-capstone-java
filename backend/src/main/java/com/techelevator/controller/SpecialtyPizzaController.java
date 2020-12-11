@@ -33,4 +33,5 @@ public class SpecialtyPizzaController {
 
     @PutMapping("/specials/{id}")
     public void update(@PathVariable int id, @RequestBody SpecialtyPizza specialtyPizza){specialtyPizzaDAO.updateSpecial(specialtyPizza);}
+
 }

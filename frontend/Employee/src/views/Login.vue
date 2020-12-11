@@ -1,34 +1,17 @@
-
 <template>
   <div id="login" class="text-center">
     <div>
-      <b-navbar toggleable="lg" type="dark" variant="danger" id="navbar">
-        <div class="navBarLogo" id="navbarLogo">
-          <b-img
-            src="./anotherOneBitesTheCrustLogo.png"
-            fluid
-            alt="Pizza image"
-          ></b-img>
-        </div>
-          <div id="title">
-          <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
-          </div>
-          <!-- Right aligned nav items -->
-          <div id="signOut">
-          <b-navbar-nav class="ml-auto">
-            <b-nav-item-dropdown right>
-              <!-- Using 'button-content' slot -->
-              <template #button-content>
-                <em>User</em>
-              </template>
-
-              <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-            </b-nav-item-dropdown>
-          </b-navbar-nav>
-          </div>
-        
-      </b-navbar>
-
+      <Header>
+        <!-- <b-navbar-nav class="ml-auto">
+          <b-nav-item-dropdown right> -->
+            <!-- Using 'button-content' slot -->
+            <!--<template #button-content>
+              <em>User</em>
+            </template>
+            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+          </b-nav-item-dropdown>
+        </b-navbar-nav> -->
+      </Header>
       <form class="form-signin" @submit.prevent="login">
         <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
           Invalid username and password!
@@ -68,10 +51,13 @@
 
 <script>
 import authService from "../services/AuthService";
+import Header from "@/components/Header.vue";
 
 export default {
   name: "login",
-  components: {},
+  components: {
+    Header,
+  },
   data() {
     return {
       user: {
@@ -105,63 +91,18 @@ export default {
 </script>
 
 <style scoped>
-
-#navbar {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas:
-    "navbarLogo title signOut"
-  ;
-}
-
-#navbarLogo {
-  grid-area: navbarLogo;
-}
-
-#title {
-  grid-area: title;
-}
-
-#signOut {
-  grid-area: signOut;
-}
-
-h1{
-  width: 15vw;
-}
-
-.navBarLogo {
-  width: 60%;
-  height: auto;
-}
-
-.h3 {
-  margin: 0 auto;
-  margin-left: 35%;
-  color: white;
-  font-size: 30px;
-  text-align: center;
-  padding-right: 20%;
-}
-
-
 .form-signin {
   margin: 0 auto;
   max-width: 50%;
 }
-
 .ml-auto {
   font-size: 20px;
 }
-
-#login{
+#login {
   height: 100vh;
 }
-
-#signOut{
+#signOut {
   display: flex;
   align-content: flex-end;
 }
-
-
 </style>

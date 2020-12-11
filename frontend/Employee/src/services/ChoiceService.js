@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const http = axios.create({
     baseURL: "http://localhost:3000"
-  });
+});
 
 export default {
 
@@ -12,22 +12,16 @@ export default {
         return http.get(`/choices`);
     },
 
-    // getChoicesByCategory(categoryID) {
-    //     return http.get(`/choices/${categoryID}`);
-    // },
-
     addNewChoice(choice) {
         return http.post(`/choices`, choice);
     },
 
-    deleteChoice(id){
+    deleteChoice(id) {
         return http.delete(`/choices/${id}`);
     },
 
-    updateChoice(choice){
+    updateChoice(choice) {
         return http.put(`/choices/${choice.choiceId}`, choice);
     }
-
-    
 
 }

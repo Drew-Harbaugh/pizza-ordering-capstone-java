@@ -1,23 +1,12 @@
 <template>
   <div>
-    <div>
-      <b-navbar toggleable="lg" type="dark" variant="danger" id="navBar">
-        <div class="navBarLogo" id="navbarLogo">
-          <b-img
-            src="./anotherOneBitesTheCrustLogo.png"
-            fluid
-            alt="Pizza image"
-          ></b-img>
-        </div>
-
-        <div id="title">
-          <h1 class="h3 mb-3 font-weight-normal">Specials</h1>
-        </div>
-      </b-navbar>
-    </div>
+    <Header></Header>
     <div id="body">
-    <specials-list id="list" v-bind:specials="$store.state.specials"></specials-list>
-    <new-special id="new"></new-special>
+      <specials-list
+        id="list"
+        v-bind:specials="$store.state.specials"
+      ></specials-list>
+      <new-special id="new"></new-special>
     </div>
   </div>
 </template>
@@ -27,11 +16,13 @@ import specialsService from "@/services/SpecialsService.js";
 import specialsList from "@/components/SpecialsList.vue";
 import newSpecial from "@/components/NewSpecial.vue";
 import choiceService from "@/services/ChoiceService.js";
+import Header from "@/components/Header.vue";
 
 export default {
   components: {
     specialsList,
     newSpecial,
+    Header,
   },
   created() {
     specialsService.getAllSpecials().then((response) => {
@@ -45,17 +36,15 @@ export default {
 </script>
 
 <style scope>
-#body{
-  display:grid;
+#body {
+  display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-areas: 
-      "list new"
+  grid-template-areas: "list new";
 }
-
-#list{
+#list {
   grid-area: "list";
 }
-#new{
+#new {
   grid-area: "new";
 }
 </style>
