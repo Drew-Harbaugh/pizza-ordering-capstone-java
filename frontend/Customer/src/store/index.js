@@ -26,6 +26,6 @@ export default new Vuex.Store({
     ADD_TO_CART(state, pizza) {
       pizza.timeStamp = Date.now();
       state.cart.unshift(pizza);
-    }
+    },
   }
 })

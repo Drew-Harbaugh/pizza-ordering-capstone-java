@@ -5,6 +5,7 @@ import Router from 'vue-router'
 import Home from '../views/Home.vue'
 import Specials from '@/views/Specials.vue'
 import Cart from '@/views/Cart.vue'
+import Custom from '@/views/Custom.vue'
 
 Vue.use(Router)
 
@@ -36,6 +37,11 @@ const router = new Router({
       name: 'cart',
       component: Cart,
     },
+    {
+      path: '/custom',
+      name: 'custom',
+      component: Custom
+    }
   ]
 })
 
