@@ -4,6 +4,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/Home.vue'
 import Specials from '@/views/Specials.vue'
+import Cart from '@/views/Cart.vue'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ const router = new Router({
       path: '/specials',
       name: 'specials',
       component: Specials,
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: Cart,
     },
   ]
 })
