@@ -50,6 +50,10 @@ public class JdbcChoiceDAO implements ChoiceDAO {
     public void addChoice(Choice choice) {
         String sql = "INSERT INTO choices (category_id, name, is_available) VALUES (?,?,?);";
         jdbcTemplate.update(sql, choice.getCategoryId(), choice.getName(), choice.isAvailable());
+        if (choice.getCustomPrice() != -1 && choice.getSpecialtyPrice() != -1){
+            String sizePriceSQL = "INSERT INTO size_price (choice_id, specialty_price, custom_price) VALUES (?,?,?);";
+            jdbcTemplate.update(sizePriceSQL, choice.getChoiceId(), choice.getSpecialtyPrice(), choice.getCustomPrice());
+        }
     }
 
     @Override
