@@ -1,7 +1,6 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Order;
-import com.techelevator.model.PizzaOrder;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -22,8 +21,9 @@ public class JdbcOrderDAO implements OrderDAO{
     @Override
     public void addOrder(Order order) {
         String sql = "INSERT INTO orders (status, time_stamp, delivery, total) " +
-                        "VALUES (?, ?, ?, ?);";
-        jdbcTemplate.update(sql, order.getStatus(), order.getTimeStamp(), order.isDelivery(), order.getTotal());
+                        "VALUES (?, ?, ?, ?) RETURNING order_id;";
+        int orderId = jdbcTemplate.queryForObject(sql, Integer.class, order.getStatus(), order.getTimeStamp(), order.isDelivery(), order.getTotal());
+        order.setOrderId(orderId);
     }
 
     @Override
@@ -53,12 +53,13 @@ public class JdbcOrderDAO implements OrderDAO{
         return result;
     }
 
-//    @Override
-//    public void addPizzaOrder(Order order) {
-//        String sql = "INSERT INTO pizza_orders (order_id, specialty_id, size_id) " +
-//                "VALUES (?, ?, ?);";
-//        jdbcTemplate.update(sql, order.getOrderId(), order.getSpecialtyId(), order.getSizeId());
-//    }
+    @Override
+    public void addPizzaOrder(Order order, int specialtyId, int sizeId) {
+        String sql = "INSERT INTO pizza_orders (order_id, specialty_id, size_id) " +
+                "VALUES (?, ?, ?) RETURNING pizza_id;";
+       int pizzaId = jdbcTemplate.queryForObject(sql, Integer.class, order.getOrderId(), specialtyId, sizeId);
+
+    }
 
 
 }

@@ -1,7 +1,6 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Order;
-import com.techelevator.model.PizzaOrder;
 
 import java.util.List;
 
@@ -11,5 +10,5 @@ public interface OrderDAO {
 
     List<Order> getOrders ();
 
-//    void addPizzaOrder (Order order);
+    void addPizzaOrder (Order order, int specialtyId, int sizeId);
 }
