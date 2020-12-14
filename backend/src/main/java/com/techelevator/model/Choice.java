@@ -43,19 +43,19 @@ public class Choice {
         isAvailable = available;
     }
 
-    public double getCustomPrice() {
+    public BigDecimal getCustomPrice() {
         return customPrice;
     }
 
-    public void setCustomPrice(double customPrice) {
+    public void setCustomPrice(BigDecimal customPrice) {
         this.customPrice = customPrice;
     }
 
-    public double getSpecialtyPrice() {
+    public BigDecimal getSpecialtyPrice() {
         return specialtyPrice;
     }
 
-    public void setSpecialtyPrice(double specialtyPrice) {
+    public void setSpecialtyPrice(BigDecimal specialtyPrice) {
         this.specialtyPrice = specialtyPrice;
     }
 }

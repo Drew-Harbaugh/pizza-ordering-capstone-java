@@ -31,12 +31,11 @@
         >
           <input
             type="radio"
-            
             v-bind:name="'size' + special.specialtyId"
             v-bind:value="size"
             v-model="selectedSizes[special.specialtyId]"
           />
-          <label for="size">{{ size.name }}</label>
+          <label for="size">{{ size.name }} - ${{ size.specialtyPrice }}</label>
         </div>
         <button
           class="addToCart"
@@ -73,10 +72,16 @@ export default {
     addPizzaToCart(special, size) {
       let orderItem = {
         pizza: special,
-        size: size,
+        size: {
+          choiceId: size.choiceId,
+          categoryId: size.categoryId,
+          name: size.name,
+          specialtyPrice: size.specialtyPrice
+        },
       };
       this.cart.push(orderItem);
       this.$store.commit("ADD_TO_CART", orderItem);
+      this.$store.commit('ADD_TO_TOTAL', orderItem.size.specialtyPrice);
       this.selectedSizes = {};
       alert('Pizza added to cart!');
     },

@@ -4,12 +4,10 @@
       <div>
         <h3>Size</h3>
         <div v-for="choice in size" v-bind:key="choice.choiceId">
-          <label v-bind:for="choice.choiceId">{{ choice.name }}</label>
-          <input
-            type="radio"
-            v-bind:value="choice"
-            v-model="customSize"
-          />
+          <label v-bind:for="choice.choiceId"
+            >{{ choice.name }} - $ {{ choice.customPrice }}</label
+          >
+          <input type="radio" v-bind:value="choice" v-model="customSize" />
         </div>
       </div>
       <div>
@@ -57,11 +55,11 @@
         </div>
       </div>
       <button
-          class="addToCart"
-          v-on:click="
-            addPizzaToCart(customPizza, customSize)
-          "
-        >Add to Cart</button>
+        class="addToCart"
+        v-on:click="addPizzaToCart(customPizza, customSize)"
+      >
+        Add to Cart
+      </button>
       <!-- <category-column v-bind:sortedChoices="size" id="size"></category-column> -->
       <!-- <category-column
         v-bind:sortedChoices="crust"
@@ -84,39 +82,44 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
       cart: [],
       customPizza: {
-        name: 'Custom',
+        name: "Custom",
         crust: {},
         sauce: {},
         regularToppings: [],
-        premiumToppings: []
+        premiumToppings: [],
       },
-      customSize: {}
+      customSize: {},
     };
   },
-  props: ['choices'],
+  props: ["choices"],
   methods: {
     addPizzaToCart(customPizza, size) {
       let orderItem = {
         pizza: customPizza,
-        size: size,
+        size: {
+          choiceId: size.choiceId,
+          categoryId: size.categoryId,
+          name: size.name,
+          customPrice: size.customPrice
+        },
       };
       this.cart.push(orderItem);
       this.$store.commit("ADD_TO_CART", orderItem);
+      this.$store.commit('ADD_TO_TOTAL', orderItem.size.customPrice);
       this.customPizza = {
-        name: 'Custom',
+        name: "Custom",
         crust: {},
         sauce: {},
         regularToppings: [],
-        premiumToppings: []
+        premiumToppings: [],
       };
       this.customSize = {};
-      alert('Pizza added to cart!');
+      alert("Pizza added to cart!");
     },
   },
   computed: {

@@ -45,8 +45,6 @@ export default {
         categoryId: 0,
         name: "",
         available: false,
-        customPrice: -1,
-        specialtyPrice: -1,
       },
       money: {
         thousands: ",",
@@ -81,8 +79,7 @@ export default {
       });
     },
     resetForm() {
-      this.newChoice = {customPrice: -1, specialtyPrice: -1};
-
+      this.newChoice = {};
     },
   },
 };

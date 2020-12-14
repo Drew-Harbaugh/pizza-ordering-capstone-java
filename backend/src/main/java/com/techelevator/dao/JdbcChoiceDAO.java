@@ -33,7 +33,8 @@ public class JdbcChoiceDAO implements ChoiceDAO {
     @Override
     public List<Choice> getAllChoices() {
         List<Choice> result = new ArrayList<>();
-        String sql = "SELECT choice_id, category_id, name, is_available FROM choices ORDER BY choice_id;";
+        String sql = "SELECT c.choice_id, c.category_id, c.name, c.is_available, s.specialty_price, s.custom_price " +
+                    "FROM choices AS c LEFT JOIN size_price AS s ON s.choice_id = c.choice_id ORDER BY choice_id;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while (rowSet.next()) {
             Choice choice = new Choice();
@@ -41,6 +42,12 @@ public class JdbcChoiceDAO implements ChoiceDAO {
             choice.setCategoryId(rowSet.getInt("category_id"));
             choice.setName(rowSet.getString("name"));
             choice.setAvailable(rowSet.getBoolean("is_available"));
+            if (rowSet.getBigDecimal("custom_price") != null) {
+                choice.setCustomPrice(rowSet.getBigDecimal("custom_price"));
+            }
+            if (rowSet.getBigDecimal("specialty_price") != null) {
+                choice.setSpecialtyPrice(rowSet.getBigDecimal("specialty_price"));
+            }
             result.add(choice);
         }
         return result;
@@ -48,11 +55,11 @@ public class JdbcChoiceDAO implements ChoiceDAO {
 
     @Override
     public void addChoice(Choice choice) {
-        String sql = "INSERT INTO choices (category_id, name, is_available) VALUES (?,?,?);";
-        jdbcTemplate.update(sql, choice.getCategoryId(), choice.getName(), choice.isAvailable());
-        if (choice.getCustomPrice() != -1 && choice.getSpecialtyPrice() != -1){
+        String sql = "INSERT INTO choices (category_id, name, is_available) VALUES (?,?,?) RETURNING choice_id;";
+        Integer choiceId = jdbcTemplate.queryForObject(sql, Integer.class, choice.getCategoryId(), choice.getName(), choice.isAvailable());
+        if (choice.getCategoryId() == 1){
             String sizePriceSQL = "INSERT INTO size_price (choice_id, specialty_price, custom_price) VALUES (?,?,?);";
-            jdbcTemplate.update(sizePriceSQL, choice.getChoiceId(), choice.getSpecialtyPrice(), choice.getCustomPrice());
+            jdbcTemplate.update(sizePriceSQL, choiceId, choice.getSpecialtyPrice(), choice.getCustomPrice());
         }
     }
 

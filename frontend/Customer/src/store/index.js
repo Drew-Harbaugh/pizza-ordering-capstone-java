@@ -15,6 +15,7 @@ export default new Vuex.Store({
     choices: [],
     specials: [],
     cart: [],
+    total: 0.00
   },
   mutations: {
     SET_SPECIALS(state, specials) {
@@ -31,6 +32,9 @@ export default new Vuex.Store({
       pizza.timeStamp = Date.now();
       const index = state.cart.indexOf(pizza);
       state.cart.splice(index, 1);
+    },
+    ADD_TO_TOTAL(state, price) {
+        state.total += price;
     }
   }
 })
