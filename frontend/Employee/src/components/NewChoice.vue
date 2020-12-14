@@ -15,6 +15,14 @@
           <option value="5">Premium Toppings</option>
         </select>
       </div>
+      <div v-if="newChoice.categoryId === '1'">
+        <label for="customPrice">Custom Price: </label>
+        <money v-bind="money" value="customPrice" v-model="newChoice.customPrice" style="text-align: right"></money>
+      </div>
+      <div v-if="newChoice.categoryId === '1'">
+        <label for="specialtyPrice">Specialty Price: </label>
+        <money v-bind="money" value="specialtyPrice" v-model="newChoice.specialtyPrice" style="text-align: right"></money>
+      </div>
       <div>
         <button v-on:click.prevent="resetForm">Cancel</button>
         <button>Add New Choice</button>
@@ -25,14 +33,27 @@
 
 <script>
 import choiceService from "@/services/ChoiceService.js";
+import { Money } from "v-money";
 
 export default {
+  components: {
+    Money,
+  },
   data() {
     return {
       newChoice: {
         categoryId: 0,
         name: "",
         available: false,
+        customPrice: -1,
+        specialtyPrice: -1,
+      },
+      money: {
+        thousands: ",",
+        prefix: "$ ",
+        suffix: "",
+        precision: 2,
+        masked: false,
       },
     };
   },
@@ -60,7 +81,8 @@ export default {
       });
     },
     resetForm() {
-      this.newChoice = {};
+      this.newChoice = {customPrice: -1, specialtyPrice: -1};
+
     },
   },
 };

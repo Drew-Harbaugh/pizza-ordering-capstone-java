@@ -1,11 +1,15 @@
 package com.techelevator.model;
 
+import java.math.BigDecimal;
+
 public class Choice {
 
     private int choiceId;
     private int categoryId;
     private String name;
     private boolean isAvailable;
+    private BigDecimal customPrice;
+    private BigDecimal specialtyPrice;
 
     public int getChoiceId() {
         return choiceId;
@@ -39,4 +43,19 @@ public class Choice {
         isAvailable = available;
     }
 
+    public double getCustomPrice() {
+        return customPrice;
+    }
+
+    public void setCustomPrice(double customPrice) {
+        this.customPrice = customPrice;
+    }
+
+    public double getSpecialtyPrice() {
+        return specialtyPrice;
+    }
+
+    public void setSpecialtyPrice(double specialtyPrice) {
+        this.specialtyPrice = specialtyPrice;
+    }
 }
