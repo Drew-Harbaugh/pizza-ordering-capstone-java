@@ -35,6 +35,9 @@ export default new Vuex.Store({
     },
     ADD_TO_TOTAL(state, price) {
         state.total += price;
-    }
+    },
+    REMOVE_FROM_TOTAL(state, price) {
+      state.total -= price;
+  }
   }
 })
