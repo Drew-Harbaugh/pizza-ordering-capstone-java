@@ -15,10 +15,12 @@ public class JdbcOrderDAO implements OrderDAO {
 
     private JdbcTemplate jdbcTemplate;
     private ChoiceDAO choiceDAO;
+    private SpecialtyPizzaDAO specialtyPizzaDAO;
 
-    public JdbcOrderDAO(JdbcTemplate jdbcTemplate, ChoiceDAO choiceDAO) {
+    public JdbcOrderDAO(JdbcTemplate jdbcTemplate, ChoiceDAO choiceDAO, SpecialtyPizzaDAO specialtyPizzaDAO) {
         this.jdbcTemplate = jdbcTemplate;
         this.choiceDAO = choiceDAO;
+        this.specialtyPizzaDAO = specialtyPizzaDAO;
     }
 
     @Override
@@ -84,7 +86,7 @@ public class JdbcOrderDAO implements OrderDAO {
     }
 
     @Override
-    public List<Order> getOrders() {
+    public List<Order> getAllOrders() {
         // get from order table, add to order object
         List<Order> result = new ArrayList<>();
         String sql = "SELECT order_id, status, time_stamp, delivery, total FROM orders;";
@@ -101,9 +103,17 @@ public class JdbcOrderDAO implements OrderDAO {
             Customer customer = getDeliveryInformation(order.getOrderId());
             order.setCustomer(customer);
             // get from pizza_order table and create Pizza objects and add to order object
-
+            List<Pizza> cart = getPizzaOrder(order.getOrderId());
+            order.setCart(cart);
+            result.add(order);
         }
         return result;
+    }
+
+    @Override
+    public void updateOrderStatus(Order order) {
+        String sql = "UPDATE orders SET status = ? WHERE order_id = ?;";
+        jdbcTemplate.update(sql, order.getStatus(), order.getOrderId());
     }
 
     private Customer getDeliveryInformation(int orderId) {
@@ -128,18 +138,20 @@ public class JdbcOrderDAO implements OrderDAO {
             pizzaOrderDTO.setPizza_id(rowSet.getInt("pizza_id"));
             pizzaOrderDTO.setSpecialty_id(rowSet.getInt("specialty_id"));
             pizzaOrderDTO.setSize_id(rowSet.getInt("size_id"));
-
+            // for each pizza...
+            // create pizza object by getting either custom pizza toppings or getting specialty pizza then toppings
+            // get size
             Pizza pizza = new Pizza();
             // set size
             pizza.setSize(choiceDAO.getChoiceById(pizzaOrderDTO.getSize_id()));
             // set pizza
-
-
+            if ((Integer)pizzaOrderDTO.getSpecialty_id() == null || pizzaOrderDTO.getSpecialty_id() == 0) {
+                pizza.setPizza(specialtyPizzaDAO.getCustomPizzaById(pizzaOrderDTO.getPizza_id()));
+            } else {
+                pizza.setPizza(specialtyPizzaDAO.getSpecialtyPizzaById(pizzaOrderDTO.getSpecialty_id()));
+            }
+            result.add(pizza);
         }
-        // for each pizza...
-        // create pizza object by getting either custom pizza toppings
-        // or getting specialty pizza then toppings
-        // get size
         return result;
     }
 

@@ -66,10 +66,9 @@ public class JdbcChoiceDAO implements ChoiceDAO {
     @Override
     public Choice getChoiceById(int id) {
         Choice choice = new Choice();
-        String sql = "SELECT choice_id FROM choices WHERE id = ?;";
+        String sql = "SELECT choice_id, category_id, name, is_available FROM choices WHERE choice_id = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, id);
         while (rowSet.next()) {
-
             choice.setChoiceId(rowSet.getInt("choice_id"));
             choice.setCategoryId(rowSet.getInt("category_id"));
             choice.setName(rowSet.getString("name"));

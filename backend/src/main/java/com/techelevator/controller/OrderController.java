@@ -23,7 +23,14 @@ public class OrderController {
         orderDAO.addOrder(order);
     }
 
-//    @GetMapping("/order")
-//    public List<Order> getOrders(){return orderDAO.getOrders();}
+    @GetMapping("/orders")
+    public List<Order> getAllOrders(){
+        return orderDAO.getAllOrders();
+    }
+
+    @PutMapping("/orders/{orderId}")
+    public void updateOrderStatus(@PathVariable int orderId, @RequestBody Order order) {
+        orderDAO.updateOrderStatus(order);
+    }
 
 }
