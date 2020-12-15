@@ -86,7 +86,8 @@ export default {
   methods: {
     removeFromCart(orderItem) {
       this.$store.commit("REMOVE_FROM_CART", orderItem);
-      // this.$store.commit("REMOVE_FROM_TOTAL", orderItem.size.)
+      this.$store.commit("REMOVE_FROM_TOTAL", orderItem.size.price);
+      this.getTotal();
     },
     getTotal() {
       this.total = this.$store.state.total;

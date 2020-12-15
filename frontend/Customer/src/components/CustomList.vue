@@ -105,12 +105,12 @@ export default {
           choiceId: size.choiceId,
           categoryId: size.categoryId,
           name: size.name,
-          customPrice: size.customPrice
+          price: size.customPrice
         },
       };
       this.cart.push(orderItem);
       this.$store.commit("ADD_TO_CART", orderItem);
-      this.$store.commit('ADD_TO_TOTAL', orderItem.size.customPrice);
+      this.$store.commit('ADD_TO_TOTAL', orderItem.size.price);
       this.customPizza = {
         name: "Custom",
         crust: {},

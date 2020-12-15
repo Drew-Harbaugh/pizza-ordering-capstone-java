@@ -8,16 +8,20 @@
       <div class="newSpecial">
         <h2 class="name">{{ special.name }}</h2>
         <div class="toppingsLists">
-          <h4 class="none" v-if="special.regularToppings.length===0">Regular Toppings(None)</h4>
-          <h4 v-else> Regular Toppings </h4>
+          <h4 class="none" v-if="special.regularToppings.length === 0">
+            Regular Toppings(None)
+          </h4>
+          <h4 v-else>Regular Toppings</h4>
           <div
             v-for="regularTopping in special.regularToppings"
             v-bind:key="regularTopping.name"
           >
             <p>{{ regularTopping.name }}</p>
           </div>
-          <h4 class="none" v-if="special.premiumToppings.length===0">Premium Toppings(None)</h4>
-          <h4  v-else>Premium Toppings</h4>
+          <h4 class="none" v-if="special.premiumToppings.length === 0">
+            Premium Toppings(None)
+          </h4>
+          <h4 v-else>Premium Toppings</h4>
           <div
             v-for="premiumTopping in special.premiumToppings"
             v-bind:key="premiumTopping.name"
@@ -35,9 +39,15 @@
             type="radio"
             v-bind:name="'size' + special.specialtyId"
             v-bind:value="size"
+            v-bind:class="{ none: !size.available }"
             v-model="selectedSizes[special.specialtyId]"
           />
-          <label for="size">{{ size.name }} - ${{ size.specialtyPrice }}</label>
+          <label for="size" v-if="size.available === true"
+            >{{ size.name }} - ${{ size.specialtyPrice }}</label
+          >
+          <label class="none" for="size" v-else
+            >None {{ size.specialtyPrice }}</label
+          >
         </div>
         <button
           class="addToCart"
@@ -67,8 +77,8 @@ export default {
       return this.choices.filter((choice) => choice.categoryId === 1);
     },
     available() {
-      return this.specials.filter(special => special.available === true);
-    }
+      return this.specials.filter((special) => special.available === true);
+    },
   },
   methods: {
     addPizzaToCart(special, size) {
@@ -78,14 +88,14 @@ export default {
           choiceId: size.choiceId,
           categoryId: size.categoryId,
           name: size.name,
-          specialtyPrice: size.specialtyPrice
+          price: size.specialtyPrice,
         },
       };
       this.cart.push(orderItem);
       this.$store.commit("ADD_TO_CART", orderItem);
-      this.$store.commit('ADD_TO_TOTAL', orderItem.size.specialtyPrice);
+      this.$store.commit("ADD_TO_TOTAL", orderItem.size.price);
       this.selectedSizes = {};
-      alert('Pizza added to cart!');
+      alert("Pizza added to cart!");
     },
   },
 };
@@ -129,7 +139,7 @@ export default {
   width: auto;
 }
 
-.none{
+.none {
   display: none;
 }
 </style>
