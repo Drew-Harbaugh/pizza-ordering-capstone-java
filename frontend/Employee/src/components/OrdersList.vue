@@ -81,9 +81,10 @@
             </div>
           </div>
         </div>
-        <!--<button v-on:click="deleteSpecial(special)">Delete</button>
-        <button v-on:click="makeAvailable(special)">Make Available</button>
-        <button v-on:click="makeUnavailable(special)">Make Unavailable</button>-->
+        <button v-on:click="markPending(order.orderId)">Pending</button>
+        <button v-on:click="markCancelled(order.orderId)">Cancelled</button>
+        <button v-on:click="markReady(order.orderId)">Ready</button>
+        <button v-on:click="markComplete(order.orderId)">Complete</button>
       </div>
     </div>
   </div>
