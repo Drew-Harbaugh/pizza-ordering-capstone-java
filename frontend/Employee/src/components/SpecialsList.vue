@@ -11,26 +11,32 @@
       >
         <h2 class="name">{{ special.name }}</h2>
         <div class="toppingsLists">
-          <h4>Regular Toppings</h4>
+          <h4 v-if="special.regularToppings.length === 0"> Regular Toppings (None) </h4>
+          <h4 v-else> Regular Toppings</h4>
+          
           <div
             v-for="regularTopping in special.regularToppings"
             v-bind:key="regularTopping.name"
           >
             <p v-bind:class="{ unavailable: !regularTopping.available }">{{ regularTopping.name }}</p>
+            <p  v-show="!regularTopping.available"> ({{regularTopping.name}}) Out of stock </p>
           </div>
-          <h4>Premium Toppings</h4>
+          <h4 v-if="special.premiumToppings.length === 0"> Premium Toppings (None) </h4>
+          <h4 v-else >Premium Toppings</h4>
+          
           <div
             v-for="premiumTopping in special.premiumToppings"
             v-bind:key="premiumTopping.name"
           >
-            <p v-bind:class="{ unavailable: !premiumTopping.available }">{{ premiumTopping.name }}</p>
+            <p  v-bind:class="{ unavailable: !premiumTopping.available }">{{ premiumTopping.name }}</p>
+            <p  v-show="!premiumTopping.available"> ({{premiumTopping.name}}) Out of stock </p>
           </div>
         </div>
         <p class="description">{{ special.description }}</p>
       </div>
       <button v-on:click="deleteSpecial(special)">Delete</button>
-      <button v-on:click="makeAvailable(special)">Make Available</button>
-      <button v-on:click="makeUnavailable(special)">Make Unavailable</button>
+      <button v-if="!special.available" v-on:click="makeAvailable(special)">Make Available</button>
+      <button v-else v-on:click="makeUnavailable(special)">Make Unavailable</button>
       <div class="divider"></div>
     </div>
   </div>
@@ -92,7 +98,7 @@ export default {
 };
 </script>
 
-<style scope>
+<style scoped>
 .newSpecial {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -122,6 +128,7 @@ export default {
   width: auto;
 }
 .unavailable {
-  text-decoration: line-through;
+  /* text-decoration: line-through; */
+  display: none;
 }
 </style>
