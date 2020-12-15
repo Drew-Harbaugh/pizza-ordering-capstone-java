@@ -10,6 +10,10 @@ export default {
 
     getAllOrders() {
         return http.get(`/orders`);
+    },
+
+    updateOrderStatus(order) {
+        return http.put(`/orders/${order.orderId}`, order);
     }
 
 }
