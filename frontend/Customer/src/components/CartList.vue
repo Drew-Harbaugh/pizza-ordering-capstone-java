@@ -13,13 +13,15 @@
       <p>{{ orderItem.size.customPrice }}</p>
       <p>{{ orderItem.pizza.price }}</p>
       <div class="toppingsLists">
-        <h4>Regular Toppings</h4>
+        
+          <h4> Regular Toppings</h4>
         <div
           v-for="regularTopping in orderItem.pizza.regularToppings"
           v-bind:key="regularTopping.name"
         >
           <p>{{ regularTopping.name }}</p>
         </div>
+        
         <h4>Premium Toppings</h4>
         <div
           v-for="premiumTopping in orderItem.pizza.premiumToppings"

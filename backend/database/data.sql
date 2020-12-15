@@ -54,13 +54,15 @@ INSERT INTO choices (category_id, name, is_available) VALUES (5, 'Pineapple', tr
 INSERT INTO choices (category_id, name, is_available) VALUES (5, 'Bacon', true); --35
 INSERT INTO choices (category_id, name, is_available) VALUES (5, 'Philly Steak', true);
 
+--No Sauce (if you insert any new choices ADD HERE)
+INSERT INTO choices (category_id, name, is_available) VALUES (3, 'No Sauce', true);
 
 --Specials
 INSERT INTO specialty_pizza (name, description, is_available) VALUES ('Veggie Deluxe', 'Regular crust delight with marinara, shredded mozzarella, green peppers, spinach, olives, mushrooms, diced tomatoes, and artichokes.', true);
-INSERT INTO specialty_pizza (name, description, is_available) VALUES ('Meat Lovers', 'Regular crust pizza with marinara, shredded mozzarella, pepperoni, sauasge, ham, and bacon.', true);
+INSERT INTO specialty_pizza (name, description, is_available) VALUES ('Meat Lovers', 'Regular crust pizza with marinara, shredded mozzarella, pepperoni, sausage, ham, and bacon.', true);
 INSERT INTO specialty_pizza (name, description, is_available) VALUES ('Hawaiian Choke', 'Thin crust delight with marinara, shredded mozzarella, pineapple, artichokes, ham, and bacon.', true);
 INSERT INTO specialty_pizza (name, description, is_available) VALUES ('Pesto Margherita Pizza', 'Brooklyn crust with pesto, fresh mozzarella, diced tomatoes, sprinkled with parmesan.', true);
-INSERT INTO specialty_pizza (name, description, is_available) VALUES ('The Al Capone', 'Chicago style pizza with marinara, shredded mozzarella, parmesan, sausage, perpproni, mushrooms, artichokes, and anchovies.', true);
+INSERT INTO specialty_pizza (name, description, is_available) VALUES ('The Al Capone', 'Chicago style pizza with marinara, shredded mozzarella, parmesan, sausage, pepperoni, mushrooms, artichokes, and anchovies.', true);
 
 
 
@@ -141,11 +143,11 @@ INSERT INTO delivery_information (order_id, name, phone_number, address, credit_
 INSERT INTO pizza_orders (order_id, specialty_id, size_id) VALUES (2, 0, 1);
 INSERT INTO pizza_orders (order_id, specialty_id, size_id) VALUES (2, 3, 4);
 
-INSERT INTO choices_custom_pizza (pizza_id, choice_id) VALUES (1, 8);
-INSERT INTO choices_custom_pizza (pizza_id, choice_id) VALUES (1, 10);
-INSERT INTO choices_custom_pizza (pizza_id, choice_id) VALUES (1, 15);
-INSERT INTO choices_custom_pizza (pizza_id, choice_id) VALUES (1, 21);
-INSERT INTO choices_custom_pizza (pizza_id, choice_id) VALUES (1, 25);
+INSERT INTO choices_custom_pizza (pizza_id, choice_id) VALUES (2, 8);
+INSERT INTO choices_custom_pizza (pizza_id, choice_id) VALUES (2, 10);
+INSERT INTO choices_custom_pizza (pizza_id, choice_id) VALUES (2, 15);
+INSERT INTO choices_custom_pizza (pizza_id, choice_id) VALUES (2, 21);
+INSERT INTO choices_custom_pizza (pizza_id, choice_id) VALUES (2, 25);
 
 --Order 3
 INSERT INTO orders (status, time_stamp, delivery, total) VALUES ('Ready', '2020-12-15 11:43:06', false, 11.99);

@@ -8,14 +8,16 @@
       <div class="newSpecial">
         <h2 class="name">{{ special.name }}</h2>
         <div class="toppingsLists">
-          <h4>Regular Toppings</h4>
+          <h4 class="none" v-if="special.regularToppings.length===0">Regular Toppings(None)</h4>
+          <h4 v-else> Regular Toppings </h4>
           <div
             v-for="regularTopping in special.regularToppings"
             v-bind:key="regularTopping.name"
           >
             <p>{{ regularTopping.name }}</p>
           </div>
-          <h4>Premium Toppings</h4>
+          <h4 class="none" v-if="special.premiumToppings.length===0">Premium Toppings(None)</h4>
+          <h4  v-else>Premium Toppings</h4>
           <div
             v-for="premiumTopping in special.premiumToppings"
             v-bind:key="premiumTopping.name"
@@ -125,5 +127,9 @@ export default {
 .divider {
   height: 10px;
   width: auto;
+}
+
+.none{
+  display: none;
 }
 </style>

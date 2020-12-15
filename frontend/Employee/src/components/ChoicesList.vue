@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div class="category-columns">
       <category-column v-bind:sortedChoices="size" id="size"></category-column>
       <category-column
@@ -20,9 +21,10 @@
       ></category-column>
     </div>
     <button v-on:click="deleteChoices()">Delete</button>
-    <button v-on:click="makeAvailable()">Make Available</button>
-    <button v-on:click="makeUnavailable()">Make Unavailable</button>
+    <button  v-on:click="makeAvailable()">Make Available</button>
+    <button  v-on:click="makeUnavailable()">Make Unavailable</button>
   </div>
+  
 </template>
 
 <script>
