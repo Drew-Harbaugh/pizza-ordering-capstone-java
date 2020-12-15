@@ -1,10 +1,11 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.Order;
+import com.techelevator.model.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import javax.sql.RowSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +21,64 @@ public class JdbcOrderDAO implements OrderDAO{
 
     @Override
     public void addOrder(Order order) {
+        // posts to orders table
         String sql = "INSERT INTO orders (status, time_stamp, delivery, total) " +
                         "VALUES (?, ?, ?, ?) RETURNING order_id;";
         int orderId = jdbcTemplate.queryForObject(sql, Integer.class, order.getStatus(), order.getTimeStamp(), order.isDelivery(), order.getTotal());
         order.setOrderId(orderId);
+        // post to delivery information (customer)
+        addCustomer(order.getOrderId(), order.getCustomer());
+        // post to pizza_orders for as many pizzas in the order
+        for (Pizza pizza : order.getCart()) {
+            int pizzaId = addPizzaOrder(order.getOrderId(), pizza.getPizza().getSpecialtyId(), pizza.getSize().getChoiceId());
+            PizzaOrderDTO pizzaOrderDTO = getPizzaOrderByPizzaId(pizzaId);
+            Integer specialtyId = pizzaOrderDTO.getSpecialty_id();
+            if (specialtyId == null || specialtyId == 0) {
+                // post to choices_custom_pizza for toppings for as many custom pizzas in the order
+                // add crust
+                addCustomPizzaChoices(pizzaOrderDTO.getPizza_id(), pizza.getPizza().getCrust().getChoiceId());
+                // add sauce
+                addCustomPizzaChoices(pizzaOrderDTO.getPizza_id(), pizza.getPizza().getSauce().getChoiceId());
+                // loop to add regular toppings
+                for (Choice topping : pizza.getPizza().getRegularToppings()) {
+                    addCustomPizzaChoices(pizzaOrderDTO.getPizza_id(), topping.getChoiceId());
+                }
+                // loop to add premium toppings
+                for (Choice topping : pizza.getPizza().getPremiumToppings()) {
+                    addCustomPizzaChoices(pizzaOrderDTO.getPizza_id(), topping.getChoiceId());
+                }
+            }
+        }
+    }
+
+    private void addCustomer(int orderId, Customer customer) {
+        String sql = "INSERT INTO delivery_information (order_id, name, phone_number, address, credit_card) " +
+                "VALUES (?, ?, ?, ?, ?);";
+        jdbcTemplate.update(sql, orderId, customer.getName(), customer.getPhoneNumber(), customer.getAddress(), customer.getCreditCard());
+    }
+
+    private int addPizzaOrder(int orderId, int specialtyId, int sizeId) {
+        String sql = "INSERT INTO pizza_orders (order_id, specialty_id, size_id) " +
+                "VALUES (?, ?, ?) RETURNING pizza_id;";
+        int pizzaId = jdbcTemplate.queryForObject(sql, Integer.class, orderId, specialtyId, sizeId);
+        return pizzaId;
+    }
+
+    private PizzaOrderDTO getPizzaOrderByPizzaId(int pizzaId) {
+        String sql = "SELECT pizza_id, order_id, specialty_id, size_id FROM pizza_orders WHERE pizza_id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, pizzaId);
+        PizzaOrderDTO pizzaOrderDTO = new PizzaOrderDTO();
+        rowSet.next();
+        pizzaOrderDTO.setPizza_id(rowSet.getInt("pizza_id"));
+        pizzaOrderDTO.setOrder_id(rowSet.getInt("order_id"));
+        pizzaOrderDTO.setSpecialty_id(rowSet.getInt("specialty_id"));
+        pizzaOrderDTO.setSize_id(rowSet.getInt("size_id"));
+        return pizzaOrderDTO;
+    }
+
+    private void addCustomPizzaChoices(int pizzaId, int choiceId) {
+        String sql = "INSERT INTO choices_custom_pizza (pizza_id, choice_id) VALUES (?, ?);";
+        jdbcTemplate.update(sql, pizzaId, choiceId);
     }
 
     @Override
@@ -52,14 +107,5 @@ public class JdbcOrderDAO implements OrderDAO{
 
         return result;
     }
-
-    @Override
-    public void addPizzaOrder(Order order, int specialtyId, int sizeId) {
-        String sql = "INSERT INTO pizza_orders (order_id, specialty_id, size_id) " +
-                "VALUES (?, ?, ?) RETURNING pizza_id;";
-       int pizzaId = jdbcTemplate.queryForObject(sql, Integer.class, order.getOrderId(), specialtyId, sizeId);
-
-    }
-
 
 }

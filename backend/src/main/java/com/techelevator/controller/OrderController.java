@@ -17,17 +17,13 @@ public class OrderController {
         this.orderDAO = orderDAO;
     }
 
-    @PostMapping("/order") //maybe need to change endpoint
+    @PostMapping("/orders")
     @ResponseStatus (value = HttpStatus.CREATED)
-    public void addOrder (@RequestBody Order order) {
+    public void addOrder(@RequestBody Order order) {
         orderDAO.addOrder(order);
-//        orderDAO.addPizzaOrder(order);
     }
 
-
-
-    @GetMapping("/order")
-    public List<Order> getOrders(){return orderDAO.getOrders();}
-
+//    @GetMapping("/order")
+//    public List<Order> getOrders(){return orderDAO.getOrders();}
 
 }

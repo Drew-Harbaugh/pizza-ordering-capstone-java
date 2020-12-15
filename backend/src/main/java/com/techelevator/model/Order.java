@@ -12,9 +12,7 @@ public class Order {
     private Timestamp timeStamp;
     private boolean isDelivery;
     private BigDecimal total = new BigDecimal(0);
-
-    private Cart cart;
-
+    private List<Pizza> cart;
     private Customer customer;
 
     public int getOrderId() {
@@ -57,11 +55,11 @@ public class Order {
         this.total = total;
     }
 
-    public Cart getCart() {
+    public List<Pizza> getCart() {
         return cart;
     }
 
-    public void setCart(Cart cart) {
+    public void setCart(List<Pizza> cart) {
         this.cart = cart;
     }
 

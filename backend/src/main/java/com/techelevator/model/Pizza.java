@@ -2,15 +2,15 @@ package com.techelevator.model;
 
 public class Pizza {
 
-    private SpecialtyPizza specialtyPizza;
+    private SpecialtyPizza pizza;
     private Choice size;
 
-    public SpecialtyPizza getSpecialtyPizza() {
-        return specialtyPizza;
+    public SpecialtyPizza getPizza() {
+        return pizza;
     }
 
-    public void setSpecialtyPizza(SpecialtyPizza specialtyPizza) {
-        this.specialtyPizza = specialtyPizza;
+    public void setPizza(SpecialtyPizza pizza) {
+        this.pizza = pizza;
     }
 
     public Choice getSize() {

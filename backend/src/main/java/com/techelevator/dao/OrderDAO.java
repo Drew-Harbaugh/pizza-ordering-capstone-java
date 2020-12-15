@@ -10,5 +10,4 @@ public interface OrderDAO {
 
     List<Order> getOrders ();
 
-    void addPizzaOrder (Order order, int specialtyId, int sizeId);
 }

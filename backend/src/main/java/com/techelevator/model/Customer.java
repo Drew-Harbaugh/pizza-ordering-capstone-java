@@ -7,7 +7,6 @@ public class Customer {
     private String address;
     private long creditCard;
 
-
     public String getName() {
         return name;
     }
@@ -39,4 +38,5 @@ public class Customer {
     public void setCreditCard(long creditCard) {
         this.creditCard = creditCard;
     }
+
 }
