@@ -23,6 +23,7 @@ export default new Vuex.Store({
     choices: [],
     specials: [],
     changeChoices: [],
+    orders: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -57,6 +58,9 @@ export default new Vuex.Store({
     },
     EMPTY_CHOICES(state) {
       state.changeChoices = [];
+    },
+    SET_ORDERS(state, orders) {
+      state.orders = orders;
     }
   }
 })

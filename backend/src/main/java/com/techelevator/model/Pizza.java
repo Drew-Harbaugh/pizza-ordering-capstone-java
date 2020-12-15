@@ -2,6 +2,7 @@ package com.techelevator.model;
 
 public class Pizza {
 
+    private int pizzaId;
     private SpecialtyPizza pizza;
     private Choice size;
 
@@ -19,5 +20,13 @@ public class Pizza {
 
     public void setSize(Choice size) {
         this.size = size;
+    }
+
+    public int getPizzaId() {
+        return pizzaId;
+    }
+
+    public void setPizzaId(int pizzaId) {
+        this.pizzaId = pizzaId;
     }
 }

@@ -1,14 +1,15 @@
 // @ts-nocheck
 
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import Logout from '../views/Logout.vue'
-import Register from '../views/Register.vue'
-import store from '../store/index'
-import Choices from '@/views/Choices.vue'
-import Specials from '@/views/Specials.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Home from '../views/Home.vue';
+import Login from '../views/Login.vue';
+import Logout from '../views/Logout.vue';
+import Register from '../views/Register.vue';
+import store from '../store/index';
+import Choices from '@/views/Choices.vue';
+import Specials from '@/views/Specials.vue';
+import Order from '@/views/Order.vue';
 
 Vue.use(Router)
 
@@ -78,6 +79,16 @@ const router = new Router({
         pageTitle: 'Configure Specials'
       }
     },
+    {
+      path: '/orders',
+      name: 'orders',
+      component: Order,
+      meta: {
+        requiresAuth: true,
+        pageTitle: 'Orders'
+      }
+
+    }
   ]
 })
 

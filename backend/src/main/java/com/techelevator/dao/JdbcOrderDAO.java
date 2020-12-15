@@ -144,6 +144,7 @@ public class JdbcOrderDAO implements OrderDAO {
             Pizza pizza = new Pizza();
             // set size
             pizza.setSize(choiceDAO.getChoiceById(pizzaOrderDTO.getSize_id()));
+            pizza.setPizzaId(pizzaOrderDTO.getPizza_id());
             // set pizza
             if ((Integer)pizzaOrderDTO.getSpecialty_id() == null || pizzaOrderDTO.getSpecialty_id() == 0) {
                 pizza.setPizza(specialtyPizzaDAO.getCustomPizzaById(pizzaOrderDTO.getPizza_id()));
