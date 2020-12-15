@@ -6,22 +6,11 @@
     </div>
     </div>
     <router-view />
-    <div id="appBody">
-
-    </div>
   </div>
 </template>
 
 <style scoped>
-#appBody {
-  width: 100vw;
-  height: 100vh;
-  background-image: url("https://media.giphy.com/media/4ayiIWaq2VULC/source.gif");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 
-}
 
 #nav {
   background: #dc3545;

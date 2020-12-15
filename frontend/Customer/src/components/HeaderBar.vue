@@ -38,6 +38,7 @@ export default {};
   grid-template-areas:
     "logo title nav"
   ;
+  width: 100vw;
 }
 
 #navbarLogo {
