@@ -18,19 +18,27 @@
             alt="Meat Lovers Pizza"
             style="width: inherit"
           />
-          <b-button>Order Now!</b-button>
+          <router-link v-bind:to="{name: 'specials'}" tag="b-button">Order Now!</router-link>
+          
         </div>
         <div id="customBox" class="homeBoxes">
           <h2>Custom Pizza!</h2>
           <img src="" alt="Veggie Pizza" style="width: inherit" />
-          <b-button>Order Now!</b-button>
+          <router-link v-bind:to="{name: 'custom'}" tag="b-button">Order Now!</router-link>
         </div>
       </div>
     </div>
     <div id="bottom">
       <p>ABOUT US AND THE PROJECT</p>
       <p>Bacon ipsum dolor amet ham hock tri-tip sirloin pig venison sausage chicken pork pancetta cow corned beef. Leberkas pastrami kevin turducken cow tenderloin, ball tip ground round pork tail buffalo. Boudin strip steak porchetta beef, picanha t-bone ham hock pastrami rump tongue. Bresaola cow shankle t-bone ball tip landjaeger, short loin pastrami salami chuck ham hock strip steak.</p>
-      <p>LinkedIn Tags</p>
+      <p>Connect with the developers on LinkedIn</p>
+      <div id=LinkedIn>
+        <div><b-Link class="linkedInLink" href="https://www.linkedin.com/in/walkersammarie/" target="_blank">Sam Walker</b-Link></div>
+        <div><b-Link class="linkedInLink" href="https://www.linkedin.com/in/jack3jk/" target="_blank">Jordan Jackson</b-Link></div>
+        <div><b-Link class="linkedInLink" href="https://www.linkedin.com/in/iliasmith/" target="_blank">Ilia Smith</b-Link></div>
+        <div><b-Link class="linkedInLink" href="http://www.linkedin.com/in/drew-harbaugh" target="_blank">Drew Harbaugh</b-Link></div>
+        <div><b-Link class="linkedInLink" href="https://www.linkedin.com/in/benjaminwilliams1020/" target="_blank">Ben Williams</b-Link></div>
+      </div>
     </div>
   </div>
 </template>
@@ -56,6 +64,7 @@ export default {
 }
 h2 {
   font-family: Pizzeria;
+  color: white;
 }
 
 /* #middleBoxes {
@@ -104,12 +113,14 @@ h2 {
   grid-area: specialtyBox;
   background-color: #dc3545;
   margin-left: 85px;
+  margin-bottom: -50px;
 }
 
 #customBox {
   grid-area: customBox;
   background-color: #dc3545;
   margin-left: 85px;
+  margin-bottom: -50px;
 }
 
 #heroImage {
@@ -129,5 +140,23 @@ h2 {
   border: 2px solid #dc3545;
   box-sizing: border-box;
   text-align: center;
+}
+
+#LinkedIn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+p {
+  font-family: Pizzeria;
+}
+
+.linkedInLink {
+  color: black;
+  font-family: Pizzeria;
+}
+.linkedInLink:hover {
+  text-decoration: none;
+  font-weight: bold;
 }
 </style>
