@@ -8,6 +8,8 @@ public interface OrderDAO {
 
     void addOrder (Order order);
 
-    List<Order> getOrders ();
+    List<Order> getAllOrders();
+
+    void updateOrderStatus(Order order);
 
 }

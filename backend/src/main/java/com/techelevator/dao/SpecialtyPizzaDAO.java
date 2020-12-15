@@ -14,4 +14,8 @@ public interface SpecialtyPizzaDAO {
 
     void updateSpecial(SpecialtyPizza specialtyPizza);
 
+    SpecialtyPizza getSpecialtyPizzaById(int specialtyId);
+
+    SpecialtyPizza getCustomPizzaById(int pizzaId);
+
 }
