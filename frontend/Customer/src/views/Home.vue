@@ -14,7 +14,7 @@
         <div id="specialtyBox" class="homeBoxes">
           <h2>Specialty Pizza!</h2>
           <img
-            src="https://lh3.googleusercontent.com/proxy/0Uj108Dw9ugpM1n3xF2AcUaw4uUZpqY5cdcXAfFzxwqRc7UAtZkp2TgI_SRAw7B2YZ8qRNLPeOY_A5YnmYdiusLW1NlsGTmHXDZSeDrgbc9SXR6vVEdEXhI"
+            src=""
             alt="Meat Lovers Pizza"
             style="width: inherit"
           />

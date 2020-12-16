@@ -8,6 +8,7 @@ import Cart from '@/views/Cart.vue'
 import Custom from '@/views/Custom.vue'
 import Landing from '@/views/Landing.vue'
 
+
 Vue.use(Router)
 
 /**
@@ -27,16 +28,25 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: Home,
+      meta: {
+        pageTitle: 'Home'
+      }
     },
     {
       path: '/specials',
       name: 'specials',
       component: Specials,
+      meta: {
+        pageTitle: 'Specials'
+      }
     },
     {
       path: '/cart',
       name: 'cart',
       component: Cart,
+      meta: {
+        pageTitle: 'Cart'
+      }
     },
     {
       path: '/custom',
@@ -50,5 +60,6 @@ const router = new Router({
     }
   ]
 })
+
 
 export default router;
