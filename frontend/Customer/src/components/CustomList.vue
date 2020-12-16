@@ -1,18 +1,20 @@
 <template>
-  <div>
-    <div class="category-columns">
-      <div>
-        <h3>Size</h3>
-        <div v-for="choice in size" v-bind:key="choice.choiceId">
+  <div id="customList">
+    <div class="optionsSection">
+      <h3>Size</h3>
+      <div class="options">
+        <div v-for="choice in size" v-bind:key="choice.choiceId" class="item">
           <label v-bind:for="choice.choiceId"
             >{{ choice.name }} - $ {{ choice.customPrice }}</label
           >
           <input type="radio" v-bind:value="choice" v-model="customSize" />
         </div>
       </div>
-      <div>
-        <h3>Crust</h3>
-        <div v-for="choice in crust" v-bind:key="choice.choiceId">
+    </div>
+    <div class="optionsSection">
+      <h3>Crust</h3>
+      <div class="options">
+        <div v-for="choice in crust" v-bind:key="choice.choiceId" class="item">
           <label v-bind:for="choice.choiceId">{{ choice.name }}</label>
           <input
             type="radio"
@@ -21,9 +23,11 @@
           />
         </div>
       </div>
-      <div>
-        <h3>Sauce</h3>
-        <div v-for="choice in sauce" v-bind:key="choice.choiceId">
+    </div>
+    <div class="optionsSection">
+      <h3>Sauce</h3>
+      <div class="options">
+        <div v-for="choice in sauce" v-bind:key="choice.choiceId" class="item">
           <label v-bind:for="choice.choiceId">{{ choice.name }}</label>
           <input
             type="radio"
@@ -32,9 +36,15 @@
           />
         </div>
       </div>
-      <div>
-        <h3>Regular Toppings</h3>
-        <div v-for="choice in regularToppings" v-bind:key="choice.choiceId">
+    </div>
+    <div class="optionsSection">
+      <h3>Regular Toppings</h3>
+      <div class="options">
+        <div
+          v-for="choice in regularToppings"
+          v-bind:key="choice.choiceId"
+          class="item"
+        >
           <label v-bind:for="choice.choiceId">{{ choice.name }}</label>
           <input
             type="checkbox"
@@ -43,9 +53,15 @@
           />
         </div>
       </div>
-      <div>
-        <h3>Premium Toppings</h3>
-        <div v-for="choice in premiumToppings" v-bind:key="choice.choiceId">
+    </div>
+    <div class="optionsSection">
+      <h3>Premium Toppings</h3>
+      <div class="options">
+        <div
+          v-for="choice in premiumToppings"
+          v-bind:key="choice.choiceId"
+          class="item"
+        >
           <label v-bind:for="choice.choiceId">{{ choice.name }}</label>
           <input
             type="checkbox"
@@ -54,29 +70,11 @@
           />
         </div>
       </div>
+    </div>
+    <div id="buttonDiv">
       <button
-        class="addToCart"
-        v-on:click="addPizzaToCart(customPizza, customSize)"
-      >
-        Add to Cart
-      </button>
-      <!-- <category-column v-bind:sortedChoices="size" id="size"></category-column> -->
-      <!-- <category-column
-        v-bind:sortedChoices="crust"
-        id="crust"
-      ></category-column>
-      <category-column
-        v-bind:sortedChoices="sauce"
-        id="sauce"
-      ></category-column>
-      <category-column
-        v-bind:sortedChoices="regularToppings"
-        id="regularToppings"
-      ></category-column>
-      <category-column
-        v-bind:sortedChoices="premiumToppings"
-        id="premiumToppings"
-      ></category-column> -->
+        id="addToCartButton"
+        v-on:click="addPizzaToCart(customPizza, customSize)">Add to Cart</button>
     </div>
   </div>
 </template>
@@ -105,12 +103,12 @@ export default {
           choiceId: size.choiceId,
           categoryId: size.categoryId,
           name: size.name,
-          price: size.customPrice
+          price: size.customPrice,
         },
       };
       this.cart.push(orderItem);
       this.$store.commit("ADD_TO_CART", orderItem);
-      this.$store.commit('ADD_TO_TOTAL', orderItem.size.price);
+      this.$store.commit("ADD_TO_TOTAL", orderItem.size.price);
       this.customPizza = {
         name: "Custom",
         crust: {},
@@ -142,8 +140,64 @@ export default {
 };
 </script>
 
-<style scope>
-.newSpecial {
+<style>
+.options {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.item {
+  background-color: #dc3545;
+  margin: 2px;
+  border-radius: 10px;
+  padding: 5px 5px;
+  color: white;
+}
+
+.optionsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* grid-area: optionsSection; */
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2%;
+}
+
+input {
+  margin-left: 8px;
+}
+
+#buttonDiv {
+  margin-top: 10px;
+  padding-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#addToCartButton {
+  border-radius: 10px;
+}
+
+#addToCartButton:hover {
+  background-color: black;
+  font-family: 'Warnes', cursive;
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+}
+
+/* #customList {
+  display: grid;
+  grid-template-columns: 10% 1fr 10%;
+  grid-template-areas: 
+    ". optionsSection ."
+  ;
+} */
+
+/* .newSpecial {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
@@ -177,5 +231,5 @@ export default {
 .divider {
   height: 10px;
   width: auto;
-}
+} */
 </style>
