@@ -1,6 +1,9 @@
 <template>
   <div>
     <h1>Items in your cart:</h1>
+    <div v-show="$store.state.cart.length === 0">
+      <h2>No pizzas added</h2>
+    </div>
     <div
       class="cart"
       v-for="orderItem in $store.state.cart"
@@ -37,7 +40,7 @@
     <div></div>
 
     <div v-if="$store.state.cart.length > 0">
-      <h3 v-bind="getTotal()">Order Total: {{ total }}</h3>
+      <h3 v-bind="getTotal()">Order Total: {{ total.toFixed(2) }}</h3>
     </div>
 
     <div v-if="$store.state.cart.length > 0">
