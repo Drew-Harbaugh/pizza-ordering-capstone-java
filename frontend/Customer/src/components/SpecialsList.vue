@@ -1,6 +1,6 @@
 <template>
   <div class="listOfSpecials">
-    <div v-for="special in available" v-bind:key="special.specialtyId">
+    <div v-for="special in available" v-bind:key="special.specialtyId" class="specialtyPizza">
       <div class="newSpecial">
         <div class="name">
           <h2>{{ special.name }}</h2>
@@ -111,7 +111,11 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   align-content: stretch;
-  justify-content: space-around;
+  justify-content: center;
+}
+
+.specialtyPizza {
+  margin: 10px 10px;
 }
 
 .newSpecial {
@@ -130,6 +134,7 @@ export default {
   width: 40vw;
   height: 100%;
   text-align: center;
+  /* margin: 0px 10px; */
 }
 
 .name {
