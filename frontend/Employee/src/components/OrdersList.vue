@@ -4,7 +4,7 @@
     <div v-for="order in pendingOrders" v-bind:key="order.orderId">
       <div class="order">
         <div class="orderStatus">
-          <h2>{{ order.orderId }} -</h2>
+          <h2>Order ID: {{ order.orderId }} -</h2>
           <h2>- {{ order.status }}</h2>
         </div>
         <div class="customer">
@@ -61,17 +61,17 @@
                 Cancelled
               </button>
               <button v-on:click="markReady(order.orderId)">Ready</button>
-              <button v-on:click="markComplete(order.orderId)">Complete</button>
+              <!-- <button v-on:click="markComplete(order.orderId)">Complete</button> -->
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- <h1 id="sectionTitle">Order History</h1>
-    <div v-for="order in orderHistory" v-bind:key="order.orderId">
+    <h1 id="sectionTitle">Ready</h1>
+    <div v-for="order in readyOrder" v-bind:key="order.orderId">
       <div class="order">
         <div class="orderStatus">
-          <h2>{{ order.orderId }} -</h2>
+          <h2>Order ID: {{ order.orderId }} -</h2>
           <h2>- {{ order.status }}</h2>
         </div>
         <div class="customer">
@@ -81,7 +81,11 @@
         </div>
       </div>
       <div class="pizzas">
-        <div id="pizza" v-for="pizzaObject in order.cart" v-bind:key="pizzaObject.pizzaId">
+        <div
+          id="pizza"
+          v-for="pizzaObject in order.cart"
+          v-bind:key="pizzaObject.pizzaId"
+        >
           <div class="pizza">
             <h2 class="pizzaName">{{ pizzaObject.pizza.name }}</h2>
             <div class="toppingsList">
@@ -106,17 +110,16 @@
               <h3>{{ pizzaObject.pizza.sauce.name }}</h3>
             </div>
             <div class="statusButtons">
-              <!- <button v-on:click="markPending(order.orderId)">Pending</button> -->
-    <!-- <button v-on:click="markCancelled(order.orderId)">
+              <button v-on:click="markCancelled(order.orderId)">
                 Cancelled
               </button>
-              <button v-on:click="markReady(order.orderId)">Ready</button>
+
               <button v-on:click="markComplete(order.orderId)">Complete</button>
             </div>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -129,9 +132,12 @@ export default {
     pendingOrders() {
       return this.orders.filter((order) => order.status === "Pending");
     },
-    orderHistory() {
-      return this.orders.filter((order) => order.status !== "Pending");
+    readyOrder() {
+      return this.orders.filter((order) => order.status === "Ready");
     },
+    // orderHistory() {
+    //   return this.orders.filter((order) => order.status !== "Pending");
+    // },
   },
   methods: {
     markCancelled(orderId) {
