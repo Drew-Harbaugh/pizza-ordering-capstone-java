@@ -14,16 +14,16 @@
         <div id="specialtyBox" class="homeBoxes">
           <h2>Specialty Pizza!</h2>
           <img
-            src=""
+            id="pizzaImg1"
+            src="@/components/src/views/pizza1.jpg"
             alt="Meat Lovers Pizza"
-            style="width: inherit"
           />
           <router-link v-bind:to="{name: 'specials'}" tag="b-button">Order Now!</router-link>
           
         </div>
         <div id="customBox" class="homeBoxes">
           <h2>Custom Pizza!</h2>
-          <img src="" alt="Veggie Pizza" style="width: inherit" />
+          <img id="pizzaImg2" src="@/components/src/views/pizza2.jpg" alt="Veggie Pizza" />
           <router-link v-bind:to="{name: 'custom'}" tag="b-button">Order Now!</router-link>
         </div>
       </div>
@@ -112,6 +112,15 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+}
+
+#pizzaImg1 {
+  width: 300px;
+}
+
+#pizzaImg2 {
+  width: 300px;
+  height: 155px;
 }
 
 #specialtyBox {
