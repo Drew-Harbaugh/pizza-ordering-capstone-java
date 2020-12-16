@@ -17,7 +17,8 @@
 <style scoped>
 
 #links{
-  padding-left: 35px;
+  padding-left: 20px;
+  padding-top: 5px;
 }
 
 #nav {
