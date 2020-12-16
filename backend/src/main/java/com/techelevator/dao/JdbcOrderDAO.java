@@ -89,7 +89,7 @@ public class JdbcOrderDAO implements OrderDAO {
     public List<Order> getAllOrders() {
         // get from order table, add to order object
         List<Order> result = new ArrayList<>();
-        String sql = "SELECT order_id, status, time_stamp, delivery, total FROM orders;";
+        String sql = "SELECT order_id, status, time_stamp, delivery, total FROM orders ORDER BY order_id;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
 
         while (rowSet.next()) {
