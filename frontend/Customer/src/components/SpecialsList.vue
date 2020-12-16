@@ -7,7 +7,7 @@
     >
       <div class="newSpecial">
         <h2 class="name">{{ special.name }}</h2>
-        <div class="toppingsLists">
+        <div class="regularToppingsLists">
           <h4 class="none" v-if="special.regularToppings.length === 0">
             Regular Toppings(None)
           </h4>
@@ -18,6 +18,7 @@
           >
             <p>{{ regularTopping.name }}</p>
           </div>
+          <div class="premiumToppingsList">
           <h4 class="none" v-if="special.premiumToppings.length === 0">
             Premium Toppings(None)
           </h4>
@@ -28,35 +29,36 @@
           >
             <p>{{ premiumTopping.name }}</p>
           </div>
+          </div>
         </div>
         <p class="description">{{ special.description }}</p>
-        <div
-          class="chooseSize"
-          v-for="size in sizes"
-          v-bind:key="size.choiceId"
-        >
-          <input
-            type="radio"
-            v-bind:name="'size' + special.specialtyId"
-            v-bind:value="size"
-            v-bind:class="{ none: !size.available }"
-            v-model="selectedSizes[special.specialtyId]"
-          />
-          <label for="size" v-if="size.available === true"
-            >{{ size.name }} - ${{ size.specialtyPrice }}</label
-          >
-          <label class="none" for="size" v-else
-            >None {{ size.specialtyPrice }}</label
-          >
+        <div class="chooseSize">
+          <div v-for="size in sizes" v-bind:key="size.choiceId">
+            <input
+              type="radio"
+              v-bind:name="'size' + special.specialtyId"
+              v-bind:value="size"
+              v-bind:class="{ none: !size.available }"
+              v-model="selectedSizes[special.specialtyId]"
+            />
+            <label for="size" v-if="size.available === true"
+              >{{ size.name }} - ${{ size.specialtyPrice }}</label
+            >
+            <label class="none" for="size" v-else
+              >None {{ size.specialtyPrice }}</label
+            >
+          </div>
         </div>
-        <button
-          class="addToCart"
-          v-on:click="
-            addPizzaToCart(special, selectedSizes[special.specialtyId])
-          "
-        >
-          Add to Cart
-        </button>
+        <div id="buttonDiv">
+          <button
+            class="addToCart"
+            v-on:click="
+              addPizzaToCart(special, selectedSizes[special.specialtyId])
+            "
+          >
+            Add to Cart
+          </button>
+        </div>
       </div>
       <div class="divider"></div>
     </div>
@@ -101,15 +103,16 @@ export default {
 };
 </script>
 
-<style scope>
+<style>
 .newSpecial {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
-    "name ing"
-    "desc ing"
-    "sizes button";
-  padding-top: 15px;
+    "name ring"
+    "desc ping"
+    "sizes sizes"
+    "button button";
+  padding-top: 25px;
   background-color: darkgray;
   border-radius: 25px;
   width: 95%;
@@ -120,13 +123,22 @@ export default {
   grid-area: "name";
 }
 .description {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
   grid-area: "desc";
 }
-.toppingsList {
-  grid-area: "ing";
+.regularToppingsList {
+  grid-area: "ring";
+}
+.premiumToppingsList{
+  grid-area: "ping";
 }
 .chooseSize {
   grid-area: "sizes";
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 .addToCart {
   grid-area: "button";
@@ -141,5 +153,25 @@ export default {
 
 .none {
   display: none;
+}
+
+#buttonDiv {
+  margin-top: 10px;
+  padding-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.addToCart {
+  border-radius: 10px;
+}
+
+.addToCart:hover {
+  background-color: black;
+  font-family: "Warnes", cursive;
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6,
+    0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
 }
 </style>
