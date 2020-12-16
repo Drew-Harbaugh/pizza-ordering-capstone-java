@@ -4,8 +4,8 @@
     <div id="heroImage">
       <div id="boxesGrid">
         <div id="homeBox1">
-          <p class="neon">A whole lot of text</p>
-          <p class="neon" style="font-size: 15px; color">
+          <p class="neon">Grand Opening!</p>
+          <p class="neon" style="font-size: 25px; color">
             For a limited time order any custom pizza with unlimited toppings
             for no additional charge!
           </p>
@@ -62,6 +62,7 @@ export default {
   text-shadow: 0 0 5px #000000, 0 0 10px #fff, 0 0 15px #fdb813, 0 0 20px #fdb813,
     0 0 25px #fdb813, 0 0 30px #fdb813, 0 0 35px #fdb813;
     /* animation: blinker 3s linear infinite; #0073e6*/
+  
 }
 h2 {
   font-family: Pizzeria;
