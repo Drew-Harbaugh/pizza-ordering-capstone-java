@@ -35,11 +35,13 @@
       <br />
     </div>
     <div></div>
-    <div>
+
+    <div v-if="$store.state.cart.length > 0">
       <h3 v-bind="getTotal()">Order Total: {{ total }}</h3>
     </div>
-    <div>
-      <form v-on:submit.prevent>
+
+    <div v-if="$store.state.cart.length > 0">
+      <form v-on:submit.prevent >
         <div>
           <label for="delivery">Delivery</label>
           <input type="radio" v-bind:value="true" v-model="delivery" />
@@ -52,7 +54,7 @@
         </div>
         <div>
           <label for="phoneNumber">Phone Number: </label>
-          <input type="text" value="phoneNumber" v-model="customer.phoneNumber" />
+          <input type="text" value="phoneNumber" v-model="customer.phoneNumber" minlength="10" maxlength="11" />
         </div>
         <div v-if="delivery === true">
           <label for="address">Address: </label>
@@ -60,7 +62,43 @@
         </div>
         <div>
           <label for="creditCard">Credit Card #: </label>
-          <input type="text" value="creditCard" v-model="customer.creditCard" />
+          <input type="text" value="creditCard" v-model="customer.creditCard" maxlength="16" minlength="16" />
+        </div>
+
+        <div>
+          <label for="creditCardExpMonth">Credit Card Exp.: </label>
+          <select name="creditCardExpMonth">
+            <option value="">Jan</option>
+            <option value="">Feb</option>
+            <option value="">Mar</option>
+            <option value="">Apr</option>
+            <option value="">May</option>
+            <option value="">Jun</option>
+            <option value="">Jul</option>
+            <option value="">Aug</option>
+            <option value="">Sept</option>
+            <option value="">Oct</option>
+            <option value="">Nov</option>
+            <option value="">Dec</option>
+          </select>
+          <label for="creditCardExpYear"></label>
+          <select name="creditCardExpYear">
+            <option value="">2021</option>
+            <option value="">2022</option>
+            <option value="">2023</option>
+            <option value="">2024</option>
+            <option value="">2025</option>
+            <option value="">2026</option>
+            <option value="">2027</option>
+            <option value="">2028</option>
+            <option value="">2029</option>
+            <option value="">2030</option>
+          </select>
+        </div>
+        
+        <div>
+          <label for="creditCardCvv">Credit Card CVV: </label>
+          <input type="text" minlength="3" maxlength="4" />
         </div>
         <button v-on:click="submitOrder()">Submit Order</button>
       </form>
@@ -94,14 +132,20 @@ export default {
       return this.total;
     },
     submitOrder() {
+      if (this.checksBeforeSubmit() === true) {
+        this.$store.commit("ADD_CUSTOMER_NAME", this.customer.name);
       const order = this.makeOrderObject();
       orderService.addNewOrder(order).then(response => {
         if(response.status === 201) {
-          alert("Thanks for your order!");
+          this.$router.push('/landing');
         }
       }).catch(error => {
         console.log(error);
+        alert("Order cannot be submitted");
       });
+      } else {
+        alert("Please complete all order fields");
+      }
     },
     makeOrderObject() {
       let order = {
@@ -118,8 +162,22 @@ export default {
         cart: this.$store.state.cart
       }
       return order;
+    },
+    checksBeforeSubmit() {
+      if (this.customer.name === undefined) {
+        return false;
+      } else if (this.customer.phoneNumber === undefined) {
+        return false;
+      } else if (this.customer.address === undefined && this.delivery === true) {
+        return false;
+      } else if (this.customer.creditCard === undefined) {
+        return false;
+      } else {
+        return true;
+      }
     }
-  }
+  },
+
 };
 </script>
 
