@@ -138,7 +138,7 @@ INSERT INTO choices_custom_pizza (pizza_id, choice_id) VALUES (1, 24);
 --Order 2
 INSERT INTO orders (status, time_stamp, delivery, total) VALUES ('Pending', '2020-12-15 10:43:06', false, 24.98);
 
-INSERT INTO delivery_information (order_id, name, phone_number, address, credit_card) VALUES (2, 'David Mac', 5135555678, '99 Main St.', 1234567890123456);
+INSERT INTO delivery_information (order_id, name, phone_number, credit_card) VALUES (2, 'David Mac', 5135555678, 1234567890123456);
 
 INSERT INTO pizza_orders (order_id, specialty_id, size_id) VALUES (2, 0, 1);
 INSERT INTO pizza_orders (order_id, specialty_id, size_id) VALUES (2, 3, 4);
