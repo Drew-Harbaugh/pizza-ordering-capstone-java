@@ -1,31 +1,32 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="danger" id="navBar">
-      <div id="newLogo">
-        <router-link v-bind:to="{ name: 'home' }">
-          <img
-            src="@/components/src/views/anotherOneBitesTheCrustLogo.png"
-            class="navBarLogo"
-            id="navbarLogo"
-        /></router-link>
-      </div>
+    <b-navbar toggleable="lg" type="dark" variant="danger">
+      <div class="navigation">
+        <div id="newLogo">
+          <router-link v-bind:to="{ name: 'home' }">
+            <img
+              src="@/components/src/views/anotherOneBitesTheCrustLogo.png"
+              id="navbarLogo"
+          /></router-link>
+        </div>
 
-      <div id="title">
-        <h1 class="h3 mb-3 font-weight-normal">{{ title }}</h1>
-      </div>
+        <div id="title">
+          <h1 class="h1 mb-3 font-weight-normal">{{ title }}</h1>
+        </div>
 
-      <div>
-        <b-nav id="navLink">
-          <router-link v-bind:to="{ name: 'specials' }" tag="b-nav-item"
-            >Specials</router-link
-          >
-          <router-link v-bind:to="{ name: 'custom' }" tag="b-nav-item"
-            >Custom</router-link
-          >
-          <router-link v-bind:to="{ name: 'cart' }" tag="b-nav-item"
-            >Cart</router-link
-          >
-        </b-nav>
+        <div id="navLink">
+          <b-nav>
+            <router-link v-bind:to="{ name: 'specials' }" tag="b-nav-item"
+              >Specials</router-link
+            >
+            <router-link v-bind:to="{ name: 'custom' }" tag="b-nav-item"
+              >Custom</router-link
+            >
+            <router-link v-bind:to="{ name: 'cart' }" tag="b-nav-item"
+              >Cart ({{ $store.state.cart.length }})</router-link
+            >
+          </b-nav>
+        </div>
       </div>
     </b-navbar>
   </div>
@@ -44,9 +45,10 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css?family=Warnes&display=swap");
 
-#navbar {
+.navigation {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  grid-template-columns: 1fr 2fr 1fr;
   grid-template-areas: "logo title nav";
 }
 
@@ -56,21 +58,21 @@ export default {
 
 #title {
   grid-area: title;
-  padding-right: 28%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #navLink {
   grid-area: nav;
   display: flex;
   flex-direction: row;
-  /* align-content: flex-end; */
-
-  width: 250px;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 #navbarLogo {
-  height: auto;
-  width: 60%;
+  height: 100px;
 }
 
 a:link {
