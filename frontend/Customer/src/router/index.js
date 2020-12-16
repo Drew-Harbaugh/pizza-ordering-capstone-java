@@ -7,6 +7,7 @@ import Specials from '@/views/Specials.vue'
 import Cart from '@/views/Cart.vue'
 import Custom from '@/views/Custom.vue'
 import Landing from '@/views/Landing.vue'
+import About from '@/views/About.vue'
 
 
 Vue.use(Router)
@@ -62,6 +63,14 @@ const router = new Router({
       component: Landing,
       meta: {
         pageTitle: 'Thank You!'
+      }
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: About,
+      meta: {
+        pageTitle: 'About Us'
       }
     }
   ]
