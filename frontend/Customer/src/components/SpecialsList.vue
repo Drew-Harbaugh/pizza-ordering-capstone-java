@@ -6,8 +6,13 @@
       v-bind:key="special.specialtyId"
     >
       <div class="newSpecial">
-        <h2 class="name">{{ special.name }}</h2>
-        <div class="regularToppingsLists">
+        <div class="name">
+          <h2>{{ special.name }}</h2>
+        </div>
+        <div class="desc">
+          <p>{{ special.description }}</p>
+        </div>
+        <div class="regularToppings">
           <h4 class="none" v-if="special.regularToppings.length === 0">
             Regular Toppings(None)
           </h4>
@@ -18,7 +23,8 @@
           >
             <p>{{ regularTopping.name }}</p>
           </div>
-          <div class="premiumToppingsList">
+        </div>
+        <div class="premiumToppingsList">
           <h4 class="none" v-if="special.premiumToppings.length === 0">
             Premium Toppings(None)
           </h4>
@@ -29,9 +35,7 @@
           >
             <p>{{ premiumTopping.name }}</p>
           </div>
-          </div>
         </div>
-        <p class="description">{{ special.description }}</p>
         <div class="chooseSize">
           <div v-for="size in sizes" v-bind:key="size.choiceId">
             <input
@@ -49,7 +53,7 @@
             >
           </div>
         </div>
-        <div id="buttonDiv">
+        <div class="button">
           <button
             class="addToCart"
             v-on:click="
@@ -107,10 +111,12 @@ export default {
 .newSpecial {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto auto auto;
   grid-template-areas:
-    "name ring"
-    "desc ping"
-    "sizes sizes"
+    "name name"
+    "desc desc"
+    "regularToppings premiumToppingsList"
+    "chooseSize chooseSize"
     "button button";
   padding-top: 25px;
   background-color: darkgray;
@@ -120,25 +126,26 @@ export default {
 }
 
 .name {
-  grid-area: "name";
+  grid-area: name;
 }
-.description {
+.desc {
   display: flex;
   flex-direction: column;
   align-self: center;
-  grid-area: "desc";
+  grid-area: desc;
 }
 .regularToppingsList {
-  grid-area: "ring";
+  grid-area: regularToppings;
 }
-.premiumToppingsList{
+.premiumToppingsList {
   grid-area: "ping";
 }
 .chooseSize {
-  grid-area: "sizes";
+  grid-area: chooseSize;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  justify-content: space-around;
 }
 .addToCart {
   grid-area: "button";
@@ -153,6 +160,9 @@ export default {
 
 .none {
   display: none;
+}
+.button {
+  grid-area: button;
 }
 
 #buttonDiv {
