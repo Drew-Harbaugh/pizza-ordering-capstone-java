@@ -1,21 +1,28 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="danger" id="navBar">
-      <div class="navBarLogo" id="navbarLogo">
-        <b-img
-          src="@/views/anotherOneBitesTheCrustLogo.png"
-          fluid
-          alt="Pizza image"
-        ></b-img>
-      </div>
-      <div id="title">
-        <h1 class="h3 mb-3 font-weight-normal">{{title}}</h1>
-      </div>
-      <div>
+    <b-navbar toggleable="lg" type="dark" variant="danger">
+      <div id="navigation">
+        <div class="navBarLogo">
+          <img
+            src="@/views/anotherOneBitesTheCrustLogo.png"
+            fluid
+            alt="Pizza image"
+            id="logoImage"
+          >
+        </div>
+        <div id="title">
+          <h1 class="h3 mb-3 font-weight-normal">{{ title }}</h1>
+        </div>
         <b-nav id="navLink">
-          <router-link v-bind:to="{name: 'specials'}" tag="b-nav-item">Specials</router-link>
-          <router-link v-bind:to="{name: 'choices'}" tag="b-nav-item">Choices</router-link>
-          <router-link v-bind:to="{name: 'orders'}" tag="b-nav-item">Orders</router-link>
+          <router-link v-bind:to="{ name: 'specials' }" tag="b-nav-item"
+            >Specials</router-link
+          >
+          <router-link v-bind:to="{ name: 'choices' }" tag="b-nav-item"
+            >Choices</router-link
+          >
+          <router-link v-bind:to="{ name: 'orders' }" tag="b-nav-item"
+            >Orders</router-link
+          >
         </b-nav>
       </div>
     </b-navbar>
@@ -27,26 +34,27 @@ export default {
   computed: {
     title() {
       return this.$route.meta.pageTitle;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scope>
-#navbar {
+#navigation {
   display: grid;
+  width: 100%;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: "navbarLogo title .";
+  grid-template-areas: "logo title nav";
 }
 #navbarLogo {
-  grid-area: navbarLogo;
+  grid-area: logo;
 }
 #navLink {
-  grid-area: "nav";
+  grid-area: nav;
   display: flex;
   flex-direction: row;
-  align-content: flex-end;
-  padding-left: 400px;
+  justify-content: flex-end;
+  align-items: center;
 }
 a:link {
   color: white;
@@ -59,9 +67,10 @@ a:visited {
   color: white;
   display: flex;
   justify-content: center;
-  /* padding-left: 23%; */
+  align-items: center;
 }
-.navBarLogo {
-  width: 20vw;
+#logoImage {
+  height: 100px;
+  width: auto;
 }
 </style>

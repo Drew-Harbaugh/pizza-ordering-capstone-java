@@ -1,13 +1,13 @@
 <template>
   <div>
     <form v-on:submit.prevent="addNewSpecial">
-      <div>
+      <div id="specialNameBox">
         <label for="specialName">Special Name:</label>
         <input type="text" v-model="newSpecial.name" />
       </div>
-      <div>
+      <div id="descriptionBox">
         <label for="specialDescription">Description:</label>
-        <input type="text" v-model="newSpecial.description" />
+        <textarea rows="4" cols="50" v-model="newSpecial.description" />
       </div>
       <div>
         <h3>Crust</h3>
@@ -134,4 +134,24 @@ export default {
 </script>
 
 <style>
+
+#descriptionBox label{
+  display: block;
+}
+
+#descriptionBox textarea {
+  display: block; 
+  width: 450px;                       
+}
+
+#specialNameBox label {
+  display: block;
+}
+
+#specialNameBox input {
+  display: block;
+  width: 450px;
+}
+
+
 </style>

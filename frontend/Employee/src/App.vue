@@ -2,8 +2,7 @@
   <div id="app">
     <div id="nav">
       <div id="links">
-        <router-link v-bind:to="{ name: 'home' }">Home</router-link
-        >&nbsp;|&nbsp;
+        &nbsp;
         <router-link
           v-bind:to="{ name: 'logout' }"
           v-if="$store.state.token != ''"
@@ -16,6 +15,12 @@
 </template>
 
 <style scoped>
+
+#links{
+  padding-left: 20px;
+  padding-top: 5px;
+}
+
 #nav {
   background: #dc3545;
   text-decoration: none;

@@ -128,7 +128,7 @@ export default {
   width: auto;
 }
 .unavailable {
-  /* text-decoration: line-through; */
-  display: none;
+  opacity: 35%;
+  text-decoration: none;
 }
 </style>
