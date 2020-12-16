@@ -11,6 +11,8 @@
           <p>{{ order.customer.name }}</p>
           <p>{{ order.customer.phoneNumber }}</p>
           <p>{{ order.customer.address }}</p>
+          <p v-if="order.delivery===true">Delivery</p>
+          <p v-else>Pick Up</p>
         </div>
       </div>
       <div class="pizzas">
@@ -96,7 +98,7 @@
               <h3>{{ pizzaObject.pizza.sauce.name }}</h3>
             </div>
             <div class="statusButtons">
-              <button v-on:click="markPending(order.orderId)">Pending</button>
+              <!-- <button v-on:click="markPending(order.orderId)">Pending</button> -->
               <button v-on:click="markCancelled(order.orderId)">
                 Cancelled
               </button>
