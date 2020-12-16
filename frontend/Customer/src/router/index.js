@@ -51,12 +51,18 @@ const router = new Router({
     {
       path: '/custom',
       name: 'custom',
-      component: Custom
+      component: Custom,
+      meta: {
+        pageTitle: 'Build a Custom Pizza'
+      }
     },
     {
       path: '/landing',
       name: 'landing',
-      component: Landing
+      component: Landing,
+      meta: {
+        pageTitle: 'Thank You!'
+      }
     }
   ]
 })
