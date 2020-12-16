@@ -33,11 +33,11 @@
       <p>Bacon ipsum dolor amet ham hock tri-tip sirloin pig venison sausage chicken pork pancetta cow corned beef. Leberkas pastrami kevin turducken cow tenderloin, ball tip ground round pork tail buffalo. Boudin strip steak porchetta beef, picanha t-bone ham hock pastrami rump tongue. Bresaola cow shankle t-bone ball tip landjaeger, short loin pastrami salami chuck ham hock strip steak.</p>
       <p>Connect with the developers on LinkedIn</p>
       <div id=LinkedIn>
-        <div><b-Link class="linkedInLink" href="https://www.linkedin.com/in/walkersammarie/" target="_blank">Sam Walker</b-Link></div>
-        <div><b-Link class="linkedInLink" href="https://www.linkedin.com/in/jack3jk/" target="_blank">Jordan Jackson</b-Link></div>
-        <div><b-Link class="linkedInLink" href="https://www.linkedin.com/in/iliasmith/" target="_blank">Ilia Smith</b-Link></div>
-        <div><b-Link class="linkedInLink" href="http://www.linkedin.com/in/drew-harbaugh" target="_blank">Drew Harbaugh</b-Link></div>
-        <div><b-Link class="linkedInLink" href="https://www.linkedin.com/in/benjaminwilliams1020/" target="_blank">Ben Williams</b-Link></div>
+        <div id="sam"><b-Link class="linkedInLink" href="https://www.linkedin.com/in/walkersammarie/" target="_blank">Sam Walker</b-Link></div>
+        <div id="jordan"><b-Link class="linkedInLink" href="https://www.linkedin.com/in/jack3jk/" target="_blank">Jordan Jackson</b-Link></div>
+        <div id="ilia"><b-Link class="linkedInLink" href="https://www.linkedin.com/in/iliasmith/" target="_blank">Ilia Smith</b-Link></div>
+        <div id="drew"><b-Link class="linkedInLink" href="http://www.linkedin.com/in/drew-harbaugh" target="_blank">Drew Harbaugh</b-Link></div>
+        <div id="ben"><b-Link class="linkedInLink" href="https://www.linkedin.com/in/benjaminwilliams1020/" target="_blank">Ben Williams</b-Link></div>
       </div>
     </div>
   </div>
@@ -144,9 +144,26 @@ h2 {
 }
 
 #LinkedIn {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: 
+    "sam jordan ilia drew ben"
+  ;
+}
+#sam {
+  grid-area: sam;
+}
+#jordan {
+  grid-area: jordan;
+}
+#ilia {
+  grid-area: ilia;
+}
+#drew {
+  grid-area: drew;
+}
+#ben {
+  grid-area: ben;
 }
 p {
   font-family: Pizzeria;
