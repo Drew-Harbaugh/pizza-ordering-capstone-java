@@ -11,16 +11,23 @@
           <p>{{ order.customer.name }}</p>
           <p>{{ order.customer.phoneNumber }}</p>
           <p>{{ order.customer.address }}</p>
-          <p v-if="order.delivery===true">Delivery</p>
+          <p v-if="order.delivery === true">Delivery</p>
           <p v-else>Pick Up</p>
         </div>
       </div>
       <div class="pizzas">
-        <div id="pizza" v-for="pizzaObject in order.cart" v-bind:key="pizzaObject.pizzaId">
+        <div
+          id="pizza"
+          v-for="pizzaObject in order.cart"
+          v-bind:key="pizzaObject.pizzaId"
+        >
           <div class="pizza">
             <h2 class="pizzaName">{{ pizzaObject.pizza.name }}</h2>
             <div class="toppingsList">
-              <div>
+              <div
+                id="customPizzaToppings"
+                v-if="pizzaObject.pizza.name === 'Custom'"
+              >
                 <h4>Regular Toppings</h4>
                 <p v-show="pizzaObject.pizza.regularToppings.length === 0">
                   None
@@ -42,6 +49,7 @@
                   <p>{{ premiumTopping.name }}</p>
                 </div>
               </div>
+              <div id="specialPizzaToppings" v-else></div>
             </div>
             <div class="pizzaInfo">
               <h3>{{ pizzaObject.size.name }}</h3>
@@ -59,7 +67,7 @@
         </div>
       </div>
     </div>
-    <h1 id="sectionTitle">Order History</h1>
+    <!-- <h1 id="sectionTitle">Order History</h1>
     <div v-for="order in orderHistory" v-bind:key="order.orderId">
       <div class="order">
         <div class="orderStatus">
@@ -98,8 +106,8 @@
               <h3>{{ pizzaObject.pizza.sauce.name }}</h3>
             </div>
             <div class="statusButtons">
-              <!-- <button v-on:click="markPending(order.orderId)">Pending</button> -->
-              <button v-on:click="markCancelled(order.orderId)">
+              <!- <button v-on:click="markPending(order.orderId)">Pending</button> -->
+    <!-- <button v-on:click="markCancelled(order.orderId)">
                 Cancelled
               </button>
               <button v-on:click="markReady(order.orderId)">Ready</button>
@@ -108,7 +116,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -213,7 +221,7 @@ export default {
     "name toppings"
     "info toppings"
     "buttons buttons";
-  
+
   background-color: darkgray;
   border-radius: 25px;
   height: 100%;
