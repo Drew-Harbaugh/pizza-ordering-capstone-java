@@ -1,10 +1,6 @@
 <template>
-  <div>
-    <div
-      id="specialBody"
-      v-for="special in available"
-      v-bind:key="special.specialtyId"
-    >
+  <div class="listOfSpecials">
+    <div v-for="special in available" v-bind:key="special.specialtyId" class="specialtyPizza">
       <div class="newSpecial">
         <div class="name">
           <h2>{{ special.name }}</h2>
@@ -21,7 +17,7 @@
             v-for="regularTopping in special.regularToppings"
             v-bind:key="regularTopping.name"
           >
-            <p>{{ regularTopping.name }}</p>
+            <p class="topping">{{ regularTopping.name }}</p>
           </div>
         </div>
         <div class="premiumToppingsList">
@@ -33,7 +29,7 @@
             v-for="premiumTopping in special.premiumToppings"
             v-bind:key="premiumTopping.name"
           >
-            <p>{{ premiumTopping.name }}</p>
+            <p class="topping">{{ premiumTopping.name }}</p>
           </div>
         </div>
         <div class="chooseSize">
@@ -64,7 +60,6 @@
           </button>
         </div>
       </div>
-      <div class="divider"></div>
     </div>
   </div>
 </template>
@@ -108,6 +103,21 @@ export default {
 </script>
 
 <style>
+.topping {
+  margin: 0px;
+}
+.listOfSpecials {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: stretch;
+  justify-content: center;
+}
+
+.specialtyPizza {
+  margin: 10px 10px;
+}
+
 .newSpecial {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -121,8 +131,10 @@ export default {
   padding-top: 25px;
   background-color: darkgray;
   border-radius: 25px;
-  width: 95%;
+  width: 40vw;
+  height: 100%;
   text-align: center;
+  /* margin: 0px 10px; */
 }
 
 .name {
@@ -150,19 +162,15 @@ export default {
 .addToCart {
   grid-area: "button";
 }
-#specialBody {
-  padding-left: 20px;
-}
-.divider {
-  height: 10px;
-  width: auto;
-}
+
+
 
 .none {
   display: none;
 }
 .button {
   grid-area: button;
+  margin-bottom: 10px;
 }
 
 #buttonDiv {

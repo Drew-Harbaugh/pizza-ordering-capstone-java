@@ -1,41 +1,50 @@
 <template>
-  <div>
-    <h1>Items in your cart:</h1>
+  <div id="cart-main">
+    <div id="items-in-cart-headline">
+      <h1>Items in your cart:</h1>
+    </div>
     <div v-show="$store.state.cart.length === 0">
       <h2>No pizzas added</h2>
     </div>
-    <div
-      class="cart"
-      v-for="orderItem in $store.state.cart"
-      v-bind:key="orderItem.timeStamp"
-    >
-      <h3>{{ orderItem.pizza.name }}</h3>
-      <p>{{ orderItem.size.name }}</p>
-      <!-- change to only print proper price -->
-      <p>{{ orderItem.size.specialtyPrice }}</p>
-      <p>{{ orderItem.size.customPrice }}</p>
-      <p>{{ orderItem.pizza.price }}</p>
-      <div class="toppingsLists">
-        
-          <h4> Regular Toppings</h4>
-        <div
-          v-for="regularTopping in orderItem.pizza.regularToppings"
-          v-bind:key="regularTopping.name"
-        >
-          <p>{{ regularTopping.name }}</p>
+    <div id="list-items-in-cart">
+      <div
+        class="cart"
+        v-for="orderItem in $store.state.cart"
+        v-bind:key="orderItem.timeStamp"
+      >
+        <h3 class="name">{{ orderItem.pizza.name }}</h3>
+
+        <!-- change to only print proper price -->
+        <p>{{ orderItem.size.specialtyPrice }}</p>
+        <p>{{ orderItem.size.customPrice }}</p>
+        <p>{{ orderItem.pizza.price }}</p>
+        <div class="regularToppings">
+          <h4>Regular Toppings</h4>
+          <div
+            v-for="regularTopping in orderItem.pizza.regularToppings"
+            v-bind:key="regularTopping.name"
+          >
+            <p>{{ regularTopping.name }}</p>
+          </div>
         </div>
-        
-        <h4>Premium Toppings</h4>
-        <div
-          v-for="premiumTopping in orderItem.pizza.premiumToppings"
-          v-bind:key="premiumTopping.name"
-        >
-          <p>{{ premiumTopping.name }}</p>
+        <div class="premiumToppings">
+          <h4>Premium Toppings</h4>
+          <div
+            v-for="premiumTopping in orderItem.pizza.premiumToppings"
+            v-bind:key="premiumTopping.name"
+          >
+            <p>{{ premiumTopping.name }}</p>
+          </div>
+        </div>
+        <div class="size">
+          <p>{{ orderItem.size.name }}</p>
+        </div>
+        <div class="button">
+          <button v-on:click="removeFromCart(orderItem)">
+            Remove from Cart
+          </button>
         </div>
       </div>
-      <button v-on:click="removeFromCart(orderItem)">Remove from Cart</button>
-      <br />
-      <br />
     </div>
     <div></div>
 
@@ -44,12 +53,12 @@
     </div>
 
     <div v-if="$store.state.cart.length > 0">
-      <form v-on:submit.prevent >
+      <form v-on:submit.prevent>
         <div>
           <label for="delivery">Delivery</label>
           <input type="radio" v-bind:value="true" v-model="delivery" />
           <label for="pickup">Pick Up</label>
-          <input type="radio" v-bind:value="false" v-model="delivery">
+          <input type="radio" v-bind:value="false" v-model="delivery" />
         </div>
         <div>
           <label for="name">Name: </label>
@@ -57,7 +66,13 @@
         </div>
         <div>
           <label for="phoneNumber">Phone Number: </label>
-          <input type="text" value="phoneNumber" v-model="customer.phoneNumber" minlength="10" maxlength="11" />
+          <input
+            type="text"
+            value="phoneNumber"
+            v-model="customer.phoneNumber"
+            minlength="10"
+            maxlength="11"
+          />
         </div>
         <div v-if="delivery === true">
           <label for="address">Address: </label>
@@ -65,7 +80,13 @@
         </div>
         <div>
           <label for="creditCard">Credit Card #: </label>
-          <input type="text" value="creditCard" v-model="customer.creditCard" maxlength="16" minlength="16" />
+          <input
+            type="text"
+            value="creditCard"
+            v-model="customer.creditCard"
+            maxlength="16"
+            minlength="16"
+          />
         </div>
 
         <div>
@@ -98,7 +119,7 @@
             <option value="">2030</option>
           </select>
         </div>
-        
+
         <div>
           <label for="creditCardCvv">Credit Card CVV: </label>
           <input type="text" minlength="3" maxlength="4" />
@@ -117,13 +138,11 @@ export default {
   data() {
     return {
       delivery: false,
-      total: 0.00,
-      customer: {}
-    }
+      total: 0.0,
+      customer: {},
+    };
   },
-  computed: {
-    
-  },
+  computed: {},
   methods: {
     removeFromCart(orderItem) {
       this.$store.commit("REMOVE_FROM_CART", orderItem);
@@ -137,22 +156,25 @@ export default {
     submitOrder() {
       if (this.checksBeforeSubmit() === true) {
         this.$store.commit("ADD_CUSTOMER_NAME", this.customer.name);
-      const order = this.makeOrderObject();
-      orderService.addNewOrder(order).then(response => {
-        if(response.status === 201) {
-          this.$router.push('/landing');
-        }
-      }).catch(error => {
-        console.log(error);
-        alert("Order cannot be submitted");
-      });
+        const order = this.makeOrderObject();
+        orderService
+          .addNewOrder(order)
+          .then((response) => {
+            if (response.status === 201) {
+              this.$router.push("/landing");
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("Order cannot be submitted");
+          });
       } else {
         alert("Please complete all order fields");
       }
     },
     makeOrderObject() {
       let order = {
-        status: 'Pending',
+        status: "Pending",
         timeStamp: Date.now(),
         delivery: this.delivery,
         total: this.getTotal(),
@@ -160,10 +182,10 @@ export default {
           name: this.customer.name,
           phoneNumber: this.customer.phoneNumber,
           address: this.customer.address,
-          creditCard: this.customer.creditCard
+          creditCard: this.customer.creditCard,
         },
-        cart: this.$store.state.cart
-      }
+        cart: this.$store.state.cart,
+      };
       return order;
     },
     checksBeforeSubmit() {
@@ -171,18 +193,67 @@ export default {
         return false;
       } else if (this.customer.phoneNumber === undefined) {
         return false;
-      } else if (this.customer.address === undefined && this.delivery === true) {
+      } else if (
+        this.customer.address === undefined &&
+        this.delivery === true
+      ) {
         return false;
       } else if (this.customer.creditCard === undefined) {
         return false;
       } else {
         return true;
       }
-    }
+    },
   },
-
 };
 </script>
 
 <style scoped>
+#cart-main {
+  margin: 0px;
+}
+#items-in-cart-headline {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#list-items-in-cart {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: stretch;
+  justify-content: center;
+}
+.cart {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto auto;
+  grid-template-areas:
+    "name name"
+    "regularToppings premiumToppings"
+    "size size"
+    "button button";
+  padding-top: 25px;
+  background-color: darkgray;
+  border-radius: 25px;
+  width: 40vw;
+  height: 100%;
+  text-align: center;
+  margin: 10px 10px;
+}
+.name {
+  grid-area: name;
+}
+.regularToppings {
+  grid-area: regularToppings;
+}
+.premiumToppings {
+  grid-area: premiumToppings;
+}
+.size {
+  grid-area: size;
+}
+.button {
+  grid-area: button;
+}
 </style>

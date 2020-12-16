@@ -4,7 +4,7 @@
       <header-bar id="navBar"></header-bar>
     </div>
     <div id="body">
-    <specials-list id="list" v-bind:specials="$store.state.specials" v-bind:choices="$store.state.choices"></specials-list>
+    <specials-list v-bind:specials="$store.state.specials" v-bind:choices="$store.state.choices"></specials-list>
     </div>
   </div>
 </template>
@@ -32,17 +32,16 @@ export default {
 </script>
 
 <style scope>
-#body{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: 
-      "list new"
-}
-
+/* #body{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+} */
+/* 
 #list{
   grid-area: "list";
 }
 #new{
   grid-area: "new";
-}
+} */
 </style>
