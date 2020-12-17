@@ -97,7 +97,8 @@ export default {
   props: ["choices"],
   methods: {
     addPizzaToCart(customPizza, size) {
-      let orderItem = {
+      if (this.checksBeforeSubmit()) {
+        let orderItem = {
         pizza: customPizza,
         size: {
           choiceId: size.choiceId,
@@ -118,7 +119,21 @@ export default {
       };
       this.customSize = {};
       alert("Pizza added to cart!");
+      } else {
+        alert("Please choose at minimum a size, crust, and sauce");
+      }
     },
+    checksBeforeSubmit() {
+      if (this.customSize.name === undefined) {
+        return false;
+      } else if (this.customPizza.crust.name === undefined) {
+        return false;
+      } else if (this.customPizza.sauce.name === undefined) {
+        return false;
+      } else {
+        return true;
+      }
+    }
   },
   computed: {
     size() {

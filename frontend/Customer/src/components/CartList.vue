@@ -28,6 +28,7 @@
         </div>
         <div class="regularToppings">
           <h4>Regular Toppings</h4>
+          <p v-show="orderItem.pizza.regularToppings.length === 0">None</p>
           <div
             v-for="regularTopping in orderItem.pizza.regularToppings"
             v-bind:key="regularTopping.name"
@@ -37,6 +38,7 @@
         </div>
         <div class="premiumToppings">
           <h4>Premium Toppings</h4>
+          <p v-show="orderItem.pizza.premiumToppings.length === 0">None</p>
           <div
             v-for="premiumTopping in orderItem.pizza.premiumToppings"
             v-bind:key="premiumTopping.name"
@@ -45,8 +47,7 @@
           </div>
         </div>
         <div class="itemPrice">
-          <h4>Price</h4>
-          <p>{{ orderItem.size.price }}</p>
+          <h4>Price ${{ orderItem.size.price }}</h4>
         </div>
         <div class="button" id="removeButtonDiv">
           <button id="removeButton" v-on:click="removeFromCart(orderItem)">
@@ -58,7 +59,7 @@
     <div></div>
 
     <div v-if="$store.state.cart.length > 0">
-      <h3>Order Total: {{ total.toFixed(2) }}</h3>
+      <h3>Order Total: ${{ total.toFixed(2) }}</h3>
     </div>
 
     <div v-if="$store.state.cart.length > 0">
@@ -170,6 +171,7 @@ export default {
           .addNewOrder(order)
           .then((response) => {
             if (response.status === 201) {
+              this.$store.commit("RESET_DATA_STORE");
               this.$router.push("/landing");
             }
           })
@@ -214,9 +216,6 @@ export default {
       }
     },
   },
-  destroyed() {
-    this.$store.commit("RESET_DATA_STORE");
-  },
 };
 </script>
 
@@ -259,6 +258,12 @@ export default {
 }
 .name {
   grid-area: name;
+  padding-bottom: 10px;
+  font-size: 30px;
+  color: #fdb813;
+  opacity: 80%;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
 }
 .regularToppings {
   grid-area: regularToppings;
