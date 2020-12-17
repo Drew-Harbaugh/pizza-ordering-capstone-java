@@ -235,7 +235,7 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: stretch;
+  align-content: stretch;
   justify-content: center;
 }
 .cart {
@@ -252,7 +252,6 @@ export default {
   background-color: darkgray;
   border-radius: 25px;
   width: 40vw;
-  height: 100%;
   text-align: center;
   margin: 10px 10px;
 }
