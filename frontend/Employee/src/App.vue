@@ -15,13 +15,10 @@
 </template>
 
 <style>
-@font-face {
-  font-family: 'Pizzaria';
-  src: url('Extra/PIZZARIA.ttf') format('truetype');
-} 
+@import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
 
 body {
-  font-family: Pizzaria;
+  font-family: Rammetto One;
 }
 
 #links{
