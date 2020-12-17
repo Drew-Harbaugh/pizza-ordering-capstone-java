@@ -53,6 +53,10 @@
           />
         </div>
       </div>
+     <div id="specialPicture">
+        <label for="specialPicture">Special Picture URL:</label>
+        <input type="text" v-model="newSpecial.picture" />
+      </div>
       <div>
         <button v-on:click.prevent="resetForm">Cancel</button>
         <button>Add New Specialty Pizza</button>

@@ -136,10 +136,10 @@ public class JdbcSpecialtyPizzaDAO implements SpecialtyPizzaDAO {
 
     @Override
     public void addSpecial(SpecialtyPizza specialtyPizza) {
-        String sql = "INSERT INTO specialty_pizza (name, description, is_available) " +
-                "VALUES (?, ?, ?) RETURNING specialty_id;";
+        String sql = "INSERT INTO specialty_pizza (name, description, is_available, picture) " +
+                "VALUES (?, ?, ?, ?) RETURNING specialty_id;";
         int specialtyId = jdbcTemplate.queryForObject(sql, Integer.class, specialtyPizza.getName(),
-                specialtyPizza.getDescription(), specialtyPizza.isAvailable());
+                specialtyPizza.getDescription(), specialtyPizza.isAvailable(), specialtyPizza.getPicture());
         addChoiceSpecial(specialtyPizza.getCrust(), specialtyId);
         addChoiceSpecial(specialtyPizza.getSauce(), specialtyId);
         addToppingsToChoiceSpecial(specialtyPizza.getRegularToppings(), specialtyId);
