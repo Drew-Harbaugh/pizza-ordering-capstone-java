@@ -63,7 +63,7 @@
       </div>
     </div>
     <h1 id="sectionTitle">Cancelled</h1>
-    <div v-for="order in cancelledOrder" v-bind:key="order.orderId">
+    <div v-for="order in cancelledOrders" v-bind:key="order.orderId">
       <div class="order">
         <div class="orderStatus">
           <h2>Order ID: {{ order.orderId }} -</h2>
@@ -120,7 +120,7 @@ export default {
     completeOrders() {
       return this.orders.filter((order) => order.status === "Complete");
     },
-    cancelledOrder() {
+    cancelledOrders() {
       return this.orders.filter((order) => order.status === "Cancelled");
     },
   },
