@@ -73,7 +73,7 @@ a:visited {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: right;
+  text-align: center;
   width: 100%;
 }
 #logoImage {
