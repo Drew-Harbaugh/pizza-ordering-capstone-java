@@ -12,10 +12,11 @@
         <div class="card">
           <img src="@/views/Headshots/JordanPic.jpg" alt="Jordan" style="width: 100%" />
           <div class="container">
-            <h2>Jordan Jackson</h2>
+            <h2>Jordan</h2>
+            <h3>Jackson</h3>
             <p class="role">Developer</p>
             
-            <p>jacks3jkwork@gmail.com</p>
+            <p id="email">jacks3jkwork<br>@gmail.com</p>
             <div id="LinkedIn">
               <p>
                 <b-Link
@@ -34,10 +35,11 @@
         <div class="card">
           <img src="@/views/Headshots/SamPic.jpg" alt="Sam" style="width: 100%" />
           <div class="container">
-            <h2>Sam Walker</h2>
+            <h2>Sam</h2>
+            <h3>Walker</h3>
             <p class="role">Developer</p>
             
-            <p>walkersammarie@gmail.com</p>
+            <p id="email">walkersammarie<br>@gmail.com</p>
             <p>
               <b-Link
                 class="button"
@@ -54,10 +56,11 @@
         <div class="card">
           <img src="@/views/Headshots/IliaPic.jpg" alt="Ilia" style="width: 100%" />
           <div class="container">
-            <h2>Ilia Smith</h2>
+            <h2>Ilia</h2>
+            <h3>Smith</h3>
             <p class="role">Developer</p>
             
-            <p>ilia.smith2016@gmail.com</p>
+            <p id="email">ilia.smith2016<br>@gmail.com</p>
             <p>
               <b-Link
                 class="button"
@@ -73,10 +76,11 @@
         <div class="card">
           <img src="@/views/Headshots/BenPic.jpg" alt="Ben" style="width: 100%" />
           <div class="container">
-            <h2>Ben Williams</h2>
+            <h2>Ben</h2>
+            <h3>Williams</h3>
             <p class="role">Developer</p>
             
-            <p>benjamin.williams1020@gmail.com</p>
+            <p id="email">benjamin.williams1020<br>@gmail.com</p>
             <p>
               <b-Link
                 class="button"
@@ -92,10 +96,11 @@
         <div class="card">
           <img src="@/views/Headshots/drew pic.jpg" alt="Drew" style="width: 100%" />
           <div class="container">
-            <h2>Drew Harbaugh</h2>
+            <h2>Drew</h2>
+            <h3>Harbaugh</h3>
             <p class="role">Developer</p>
             
-            <p>dharbaugh2290@gmail.com</p>
+            <p id="email">dharbaugh2290<br>@gmail.com</p>
             <p>
               <b-Link
                 class="button"
@@ -156,7 +161,8 @@ html {
 
 #ourTeam {
   text-align: center;
-  padding-top: 10px;
+  font-size: 35px;
+  padding: 15px 0px 10px 0px;
 }
 /* .title {
   padding: 50px;
@@ -166,9 +172,18 @@ html {
   font-size: 50px;
 } */
 h2 {
-  font-size: 30px;
+  padding-top: 10px;
 }
-
+h3 {
+  padding-bottom: 5px;
+}
+h2, h3 {
+  font-size: 25px;
+  margin: 0px;
+}
+#email {
+  font-size: 12px;
+}
 .container {
   padding: 0 16px;
 }
