@@ -58,11 +58,11 @@ INSERT INTO choices (category_id, name, is_available) VALUES (5, 'Philly Steak',
 INSERT INTO choices (category_id, name, is_available) VALUES (3, 'No Sauce', true);
 
 --Specials
-INSERT INTO specialty_pizza (name, description, is_available) VALUES ('Veggie Deluxe', 'Regular crust delight with marinara, shredded mozzarella, green peppers, spinach, olives, mushrooms, diced tomatoes, and artichokes.', true);
-INSERT INTO specialty_pizza (name, description, is_available) VALUES ('Meat Lovers', 'Regular crust pizza with marinara, shredded mozzarella, pepperoni, sausage, ham, and bacon.', true);
-INSERT INTO specialty_pizza (name, description, is_available) VALUES ('Hawaiian Choke', 'Thin crust delight with marinara, shredded mozzarella, pineapple, artichokes, ham, and bacon.', true);
-INSERT INTO specialty_pizza (name, description, is_available) VALUES ('Pesto Margherita Pizza', 'Brooklyn crust with pesto, fresh mozzarella, diced tomatoes, sprinkled with parmesan.', true);
-INSERT INTO specialty_pizza (name, description, is_available) VALUES ('The Al Capone', 'Chicago style pizza with marinara, shredded mozzarella, parmesan, sausage, pepperoni, mushrooms, artichokes, and anchovies.', true);
+INSERT INTO specialty_pizza (name, description, is_available, picture) VALUES ('Veggie Deluxe', 'Regular crust delight with marinara, shredded mozzarella, green peppers, spinach, olives, mushrooms, diced tomatoes, and artichokes.', true, '\images\veggie-deluxe-pizza-2-1056x1600.jpg');
+INSERT INTO specialty_pizza (name, description, is_available, picture) VALUES ('Meat Lovers', 'Regular crust pizza with marinara, shredded mozzarella, pepperoni, sausage, ham, and bacon.', true, '\images\meatloverspizza1_bakedbyrachel.jpg');
+INSERT INTO specialty_pizza (name, description, is_available, picture) VALUES ('Hawaiian Choke', 'Thin crust delight with marinara, shredded mozzarella, pineapple, artichokes, ham, and bacon.', true, '\images\Hawaiian-Pizza-Cauliflower-LEAD-2-768x1075.jpg');
+INSERT INTO specialty_pizza (name, description, is_available, picture) VALUES ('Pesto Margherita Pizza', 'Brooklyn crust with pesto, fresh mozzarella, diced tomatoes, sprinkled with parmesan.', true, '\images\White-Pizza-with-Parsley-Pesto-Drizzle-V3.jpg');
+INSERT INTO specialty_pizza (name, description, is_available, picture) VALUES ('The Al Capone', 'Chicago style pizza with marinara, shredded mozzarella, parmesan, sausage, pepperoni, mushrooms, artichokes, and anchovies.', true, 'https:\\images-gmi-pmc.edge-generalmills.com\6661f2c0-c177-41b4-96d9-1f30260681bd.jpg');
 
 
 

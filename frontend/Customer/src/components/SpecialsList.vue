@@ -1,12 +1,19 @@
 <template>
   <div class="listOfSpecials">
-    <div v-for="special in available" v-bind:key="special.specialtyId" class="specialtyPizza">
+    <div
+      v-for="special in available"
+      v-bind:key="special.specialtyId"
+      class="specialtyPizza"
+    >
       <div class="newSpecial">
         <div class="name">
           <h2>{{ special.name }}</h2>
         </div>
         <div class="desc">
           <p>{{ special.description }}</p>
+        </div>
+        <div class="picture">
+          <img v-bind:src="special.picture" alt="pizza pic">
         </div>
         <div class="regularToppings">
           <h4 class="none" v-if="special.regularToppings.length === 0">
@@ -121,11 +128,12 @@ export default {
 .newSpecial {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto auto auto;
   grid-template-areas:
     "name name"
     "desc desc"
-    "regularToppings premiumToppingsList"
+    "pic pic"
+    "reg prem"
     "chooseSize chooseSize"
     "button button";
   padding-top: 25px;
@@ -147,10 +155,10 @@ export default {
   grid-area: desc;
 }
 .regularToppingsList {
-  grid-area: regularToppings;
+  grid-area: reg;
 }
 .premiumToppingsList {
-  grid-area: "ping";
+  grid-area: prem;
 }
 .chooseSize {
   grid-area: chooseSize;
@@ -160,10 +168,8 @@ export default {
   justify-content: space-around;
 }
 .addToCart {
-  grid-area: "button";
+  grid-area: button;
 }
-
-
 
 .none {
   display: none;
@@ -191,4 +197,19 @@ export default {
   color: #fff;
   text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fdb813, 0 0 20px #fdb813, 0 0 25px #fdb813, 0 0 30px #fdb813, 0 0 35px#fdb813;
 }
+
+.picture img {
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+}
+
+.picture {
+   grid-area: pic;
+   overflow: hidden;
+   height: 100px;
+}
+
 </style>
