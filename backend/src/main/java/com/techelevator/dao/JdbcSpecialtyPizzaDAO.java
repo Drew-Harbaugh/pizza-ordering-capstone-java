@@ -23,7 +23,7 @@ public class JdbcSpecialtyPizzaDAO implements SpecialtyPizzaDAO {
     @Override
     public List<SpecialtyPizza> getAll() {
         List<SpecialtyPizza> result = new ArrayList<>();
-        String sql = "SELECT specialty_id, name, description, is_available FROM specialty_pizza ORDER BY specialty_id;";
+        String sql = "SELECT specialty_id, name, description, is_available, picture FROM specialty_pizza ORDER BY specialty_id;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while (rowSet.next()) {
             List<Choice> premiumToppings = new ArrayList<>();
@@ -33,6 +33,7 @@ public class JdbcSpecialtyPizzaDAO implements SpecialtyPizzaDAO {
             specialtyPizza.setAvailable(rowSet.getBoolean("is_available"));
             specialtyPizza.setName(rowSet.getString("name"));
             specialtyPizza.setDescription(rowSet.getString("description"));
+            specialtyPizza.setPicture(rowSet.getString("picture"));
 
             String sql1 = "SELECT c.choice_id, c.category_id, c.name, c.is_available, s.specialty_id, s.choice_id  " +
                     "FROM choices AS c " +

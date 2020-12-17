@@ -40,6 +40,7 @@ specialty_id serial NOT NULL,
 name varchar NOT NULL UNIQUE,
 description varchar NOT NULL,
 is_available boolean,
+picture varchar,
 CONSTRAINT pk_specialty_id PRIMARY KEY (specialty_id)
 );
 
