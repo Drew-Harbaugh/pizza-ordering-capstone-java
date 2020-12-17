@@ -224,6 +224,7 @@ export default {
 }
 #pizza {
   padding: 15px 15px 15px 0px;
+  
 }
 .pizza {
   display: grid;
