@@ -39,8 +39,8 @@
         <div class="size">
           <p>{{ orderItem.size.name }}</p>
         </div>
-        <div class="button">
-          <button v-on:click="removeFromCart(orderItem)">
+        <div class="button" id="removeButtonDiv">
+          <button id="removeButton" v-on:click="removeFromCart(orderItem)">
             Remove from Cart
           </button>
         </div>
@@ -124,7 +124,9 @@
           <label for="creditCardCvv">Credit Card CVV: </label>
           <input type="text" minlength="3" maxlength="4" />
         </div>
-        <button v-on:click="submitOrder()">Submit Order</button>
+        <div id="buttonDiv">
+        <button id="submitButton" v-on:click="submitOrder()">Submit Order</button>
+       </div>
       </form>
     </div>
   </div>
@@ -255,5 +257,46 @@ export default {
 }
 .button {
   grid-area: button;
+  
 }
+
+#buttonDiv {
+  margin-top: 10px;
+  padding-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#removeButtonDiv{
+  margin-top: 10px;
+  padding-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+}
+
+#submitButton {
+  border-radius: 10px;
+}
+
+#removeButton{
+  border-radius:10px;
+}
+
+#removeButton:hover{
+  background-color: black;
+  font-family: 'Warnes', cursive;
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fdb813, 0 0 20px #fdb813, 0 0 25px #fdb813, 0 0 30px #fdb813, 0 0 35px#fdb813;
+}
+
+#submitButton:hover {
+  background-color: black;
+  font-family: 'Warnes', cursive;
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fdb813, 0 0 20px #fdb813, 0 0 25px #fdb813, 0 0 30px #fdb813, 0 0 35px#fdb813;
+}
+
 </style>
