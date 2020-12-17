@@ -13,6 +13,7 @@
           <p>{{ order.customer.address }}</p>
           <p v-if="order.delivery === true">Delivery</p>
           <p v-else>Pick Up</p>
+          <p>${{order.total}}</p>
         </div>
       </div>
       <div class="pizzas">
@@ -78,7 +79,11 @@
           <p>{{ order.customer.name }}</p>
           <p>{{ order.customer.phoneNumber }}</p>
           <p>{{ order.customer.address }}</p>
+          <p v-if="order.delivery === true">Delivery</p>
+          <p v-else>Pick Up</p>
+          <p>${{order.total}}</p>
         </div>
+       
       </div>
       <div class="pizzas">
         <div
@@ -224,8 +229,10 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
-    "name toppings"
-    "info toppings"
+    "pizzaName pizzaName"
+    "crust sauce"
+    "regularToppings premiumToppings"
+    "info info"
     "buttons buttons";
 
   background-color: darkgray;
@@ -236,8 +243,10 @@ export default {
   border: solid #dc3545 5px;
 }
 .pizzaName {
-  grid-area: name;
+  grid-area: pizzaName;
   font-size: 50px;
+  display: flex;
+  justify-content: center;
 }
 .pizzaInfo {
   grid-area: info;
