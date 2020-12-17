@@ -6,19 +6,20 @@
   </div>
 </template>
 
-<style scoped>
+<style>
+@font-face {
+  font-family: 'Pizzaria';
+  src: url('Extras/PIZZARIA.ttf') format('truetype');
+} 
 
+body {
+  font-family: Pizzaria;
+}
 
 #nav {
   background: #dc3545;
   text-decoration: none;
   color: white;
-}
-
-#name {
-  background: #dc3545;
-  color: white;
-  text-align: left;
 }
 
 a:link {
@@ -32,5 +33,7 @@ a:visited {
 #app {
   background-color: lightgray;
 }
+
+
 
 </style>

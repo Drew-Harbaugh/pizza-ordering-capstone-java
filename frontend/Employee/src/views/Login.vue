@@ -1,17 +1,7 @@
 <template>
   <div id="login" class="text-center">
     <div>
-      <Header>
-        <!-- <b-navbar-nav class="ml-auto">
-          <b-nav-item-dropdown right> -->
-            <!-- Using 'button-content' slot -->
-            <!--<template #button-content>
-              <em>User</em>
-            </template>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-          </b-nav-item-dropdown>
-        </b-navbar-nav> -->
-      </Header>
+      <Header></Header>
       <form class="form-signin" @submit.prevent="login">
         <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
           Invalid username and password!

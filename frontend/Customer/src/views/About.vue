@@ -200,12 +200,4 @@ html {
   }
 }
 
-/* .linkedInLink {
-  color: white;
-  font-family: Pizzeria;
-}
-.linkedInLink:hover {
-  text-decoration: none;
-  font-weight: bold;
-} */
 </style>
