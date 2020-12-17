@@ -16,7 +16,8 @@ export default new Vuex.Store({
     specials: [],
     cart: [],
     total: 0.00,
-    customerName: ''
+    customerName: '',
+    delivery: false
   },
   mutations: {
     SET_SPECIALS(state, specials) {
@@ -35,20 +36,24 @@ export default new Vuex.Store({
       state.cart.splice(index, 1);
     },
     ADD_TO_TOTAL(state, price) {
-        state.total += price;
+      state.total += price;
     },
     REMOVE_FROM_TOTAL(state, price) {
       state.total -= price;
-  },
-    ADD_CUSTOMER_NAME(state, name) {
-      state.customerName = name;
+    },
+    ADD_CUSTOMER_INFO(state, info) {
+      state.customerName = info.name;
+      state.delivery = info.delivery;
     },
     RESET_DATA_STORE(state) {
       state.choices = [];
       state.specials = [];
       state.cart = [];
       state.total = 0.00;
+    },
+    REMOVE_CUSTOMER_INFO(state) {
       state.customerName = '';
+      state.delivery = false;
     }
   }
 })

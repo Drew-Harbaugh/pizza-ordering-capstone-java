@@ -6,7 +6,7 @@
       <!-- <p>ABOUT US</p> -->
     </div>
 
-    <h2 style="text-align: center">Our Team</h2>
+    <h2 id="ourTeam">Our Team</h2>
     <div class="row">
       <div class="column">
         <div class="card">
@@ -154,6 +154,10 @@ html {
   margin: 8px;
 }
 
+#ourTeam {
+  text-align: center;
+  padding-top: 10px;
+}
 /* .title {
   padding: 50px;
   text-align: center;

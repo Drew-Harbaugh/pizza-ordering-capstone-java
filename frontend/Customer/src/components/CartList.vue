@@ -3,7 +3,7 @@
     <div id="items-in-cart-headline">
       <h1>Items in your cart:</h1>
     </div>
-    <div v-show="$store.state.cart.length === 0">
+    <div id= "noPizzas" v-show="$store.state.cart.length === 0">
       <h2>No pizzas added</h2>
     </div>
     <div id="list-items-in-cart">
@@ -58,7 +58,7 @@
     <div></div>
 
     <div v-if="$store.state.cart.length > 0">
-      <h3 v-bind="getTotal()">Order Total: {{ total.toFixed(2) }}</h3>
+      <h3>Order Total: {{ total.toFixed(2) }}</h3>
     </div>
 
     <div v-if="$store.state.cart.length > 0">
@@ -149,24 +149,22 @@ export default {
   data() {
     return {
       delivery: false,
-      total: 0.0,
       customer: {},
     };
   },
-  computed: {},
+  computed: {
+    total() {
+      return this.$store.state.total;
+    },
+  },
   methods: {
     removeFromCart(orderItem) {
       this.$store.commit("REMOVE_FROM_CART", orderItem);
       this.$store.commit("REMOVE_FROM_TOTAL", orderItem.size.price);
-      this.getTotal();
-    },
-    getTotal() {
-      this.total = this.$store.state.total;
-      return this.total;
     },
     submitOrder() {
       if (this.checksBeforeSubmit() === true) {
-        this.$store.commit("ADD_CUSTOMER_NAME", this.customer.name);
+        this.$store.commit("ADD_CUSTOMER_INFO", {name: this.customer.name, delivery: this.delivery});
         const order = this.makeOrderObject();
         orderService
           .addNewOrder(order)
@@ -188,7 +186,7 @@ export default {
         status: "Pending",
         timeStamp: Date.now(),
         delivery: this.delivery,
-        total: this.getTotal(),
+        total: this.total,
         customer: {
           name: this.customer.name,
           phoneNumber: this.customer.phoneNumber,
@@ -216,6 +214,9 @@ export default {
       }
     },
   },
+  destroyed() {
+    this.$store.commit("RESET_DATA_STORE");
+  },
 };
 </script>
 
@@ -225,6 +226,7 @@ export default {
 }
 #cart-main {
   margin: 0px;
+  padding-top: 10px;
 }
 #items-in-cart-headline {
   display: flex;
@@ -324,4 +326,8 @@ export default {
   text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fdb813, 0 0 20px #fdb813, 0 0 25px #fdb813, 0 0 30px #fdb813, 0 0 35px#fdb813;
 }
 
+#noPizzas {
+  text-align: center;
+  padding: 20px 20px 325px 20px;
+}
 </style>
