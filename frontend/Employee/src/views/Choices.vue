@@ -2,7 +2,7 @@
   <div>
     <Header></Header>
     <choices-list v-bind:choices="$store.state.choices"></choices-list>
-    <new-choice></new-choice>
+    <new-choice id="newChoice"></new-choice>
   </div>
 </template>
 

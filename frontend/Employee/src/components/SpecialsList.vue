@@ -1,5 +1,6 @@
 <template>
   <div>
+    <br>
     <div
       id="specialBody"
       v-for="special in specials"

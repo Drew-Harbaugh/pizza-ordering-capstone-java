@@ -58,11 +58,11 @@
     </div>
     <div></div>
 
-    <div v-if="$store.state.cart.length > 0">
+    <div id="total" v-if="$store.state.cart.length > 0">
       <h3>Order Total: ${{ total.toFixed(2) }}</h3>
     </div>
 
-    <div v-if="$store.state.cart.length > 0">
+    <div id="customerForm" v-if="$store.state.cart.length > 0">
       <form v-on:submit.prevent>
         <div>
           <label for="delivery">Delivery</label>
@@ -220,6 +220,9 @@ export default {
 </script>
 
 <style scoped>
+#total, #customerForm {
+  padding-left: 15px;
+}
 .topping {
   margin: 0px;
 }
@@ -267,9 +270,11 @@ export default {
 }
 .regularToppings {
   grid-area: regularToppings;
+  padding-top: 5px;
 }
 .premiumToppings {
   grid-area: premiumToppings;
+  padding-top: 5px;
 }
 .size {
   grid-area: size;
@@ -301,6 +306,7 @@ export default {
 }
 
 #removeButtonDiv{
+  height: 70px;
   margin-top: 10px;
   padding-bottom: 25px;
   display: flex;
@@ -311,6 +317,7 @@ export default {
 
 #submitButton {
   border-radius: 10px;
+  height: 50px;
 }
 
 #removeButton{

@@ -1,6 +1,5 @@
 <template>
-  <div>
-
+  <div id="choiceWhole">
     <div class="category-columns">
       <category-column v-bind:sortedChoices="size" id="size"></category-column>
       <category-column
@@ -20,9 +19,11 @@
         id="premiumToppings"
       ></category-column>
     </div>
-    <button v-on:click="deleteChoices()">Delete</button>
+    <div id="choiceBtns">
+      <button v-on:click="deleteChoices()">Delete</button>
     <button  v-on:click="makeAvailable()">Make Available</button>
     <button  v-on:click="makeUnavailable()">Make Unavailable</button>
+    </div>
   </div>
   
 </template>
@@ -125,6 +126,9 @@ export default {
 </script>
 
 <style>
+#choiceWhole {
+  padding-top: 20px;
+}
 .category-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -134,7 +138,9 @@ export default {
     "sauce prem";
   text-align: center;
 }
-
+#choiceBtns {
+  padding: 20px;
+}
 #size {
   grid-area: size;
 }

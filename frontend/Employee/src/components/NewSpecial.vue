@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div id="wholeBody">
+    <br>
     <form v-on:submit.prevent="addNewSpecial">
       <div id="specialNameBox">
         <label for="specialName">Special Name:</label>
@@ -9,6 +10,7 @@
         <label for="specialDescription">Description:</label>
         <textarea rows="4" cols="50" v-model="newSpecial.description" />
       </div>
+      <br>
       <div>
         <h3>Crust</h3>
         <div v-for="choice in crust" v-bind:key="choice.choiceId">
@@ -57,6 +59,7 @@
         <label for="specialPicture">Special Picture URL:</label>
         <input type="text" v-model="newSpecial.picture" />
       </div>
+      <br>
       <div>
         <button v-on:click.prevent="resetForm">Cancel</button>
         <button>Add New Specialty Pizza</button>
@@ -138,7 +141,9 @@ export default {
 </script>
 
 <style>
-
+#wholeBody {
+  padding: 20px 0px 20px 0px;
+}
 #descriptionBox label{
   display: block;
 }

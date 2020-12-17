@@ -137,8 +137,7 @@ h2 {
 
 #bottom {
   height: auto;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding: 25px;
   background-color: lightgray;
   border: 2px solid #dc3545;
   box-sizing: border-box;

@@ -154,11 +154,13 @@ export default {
   align-self: center;
   grid-area: desc;
 }
-.regularToppingsList {
+.regularToppings {
   grid-area: reg;
+  padding-top: 10px;
 }
 .premiumToppingsList {
   grid-area: prem;
+  padding-top: 10px;
 }
 .chooseSize {
   grid-area: chooseSize;
@@ -166,6 +168,7 @@ export default {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
+  padding: 10px 5px 0px 5px;
 }
 .addToCart {
   grid-area: button;

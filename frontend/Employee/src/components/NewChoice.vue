@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="newChoice">
     <form v-on:submit.prevent="addNewChoice">
       <div>
         <label for="choiceName">New Choice:</label>
@@ -86,4 +86,7 @@ export default {
 </script>
 
 <style>
+#newChoice {
+  padding: 0px 20px 20px 20px;
+}
 </style>

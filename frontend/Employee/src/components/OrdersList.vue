@@ -1,7 +1,9 @@
 <template>
   <div class="allOrders">
+    <br>
     <h1 id="sectionTitle">Pending Orders</h1>
-    <div v-for="order in pendingOrders" v-bind:key="order.orderId">
+    <div id="order" v-for="order in pendingOrders" v-bind:key="order.orderId">
+      <br>
       <div class="order">
         <div class="orderStatus">
           <h2>Order ID: {{ order.orderId }} -</h2>
@@ -57,19 +59,24 @@
               <h3>{{ pizzaObject.pizza.crust.name }}</h3>
               <h3>{{ pizzaObject.pizza.sauce.name }}</h3>
             </div>
-            <div class="statusButtons">
+          </div>
+          
+        </div>
+        
+      </div>
+      <div class="statusButtons">
               <button v-on:click="markCancelled(order.orderId)">
                 Cancelled
               </button>
               <button v-on:click="markReady(order.orderId)">Ready</button>
-              <!-- <button v-on:click="markComplete(order.orderId)">Complete</button> -->
             </div>
-          </div>
-        </div>
-      </div>
+            <br>
     </div>
+    <br>
+    <br>
     <h1 id="sectionTitle">Ready</h1>
     <div v-for="order in readyOrder" v-bind:key="order.orderId">
+      <br>
       <div class="order">
         <div class="orderStatus">
           <h2>Order ID: {{ order.orderId }} -</h2>
@@ -114,17 +121,19 @@
               <h3>{{ pizzaObject.pizza.crust.name }}</h3>
               <h3>{{ pizzaObject.pizza.sauce.name }}</h3>
             </div>
-            <div class="statusButtons">
-              <button v-on:click="markCancelled(order.orderId)">
-                Cancelled
-              </button>
-
-              <button v-on:click="markComplete(order.orderId)">Complete</button>
-            </div>
+            
           </div>
         </div>
       </div>
+      <div class="statusButtons">
+              <button v-on:click="markCancelled(order.orderId)">
+                Cancelled
+              </button>
+              <button v-on:click="markComplete(order.orderId)">Complete</button>
+            </div>
+            <br>
     </div>
+    <br>
   </div>
 </template>
 
@@ -221,7 +230,23 @@ export default {
 <style>
 .allOrders {
   padding-left: 20px;
+  background-color: lightgray;
 }
+/* #order {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "info"
+    "pizzas"
+    "btns";
+}
+.order {
+  grid-area: info;
+}
+.pizzas {
+  grid-area: pizzas;
+} */
+
 #pizza {
   padding: 15px 15px 15px 0px;
   
@@ -233,9 +258,7 @@ export default {
     "pizzaName pizzaName"
     "crust sauce"
     "regularToppings premiumToppings"
-    "info info"
-    "buttons buttons";
-
+    "info info";
   background-color: darkgray;
   border-radius: 25px;
   height: 100%;
@@ -261,9 +284,12 @@ export default {
   justify-content: center;
 }
 .statusButtons {
-  grid-area: buttons;
-  display: flex;
-  justify-content: center;
+  padding-left: 10px;
+  grid-area: btns;
+  display: flex !important;
+  width: auto;
+  float: left;
+
 }
 .orderStatus {
   display: flex;
@@ -281,7 +307,7 @@ export default {
   justify-content: flex-start;
 }
 #sectionTitle {
-  padding: 10px 10px 10px 0px;
+  padding: 200px 10px 10px 0px;
   text-decoration: underline;
 }
 </style>
