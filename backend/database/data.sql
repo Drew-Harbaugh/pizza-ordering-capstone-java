@@ -123,7 +123,7 @@ INSERT INTO size_price (choice_id, custom_price, specialty_price) VALUES (4, 16.
 INSERT INTO size_price (choice_id, custom_price, specialty_price) VALUES (5, 18.99, 15.99);
 
 --Order 1
-INSERT INTO orders (status, time_stamp, delivery, total) VALUES ('Pending', '2020-12-14 10:43:06', true, 14.99);
+INSERT INTO orders (status, time_stamp, delivery, total) VALUES ('Ready', '2020-12-14 10:43:06', true, 14.99);
 
 INSERT INTO delivery_information (order_id, name, phone_number, address, credit_card) VALUES (1, 'Jordan Benjamin', 5135551234, '23 Elm St.', 1234567890123456);
 
@@ -136,7 +136,7 @@ INSERT INTO choices_custom_pizza (pizza_id, choice_id) VALUES (1, 17);
 INSERT INTO choices_custom_pizza (pizza_id, choice_id) VALUES (1, 24);
 
 --Order 2
-INSERT INTO orders (status, time_stamp, delivery, total) VALUES ('Pending', '2020-12-15 10:43:06', false, 24.98);
+INSERT INTO orders (status, time_stamp, delivery, total) VALUES ('Complete', '2020-12-15 10:43:06', false, 24.98);
 
 INSERT INTO delivery_information (order_id, name, phone_number, credit_card) VALUES (2, 'David Mac', 5135555678, 1234567890123456);
 
@@ -150,7 +150,7 @@ INSERT INTO choices_custom_pizza (pizza_id, choice_id) VALUES (2, 21);
 INSERT INTO choices_custom_pizza (pizza_id, choice_id) VALUES (2, 25);
 
 --Order 3
-INSERT INTO orders (status, time_stamp, delivery, total) VALUES ('Ready', '2020-12-15 11:43:06', false, 11.99);
+INSERT INTO orders (status, time_stamp, delivery, total) VALUES ('Cancelled', '2020-12-15 11:43:06', false, 11.99);
 
 INSERT INTO delivery_information (order_id, name, phone_number, credit_card) VALUES (3, 'Megan Janes', 5135550123, 1234567890123456);
 
