@@ -138,8 +138,10 @@ public class JdbcSpecialtyPizzaDAO implements SpecialtyPizzaDAO {
     public void addSpecial(SpecialtyPizza specialtyPizza) {
         String sql = "INSERT INTO specialty_pizza (name, description, is_available, picture) " +
                 "VALUES (?, ?, ?, ?) RETURNING specialty_id;";
+
+        String str = specialtyPizza.getPicture().replace("\\", "/");
         int specialtyId = jdbcTemplate.queryForObject(sql, Integer.class, specialtyPizza.getName(),
-                specialtyPizza.getDescription(), specialtyPizza.isAvailable(), specialtyPizza.getPicture());
+                specialtyPizza.getDescription(), specialtyPizza.isAvailable(), str);
         addChoiceSpecial(specialtyPizza.getCrust(), specialtyId);
         addChoiceSpecial(specialtyPizza.getSauce(), specialtyId);
         addToppingsToChoiceSpecial(specialtyPizza.getRegularToppings(), specialtyId);
