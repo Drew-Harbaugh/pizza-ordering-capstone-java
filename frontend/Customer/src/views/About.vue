@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <!-- <header-bar id="navBar"></header-bar> -->
+  <div class="backGround">
+    <header-bar id="navBar"></header-bar>
 
     <div class="title">
-      <p>ABOUT US</p>
+      <!-- <p>ABOUT US</p> -->
     </div>
 
     <h2 style="text-align: center">Our Team</h2>
@@ -112,16 +112,21 @@
 </template>
 
 <script>
-// import HeaderBar from "@/components/HeaderBar.vue"
+import HeaderBar from "@/components/HeaderBar.vue"
 
-// export default {
-//     components: {
-//         HeaderBar,
-//     },
-// };
+export default {
+    components: {
+        HeaderBar,
+    },
+};
 </script>
 
 <style scoped>
+.background {
+  background-color: lightgray;
+  height: 100vh;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
@@ -139,7 +144,7 @@ html {
 
 .column {
   float: left;
-  width: 33.3%;
+  width: 20%;
   margin-bottom: 16px;
   padding: 0 8px;
 }
@@ -149,13 +154,13 @@ html {
   margin: 8px;
 }
 
-.title {
+/* .title {
   padding: 50px;
   text-align: center;
   background-color: #474e5d;
   color: white;
   font-size: 50px;
-}
+} */
 
 .container {
   padding: 0 16px;
