@@ -14,8 +14,8 @@
           <div class="container">
             <h2>Jordan Jackson</h2>
             <p class="role">Developer</p>
-            <p>Describe Me</p>
-            <p>email@blank.com</p>
+            
+            <p>jacks3jkwork@gmail.com</p>
             <div id="LinkedIn">
               <p>
                 <b-Link
@@ -36,8 +36,8 @@
           <div class="container">
             <h2>Sam Walker</h2>
             <p class="role">Developer</p>
-            <p>Describe Me</p>
-            <p>email@blank.com</p>
+            
+            <p>walkersammarie@gmail.com</p>
             <p>
               <b-Link
                 class="button"
@@ -56,8 +56,8 @@
           <div class="container">
             <h2>Ilia Smith</h2>
             <p class="role">Developer</p>
-            <p>Describe Me</p>
-            <p>email@blank.com</p>
+            
+            <p>ilia.smith2016@gmail.com</p>
             <p>
               <b-Link
                 class="button"
@@ -75,8 +75,8 @@
           <div class="container">
             <h2>Ben Williams</h2>
             <p class="role">Developer</p>
-            <p>Describe Me</p>
-            <p>email@blank.com</p>
+            
+            <p>benjamin.williams1020@gmail.com</p>
             <p>
               <b-Link
                 class="button"
@@ -94,8 +94,8 @@
           <div class="container">
             <h2>Drew Harbaugh</h2>
             <p class="role">Developer</p>
-            <p>Describe Me</p>
-            <p>email@blank.com</p>
+            
+            <p>dharbaugh2290@gmail.com</p>
             <p>
               <b-Link
                 class="button"
@@ -165,6 +165,9 @@ html {
   color: white;
   font-size: 50px;
 } */
+h2 {
+  font-size: 30px;
+}
 
 .container {
   padding: 0 16px;

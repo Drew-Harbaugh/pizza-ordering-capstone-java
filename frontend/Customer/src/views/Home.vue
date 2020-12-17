@@ -30,7 +30,7 @@
     </div>
     <div id="bottom">
       <p>ABOUT THE PROJECT</p>
-      <p>Bacon ipsum dolor amet ham hock tri-tip sirloin pig venison sausage chicken pork pancetta cow corned beef. Leberkas pastrami kevin turducken cow tenderloin, ball tip ground round pork tail buffalo. Boudin strip steak porchetta beef, picanha t-bone ham hock pastrami rump tongue. Bresaola cow shankle t-bone ball tip landjaeger, short loin pastrami salami chuck ham hock strip steak.</p>
+      <p>This is a pair of applications (with a shared backend) for a pizzeria. The first allows customers to order pizzas, either from a list of pre-configured options or create their own. The second enables the pizzeria employees to keep track of customer orders and update the menu of available options.</p>
       <router-link v-bind:to="{name: 'about'}" tag="b-button">Learn about the developers</router-link>
     </div>
   </div>

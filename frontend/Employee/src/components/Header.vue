@@ -8,7 +8,7 @@
             fluid
             alt="Pizza image"
             id="logoImage"
-          >
+          />
         </div>
         <div id="title">
           <h1 class="h3 mb-3 font-weight-normal">{{ title }}</h1>
@@ -22,6 +22,9 @@
           >
           <router-link v-bind:to="{ name: 'orders' }" tag="b-nav-item"
             >Orders</router-link
+          >
+          <router-link v-bind:to="{ name: 'history' }" tag="b-nav-item"
+            >History</router-link
           >
         </b-nav>
       </div>
@@ -43,7 +46,7 @@ export default {
 #navigation {
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 2fr;
   grid-template-areas: "logo title nav";
 }
 #navbarLogo {
@@ -55,6 +58,7 @@ export default {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+  width: 100%;
 }
 a:link {
   color: white;

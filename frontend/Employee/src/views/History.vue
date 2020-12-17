@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header></Header>
-    <orders-list v-bind:orders="this.$store.state.orders"></orders-list>
+    <history-list v-bind:orders="this.$store.state.orders"></history-list>
   </div>
 </template>
 
@@ -13,12 +13,12 @@ import HistoryService from "@/services/HistoryService.js";
 export default {
   components: {
     Header,
-    HistoryList,
+    HistoryList
   },
   created() {
-    // OrderService.getAllOrders().then((response) => {
-    //   this.$store.commit("SET_ORDERS", response.data);
-    // });
+    HistoryService.getAllOrders().then((response) => {
+      this.$store.commit("SET_ORDERS", response.data);
+    });
   },
 };
 </script>
