@@ -15,16 +15,16 @@
         </div>
         <b-nav id="navLink">
           <router-link v-bind:to="{ name: 'specials' }" tag="b-nav-item"
-            >Specials</router-link
+             style="font-size: 15px;">Specials</router-link
           >
           <router-link v-bind:to="{ name: 'choices' }" tag="b-nav-item"
-            >Choices</router-link
+            style="font-size: 15px;" >Choices</router-link
           >
           <router-link v-bind:to="{ name: 'orders' }" tag="b-nav-item"
-            >Orders</router-link
+            style="font-size: 15px;" >Orders</router-link
           >
           <router-link v-bind:to="{ name: 'history' }" tag="b-nav-item"
-            >History</router-link
+            style="font-size: 15px;" >History</router-link
           >
         </b-nav>
       </div>
@@ -46,7 +46,7 @@ export default {
 #navigation {
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas: "logo title nav";
 }
 #navbarLogo {
@@ -59,6 +59,7 @@ export default {
   justify-content: flex-end;
   align-items: center;
   width: 100%;
+  margin: auto;
 }
 a:link {
   color: white;
@@ -72,6 +73,8 @@ a:visited {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: right;
+  width: 100%;
 }
 #logoImage {
   height: 100px;
