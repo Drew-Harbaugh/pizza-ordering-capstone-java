@@ -12,19 +12,27 @@
         v-for="orderItem in $store.state.cart"
         v-bind:key="orderItem.timeStamp"
       >
-        <h3 class="name">{{ orderItem.pizza.name }}</h3>
+        <h3 class="name">{{ orderItem.pizza.name }} - {{ orderItem.size.name }}</h3>
 
         <!-- change to only print proper price -->
-        <p>{{ orderItem.size.specialtyPrice }}</p>
-        <p>{{ orderItem.size.customPrice }}</p>
-        <p>{{ orderItem.pizza.price }}</p>
+        
+        
+        <p>{{ orderItem.pizza.price }}</p>        
+        <div class="crust">
+          <h4>Crust</h4>
+          <p>{{orderItem.pizza.crust.name}}</p>
+        </div>
+        <div class="sauce">
+          <h4>Sauce</h4>
+          <p>{{orderItem.pizza.sauce.name}}</p>
+        </div>
         <div class="regularToppings">
           <h4>Regular Toppings</h4>
           <div
             v-for="regularTopping in orderItem.pizza.regularToppings"
             v-bind:key="regularTopping.name"
           >
-            <p>{{ regularTopping.name }}</p>
+            <p class="topping">{{ regularTopping.name }}</p>
           </div>
         </div>
         <div class="premiumToppings">
@@ -33,14 +41,15 @@
             v-for="premiumTopping in orderItem.pizza.premiumToppings"
             v-bind:key="premiumTopping.name"
           >
-            <p>{{ premiumTopping.name }}</p>
+            <p class="topping">{{ premiumTopping.name }}</p>
           </div>
         </div>
-        <div class="size">
-          <p>{{ orderItem.size.name }}</p>
+        <div class="itemPrice">
+          <h4>Price</h4>
+          <p>{{ orderItem.size.price }}</p>
         </div>
-        <div class="button">
-          <button v-on:click="removeFromCart(orderItem)">
+        <div class="button" id="removeButtonDiv">
+          <button id="removeButton" v-on:click="removeFromCart(orderItem)">
             Remove from Cart
           </button>
         </div>
@@ -124,7 +133,9 @@
           <label for="creditCardCvv">Credit Card CVV: </label>
           <input type="text" minlength="3" maxlength="4" />
         </div>
-        <button v-on:click="submitOrder()">Submit Order</button>
+        <div id="buttonDiv">
+        <button id="submitButton" v-on:click="submitOrder()">Submit Order</button>
+       </div>
       </form>
     </div>
   </div>
@@ -209,6 +220,9 @@ export default {
 </script>
 
 <style scoped>
+.topping {
+  margin: 0px;
+}
 #cart-main {
   margin: 0px;
 }
@@ -221,7 +235,7 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-content: stretch;
+  align-items: stretch;
   justify-content: center;
 }
 .cart {
@@ -230,8 +244,9 @@ export default {
   grid-template-rows: auto auto auto auto;
   grid-template-areas:
     "name name"
+    "crust sauce"
     "regularToppings premiumToppings"
-    "size size"
+    "itemPrice itemPrice"
     "button button";
   padding-top: 25px;
   background-color: darkgray;
@@ -254,6 +269,60 @@ export default {
   grid-area: size;
 }
 .button {
-  grid-area: button;
+  grid-area: button;  
 }
+.crust {
+  grid-area: crust;
+}
+.sauce {
+  grid-area: sauce;
+}
+.itemPrice {
+  margin-top: 25px;
+  grid-area: itemPrice;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+#buttonDiv {
+  margin-top: 10px;
+  padding-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#removeButtonDiv{
+  margin-top: 10px;
+  padding-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+}
+
+#submitButton {
+  border-radius: 10px;
+}
+
+#removeButton{
+  border-radius:10px;
+}
+
+#removeButton:hover{
+  background-color: black;
+  font-family: 'Warnes', cursive;
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fdb813, 0 0 20px #fdb813, 0 0 25px #fdb813, 0 0 30px #fdb813, 0 0 35px#fdb813;
+}
+
+#submitButton:hover {
+  background-color: black;
+  font-family: 'Warnes', cursive;
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fdb813, 0 0 20px #fdb813, 0 0 25px #fdb813, 0 0 30px #fdb813, 0 0 35px#fdb813;
+}
+
 </style>

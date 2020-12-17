@@ -5,7 +5,7 @@
         <div id="newLogo">
           <router-link v-bind:to="{ name: 'home' }">
             <img
-              src="@/components/src/views/anotherOneBitesTheCrustLogo.png"
+              src="@/Extras/anotherOneBitesTheCrustLogo.png"
               id="navbarLogo"
           /></router-link>
         </div>
@@ -82,17 +82,6 @@ a:link {
 a:visited {
   color: white;
 }
-
-/* h1 {
-  width: 27vw;
-  font-family: Pizzeria;
-  margin: 0 auto;
-  margin-left: 35%;
-  color: white;
-  font-size: 30px;
-  text-align: center;
-  padding-right: 20%;
-} */
 
 h1 {
   font-family: "Warnes", cursive;

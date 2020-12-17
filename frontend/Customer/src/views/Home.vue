@@ -15,7 +15,7 @@
           <h2>Specialty Pizza!</h2>
           <img
             id="pizzaImg1"
-            src="@/components/src/views/pizza1.jpg"
+            src="@/Extras/pizza1.jpg"
             alt="Meat Lovers Pizza"
           />
           <router-link v-bind:to="{name: 'specials'}" tag="b-button">Order Now!</router-link>
@@ -23,7 +23,7 @@
         </div>
         <div id="customBox" class="homeBoxes">
           <h2>Custom Pizza!</h2>
-          <img id="pizzaImg2" src="@/components/src/views/pizza2.jpg" alt="Veggie Pizza" />
+          <img id="pizzaImg2" src="@/Extras/pizza2.jpg" alt="Veggie Pizza" />
           <router-link v-bind:to="{name: 'custom'}" tag="b-button">Order Now!</router-link>
         </div>
       </div>
@@ -58,7 +58,6 @@ export default {
   
 }
 h2 {
-  font-family: Pizzeria;
   color: white;
 }
 
@@ -145,10 +144,5 @@ h2 {
   box-sizing: border-box;
   text-align: center;
 }
-
-p {
-  font-family: Pizzeria;
-}
-
 
 </style>
