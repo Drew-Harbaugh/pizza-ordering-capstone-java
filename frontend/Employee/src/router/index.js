@@ -10,6 +10,7 @@ import store from '../store/index';
 import Choices from '@/views/Choices.vue';
 import Specials from '@/views/Specials.vue';
 import Order from '@/views/Order.vue';
+import History from '@/views/History.vue';
 
 Vue.use(Router)
 
@@ -88,7 +89,17 @@ const router = new Router({
         pageTitle: 'Orders'
       }
 
-    }
+    },
+    {
+      path: '/history',
+      name: 'history',
+      component: History,
+      meta: {
+        requiresAuth: true,
+        pageTitle: 'History'
+      }
+
+    },
   ]
 })
 
