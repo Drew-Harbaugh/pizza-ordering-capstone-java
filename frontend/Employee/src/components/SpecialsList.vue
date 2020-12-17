@@ -19,7 +19,7 @@
             v-bind:key="regularTopping.name"
           >
             <p v-bind:class="{ unavailable: !regularTopping.available }">{{ regularTopping.name }}</p>
-            <p  v-show="!regularTopping.available"> ({{regularTopping.name}}) Out of stock </p>
+            <!-- <p  v-show="!regularTopping.available"> ({{regularTopping.name}}) Out of stock </p> -->
           </div>
           <h4 v-if="special.premiumToppings.length === 0"> Premium Toppings (None) </h4>
           <h4 v-else >Premium Toppings</h4>
@@ -29,7 +29,7 @@
             v-bind:key="premiumTopping.name"
           >
             <p  v-bind:class="{ unavailable: !premiumTopping.available }">{{ premiumTopping.name }}</p>
-            <p  v-show="!premiumTopping.available"> ({{premiumTopping.name}}) Out of stock </p>
+            <!-- <p  v-show="!premiumTopping.available"> ({{premiumTopping.name}}) Out of stock </p> -->
           </div>
         </div>
         <p class="description">{{ special.description }}</p>
