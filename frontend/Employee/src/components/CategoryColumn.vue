@@ -57,11 +57,7 @@ export default {
 <style>
 li {
   list-style: none;
-  font-family: Pizzeria;
   font-size: 1.2rem;
-}
-h2 {
-  font-family: Pizzeria;
 }
 .title {
   grid-area: title;
